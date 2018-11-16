@@ -1,0 +1,98 @@
+<component name="ProjectCodeStyleConfiguration">
+  <code_scheme name="Project" version="173">
+    <option name="CLASS_COUNT_TO_USE_IMPORT_ON_DEMAND" value="99" />
+    <option name="PACKAGES_TO_USE_IMPORT_ON_DEMAND">
+      <value>
+        <package name="java.awt" withSubpackages="false" static="false" />
+        <package name="com.uhg.upm.core.base.ServiceTestHelper" withSubpackages="true" static="false" />
+        <package name="javax.swing" withSubpackages="false" static="false" />
+        <package name="org.junit.Assert" withSubpackages="true" static="false" />
+        <package name="org.ops4j.pax.exam.CoreOptions" withSubpackages="true" static="false" />
+      </value>
+    </option>
+    <option name="ELSE_ON_NEW_LINE" value="true" />
+    <option name="WHILE_ON_NEW_LINE" value="true" />
+    <option name="CATCH_ON_NEW_LINE" value="true" />
+    <option name="FINALLY_ON_NEW_LINE" value="true" />
+    <option name="CALL_PARAMETERS_WRAP" value="1" />
+    <option name="METHOD_PARAMETERS_WRAP" value="1" />
+    <option name="BRACE_STYLE" value="2" />
+    <option name="CLASS_BRACE_STYLE" value="2" />
+    <option name="METHOD_BRACE_STYLE" value="2" />
+    <JavaCodeStyleSettings>
+      <option name="CLASS_COUNT_TO_USE_IMPORT_ON_DEMAND" value="99" />
+      <option name="PACKAGES_TO_USE_IMPORT_ON_DEMAND">
+        <value>
+          <package name="java.awt" withSubpackages="false" static="false" />
+          <package name="com.uhg.upm.core.base.ServiceTestHelper" withSubpackages="true" static="false" />
+          <package name="javax.swing" withSubpackages="false" static="false" />
+          <package name="org.junit.Assert" withSubpackages="true" static="false" />
+          <package name="org.ops4j.pax.exam.CoreOptions" withSubpackages="true" static="false" />
+        </value>
+      </option>
+    </JavaCodeStyleSettings>
+    <TypeScriptCodeStyleSettings>
+      <option name="FORCE_SEMICOLON_STYLE" value="true" />
+      <option name="USE_DOUBLE_QUOTES" value="false" />
+      <option name="FORCE_QUOTE_STYlE" value="true" />
+    </TypeScriptCodeStyleSettings>
+    <XML>
+      <option name="XML_KEEP_WHITESPACES" value="true" />
+      <option name="XML_TEXT_WRAP" value="0" />
+      <option name="XML_KEEP_WHITE_SPACES_INSIDE_CDATA" value="true" />
+      <option name="XML_LEGACY_SETTINGS_IMPORTED" value="true" />
+    </XML>
+    <ADDITIONAL_INDENT_OPTIONS fileType="groovy">
+      <option name="INDENT_SIZE" value="2" />
+    </ADDITIONAL_INDENT_OPTIONS>
+    <ADDITIONAL_INDENT_OPTIONS fileType="gsp">
+      <option name="INDENT_SIZE" value="2" />
+    </ADDITIONAL_INDENT_OPTIONS>
+    <ADDITIONAL_INDENT_OPTIONS fileType="haml">
+      <option name="INDENT_SIZE" value="2" />
+    </ADDITIONAL_INDENT_OPTIONS>
+    <ADDITIONAL_INDENT_OPTIONS fileType="sass">
+      <option name="INDENT_SIZE" value="2" />
+    </ADDITIONAL_INDENT_OPTIONS>
+    <ADDITIONAL_INDENT_OPTIONS fileType="txt">
+      <option name="INDENT_SIZE" value="2" />
+    </ADDITIONAL_INDENT_OPTIONS>
+    <codeStyleSettings language="JAVA">
+      <option name="BRACE_STYLE" value="2" />
+      <option name="CLASS_BRACE_STYLE" value="2" />
+      <option name="METHOD_BRACE_STYLE" value="2" />
+      <option name="ELSE_ON_NEW_LINE" value="true" />
+      <option name="WHILE_ON_NEW_LINE" value="true" />
+      <option name="CATCH_ON_NEW_LINE" value="true" />
+      <option name="FINALLY_ON_NEW_LINE" value="true" />
+      <option name="CALL_PARAMETERS_WRAP" value="1" />
+      <option name="METHOD_PARAMETERS_WRAP" value="1" />
+      <indentOptions>
+        <option name="CONTINUATION_INDENT_SIZE" value="4" />
+      </indentOptions>
+    </codeStyleSettings>
+    <codeStyleSettings language="JavaScript">
+      <option name="BRACE_STYLE" value="2" />
+      <option name="METHOD_BRACE_STYLE" value="2" />
+      <option name="ELSE_ON_NEW_LINE" value="true" />
+      <option name="WHILE_ON_NEW_LINE" value="true" />
+      <option name="CATCH_ON_NEW_LINE" value="true" />
+      <option name="FINALLY_ON_NEW_LINE" value="true" />
+      <option name="CALL_PARAMETERS_WRAP" value="1" />
+      <option name="METHOD_PARAMETERS_WRAP" value="1" />
+      <indentOptions>
+        <option name="CONTINUATION_INDENT_SIZE" value="8" />
+      </indentOptions>
+    </codeStyleSettings>
+    <codeStyleSettings language="TypeScript">
+      <option name="RIGHT_MARGIN" value="140" />
+      <option name="BRACE_STYLE" value="2" />
+      <option name="CLASS_BRACE_STYLE" value="2" />
+      <option name="METHOD_BRACE_STYLE" value="2" />
+      <option name="WHILE_ON_NEW_LINE" value="true" />
+      <option name="FINALLY_ON_NEW_LINE" value="true" />
+      <option name="CALL_PARAMETERS_WRAP" value="1" />
+      <option name="METHOD_PARAMETERS_WRAP" value="1" />
+    </codeStyleSettings>
+  </code_scheme>
+</component>
