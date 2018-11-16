@@ -1,6 +1,15 @@
-# MockiatoUx
+# Mockiato UX
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.6.
+This project is an SPA to be used with the [Mockiato](https://github.com/Optum/mockiato) web-based service virtualization platform.  It's goal is to provide
+a user-centric experience and stream-line the presentation and modification of information in the Mockiato system.  It is intended as a replacement for the 
+rudimentary system-focused UI delivered with the system.
+
+This README has information about contributing to this project and how it is organized.
+
+See [User's Guide](https://otter42.github.io/mockiato-ux/) for more information on how to use this interface.
+
+
+Generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.6.
 
 ## Development server
 
