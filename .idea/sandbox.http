@@ -1,0 +1,10 @@
+
+GET http://lesath.local:8100/api/systems
+Accept: application/json
+Origin: tenebris.us
+
+###
+
+GET http://localhost:4200
+
+###
