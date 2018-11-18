@@ -2,7 +2,7 @@
 
 [![DeepScan grade](https://deepscan.io/api/teams/2522/projects/3661/branches/32116/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=2522&pid=3661&bid=32116)
 [![Greenkeeper badge](https://badges.greenkeeper.io/otter42/mockiato-ux.svg)](https://greenkeeper.io/)
-[![TeamCity badge](https://tenebris-buildserver.ngrok.io/app/rest/builds/buildType:(id:MockiatoUx_Build)/statusIcon)](http://lesath.local:8111/project.html?projectId=MockiatoUx&tab=projectOverview)
+[![TeamCity badge](https://tenebris-buildserver.ngrok.io/app/rest/builds/buildType:(id:MockiatoUx_Build)/statusIcon)](https://tenebris-buildserver.ngrok.io/project.html?projectId=MockiatoUx&tab=projectOverview)
 
 This project is an SPA to be used with the [Mockiato](https://github.com/Optum/mockiato) web-based service virtualization platform.  It's goal is to provide
 a user-centric experience and stream-line the presentation and modification of information in the Mockiato system.  It is intended as a replacement for the 
