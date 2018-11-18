@@ -10,6 +10,7 @@
 
 # IDEs and editors
 /.idea/workspace.xml
+/.idea/httpRequests/
 .project
 .classpath
 .c9/
