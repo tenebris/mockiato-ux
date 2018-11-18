@@ -4,5 +4,5 @@ interface Scripts {
 }
 
 export const ScriptStore: Scripts[] = [
-  {name: 'tv-static', src: '/assets/js/tv-static.js'}
+  {name: 'tv-static', src: './assets/js/tv-static.js'}
 ];

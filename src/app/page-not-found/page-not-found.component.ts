@@ -10,9 +10,7 @@ export class PageNotFoundComponent implements OnInit {
 
   private scripts = new ScriptStoreService();
 
-  constructor() {
-
-  }
+  constructor() {}
 
   ngOnInit() {
     this.scripts.load('tv-static').then(data => {
