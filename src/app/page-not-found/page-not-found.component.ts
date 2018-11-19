@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ScriptStoreService } from '../script-store.service';
+import { ScriptStoreService } from '../services/script-store/script-store.service';
 
 @Component({
   selector: 'app-page-not-found',
