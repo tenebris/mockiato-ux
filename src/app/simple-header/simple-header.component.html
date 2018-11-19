@@ -11,13 +11,13 @@
 
     <nav class="top-navigation" role="navigation">
       <ul class="inline-list padded-list">
-        <li><a href="/prototype/mock" class="icon ion-mock">Mock</a></li>
-        <li><a href="/prototype/browse" class="icon ion-map">Browse</a></li>
-        <li><a href="/prototype/data" class="icon ion-chatbubbles">Data</a></li>
-        <li><a href="/api" class="icon ion-paper-airplane">Api</a></li>
-        <li><a href="/wiki" class="icon ion-edit">Wiki</a></li>
-        <li *ngIf="auth.isAuthenticated()"><a href="/logout" class="icon ion-polymer">Logout</a></li>
-        <li *ngIf="!auth.isAuthenticated()"><a (click)="auth.login()" class="icon ion-android-exit button button-red button-login toggle-hide">Sign In</a></li>
+        <li><a href="/prototype/mock" class="icon">Mock</a></li>
+        <li><a href="/prototype/browse" class="icon">Browse</a></li>
+        <li><a href="/prototype/data" class="icon">Data</a></li>
+        <li><a href="/api" class="icon">Api</a></li>
+        <li><a href="/wiki" class="icon">Wiki</a></li>
+        <li *ngIf="auth.isAuthenticated()"><a href="/logout" class="icon">Logout</a></li>
+        <li *ngIf="!auth.isAuthenticated()"><a (click)="auth.login()" class="icon button button-red button-login toggle-hide">Sign In</a></li>
       </ul>
     </nav>
   </div>

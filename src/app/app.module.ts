@@ -9,6 +9,8 @@ import { ShowIfAuthenticatedDirective } from './show-if-authenticated.directive'
 import { CallbackComponent } from './callback/callback.component';
 import { LogoutComponent } from './logout/logout.component';
 import { SimpleHeaderComponent } from './simple-header/simple-header.component';
+import { BrowseSystemV1Component } from './browse-system-v1/browse-system-v1.component';
+import { CommingSoonComponent } from './comming-soon/comming-soon.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +20,9 @@ import { SimpleHeaderComponent } from './simple-header/simple-header.component';
     ShowIfAuthenticatedDirective,
     CallbackComponent,
     LogoutComponent,
-    SimpleHeaderComponent
+    SimpleHeaderComponent,
+    BrowseSystemV1Component,
+    CommingSoonComponent
   ],
   imports: [
     BrowserModule,
