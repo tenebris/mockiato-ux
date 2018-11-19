@@ -8,6 +8,7 @@ import { PrototypeUxComponent } from './prototype-ux/prototype-ux.component';
 import { ShowIfAuthenticatedDirective } from './show-if-authenticated.directive';
 import { CallbackComponent } from './callback/callback.component';
 import { LogoutComponent } from './logout/logout.component';
+import { SimpleHeaderComponent } from './simple-header/simple-header.component';
 
 @NgModule({
   declarations: [
@@ -16,7 +17,8 @@ import { LogoutComponent } from './logout/logout.component';
     PrototypeUxComponent,
     ShowIfAuthenticatedDirective,
     CallbackComponent,
-    LogoutComponent
+    LogoutComponent,
+    SimpleHeaderComponent
   ],
   imports: [
     BrowserModule,
