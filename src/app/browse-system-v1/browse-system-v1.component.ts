@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ServiceListService, ServiceList} from '../services/core/service-list.service';
+import {ServiceListService} from '../services/core/service-list.service';
 
 @Component({
   selector: 'app-browse-system-v1',
