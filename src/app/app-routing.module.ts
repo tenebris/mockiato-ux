@@ -1,11 +1,11 @@
 import {NgModule} from '@angular/core';
 import {Routes, RouterModule} from '@angular/router';
-import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
-import {PrototypeUxComponent} from './prototype-ux/prototype-ux.component';
-import {CallbackComponent} from './callback/callback.component';
-import {LogoutComponent} from './logout/logout.component';
-import {BrowseSystemV1Component} from './browse-system-v1/browse-system-v1.component';
-import {CommingSoonComponent} from './comming-soon/comming-soon.component';
+import {PageNotFoundComponent} from './views/misc/page-not-found/page-not-found.component';
+import {PrototypeUxComponent} from './views/home/prototype-ux/prototype-ux.component';
+import {CallbackComponent} from './views/auth/callback/callback.component';
+import {LogoutComponent} from './views/auth/logout/logout.component';
+import {BrowseSystemV1Component} from './views/v1/browse-system/browse-system-v1.component';
+import {CommingSoonComponent} from './views/misc/comming-soon/comming-soon.component';
 
 const routes: Routes = [
   {path: 'callback', component: CallbackComponent},

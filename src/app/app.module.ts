@@ -5,14 +5,15 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { PrototypeUxComponent } from './prototype-ux/prototype-ux.component';
+import { PageNotFoundComponent } from './views/misc/page-not-found/page-not-found.component';
+import { PrototypeUxComponent } from './views/home/prototype-ux/prototype-ux.component';
 import { ShowIfAuthenticatedDirective } from './show-if-authenticated.directive';
-import { CallbackComponent } from './callback/callback.component';
-import { LogoutComponent } from './logout/logout.component';
-import { SimpleHeaderComponent } from './simple-header/simple-header.component';
-import { BrowseSystemV1Component } from './browse-system-v1/browse-system-v1.component';
-import { CommingSoonComponent } from './comming-soon/comming-soon.component';
+import { CallbackComponent } from './views/auth/callback/callback.component';
+import { LogoutComponent } from './views/auth/logout/logout.component';
+import { SimpleHeaderComponent } from './shared/components/simple-header/simple-header.component';
+import { BrowseSystemV1Component } from './views/v1/browse-system/browse-system-v1.component';
+import { CommingSoonComponent } from './views/misc/comming-soon/comming-soon.component';
+import { ServiceListComponent } from './shared/components/service-list/service-list.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { CommingSoonComponent } from './comming-soon/comming-soon.component';
     LogoutComponent,
     SimpleHeaderComponent,
     BrowseSystemV1Component,
-    CommingSoonComponent
+    CommingSoonComponent,
+    ServiceListComponent
   ],
   imports: [
     BrowserModule,
