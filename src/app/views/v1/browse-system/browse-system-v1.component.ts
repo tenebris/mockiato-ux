@@ -11,7 +11,7 @@ export class BrowseSystemV1Component implements OnInit
 {
 
   // TODO: populate dynamically from ServiceListService
-  protected services: Service[] = [
+  services: Service[] = [
     {'name': 'one'},
     {'name': 'two'},
     {'name': 'three'},
@@ -20,5 +20,7 @@ export class BrowseSystemV1Component implements OnInit
   constructor(private serviceListSrv: ServiceListService) {}
 
   ngOnInit() {}
+
+  selectService(data: any) {}
 
 }
