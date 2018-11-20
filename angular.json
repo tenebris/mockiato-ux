@@ -42,6 +42,10 @@
                 {
                   "replace": "src/app/auth/auth0-variables.ts",
                   "with": "src/app/auth/auth0-variables.prod.ts"
+                },
+                {
+                  "replace": "src/app/services/core/core-sender-variables.ts",
+                  "with": "src/app/services/core/core-sender-variables.prod.ts"
                 }
               ],
               "optimization": true,
