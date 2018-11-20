@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ServiceListService, ServiceList} from '../services/core/service-list.service';
 
 @Component({
   selector: 'app-browse-system-v1',
@@ -7,9 +8,13 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BrowseSystemV1Component implements OnInit {
 
-  constructor() { }
+  constructor(private serviceListSrv: ServiceListService) { }
 
   ngOnInit() {
+    // TODO: map these to output grid...
+    // TODO: change to get "recent" and "favorite" services on init
+    // HACK: this is mostly here for a break-point for initial connectivity testing :D
+    this.serviceListSrv.getAllServices();
   }
 
 }
