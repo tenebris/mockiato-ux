@@ -12,7 +12,7 @@ export class ServiceListService {
     const result: Array<ServiceList> = [];
     this.sender.simpleQuery(_SystemsQueryUrl)
       .subscribe((data: any) => {
-        result.concat();
+        console.log(data); // HACK: provides breakpoint for early testing...
       });
     return result;
   }
