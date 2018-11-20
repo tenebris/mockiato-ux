@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ServiceList, ServiceListService} from '../../../shared/services/core/service-list.service';
+import {ServiceListService} from '../../../shared/services/core/service-list.service';
 import {Service} from '../../../shared/model/service';
 
 @Component({
@@ -10,6 +10,7 @@ import {Service} from '../../../shared/model/service';
 export class BrowseSystemV1Component implements OnInit
 {
 
+  // TODO: populate dynamically from ServiceListService
   protected services: Service[] = [
     {'name': 'one'},
     {'name': 'two'},
