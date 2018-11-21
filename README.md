@@ -10,7 +10,7 @@ rudimentary system-focused UI delivered with the system.
 
 This README has information about contributing to this project and how it is organized.
 
-See [User's Guide](https://otter42.github.io/mockiato-ux/) for more information on how to use this interface.
+See [User's Guide](https://tenebris.github.io/mockiato-ux/users-guide) for more information on how to use this interface.
 
 
 Generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.6.
