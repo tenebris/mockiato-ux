@@ -1,0 +1,19 @@
+.serviceListContainer {
+  margin-left: 5em;
+  margin-right: 5em;
+}
+
+/* Media queries */
+
+// 480px
+@media (min-width: 30em) {
+
+  // TODO: remove margin on small screens...
+  //.serviceListContainer {
+  //  margin-left: 0px;
+  //  margin-right: 0px;
+  //}
+
+}
+
+
