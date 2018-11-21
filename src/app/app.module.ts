@@ -16,6 +16,7 @@ import { CommingSoonComponent } from './views/misc/comming-soon/comming-soon.com
 import { ServiceListComponent } from './shared/components/service-list/service-list.component';
 import { AgGridModule } from 'ag-grid-angular';
 import { ServiceDetailV1Component } from './views/v1/service-detail/service-detail-v1.component';
+import { SimpleFooterComponent } from './shared/components/simple-footer/simple-footer.component';
 
 
 @NgModule({
@@ -36,6 +37,7 @@ import { ServiceDetailV1Component } from './views/v1/service-detail/service-deta
     // UX Views
     BrowseSystemV1Component,
     ServiceDetailV1Component,
+    SimpleFooterComponent,
   ],
   imports: [
     BrowserModule,
