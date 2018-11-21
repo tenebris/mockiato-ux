@@ -1,6 +1,4 @@
 import {Component, OnInit} from '@angular/core';
-import {ServiceListService} from '../../../shared/services/core/service-list.service';
-import {Service} from '../../../shared/model/service';
 import {ServiceStore} from '../../../shared/model/service-store';
 
 @Component({
