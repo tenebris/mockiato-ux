@@ -18,9 +18,9 @@ export class ServiceListService {
       .subscribe((data: any) => {
         console.log(data); // DEBUG: output result to log for now...
         return [ // HACK: provides breakpoint and static data for early testing...
-          {'name': 'one'},
-          {'name': 'two'},
-          {'name': 'three'},
+          {'name': 'seven'},
+          {'name': 'eight'},
+          {'name': 'nine'},
         ];
       });
     return result;
