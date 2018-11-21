@@ -1,17 +1,35 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
-import {Service} from './service';
+import {Service, ServiceType} from './service';
 import {ServiceListService} from '../services/core/service-list.service';
 
 
 @Injectable()
 export class ServiceStore
 {
+  // noinspection SpellCheckingInspection
   private _services: BehaviorSubject<Array<Service>> =
     new BehaviorSubject([
-      {'name': 'one'},
-      {'name': 'two'},
-      {'name': 'three'},
+      {
+        '_id': '1',
+        'name': 'resource-clm-chwy-pharmacyclaims-v1',
+        'type': ServiceType.REST,
+        'owner': 'otter',
+        lastModified: {
+          'user': 'otter',
+          'timestamp': new Date(Date.now()),
+        }
+      },
+      {
+        '_id': '3',
+        'name': 'dataservice-cams-myuhcreceiverservice-v9',
+        'type': ServiceType.SOAP,
+        'owner': 'otter',
+        lastModified: {
+          'user': 'otter',
+          'timestamp': new Date(Date.now()),
+        }
+      }
     ]);
 
   public readonly services: Observable<Array<Service>> = this._services.asObservable();
@@ -26,12 +44,41 @@ export class ServiceStore
   public test()
   {
     // testing the dynamic update methodology
-    this._services.next(
-      [
-        {'name': 'three'},
-        {'name': 'four'},
-        {'name': 'five'}
-      ]);
+    // noinspection SpellCheckingInspection
+    this._services.next([
+      {
+        '_id': '1',
+        'name': 'resource-clm-chwy-pharmacyclaims-v1',
+        'type': ServiceType.REST,
+        'owner': 'otter',
+        lastModified: {
+          'user': 'otter',
+          'timestamp': new Date(Date.now()),
+        }
+      },
+      {
+        '_id': '2',
+        'name': 'two',
+        'owner': 'fred',
+        'type': ServiceType.REST,
+      },
+      {
+        '_id': '3',
+        'name': 'dataservice-cams-myuhcreceiverservice-v9',
+        'type': ServiceType.SOAP,
+        'owner': 'otter',
+        lastModified: {
+          'user': 'otter',
+          'timestamp': new Date(Date.now()),
+        }
+      },
+      {
+        '_id': '4',
+        'name': 'four',
+        'owner': 'george',
+        'type': ServiceType.REST,
+      }
+    ]);
   }
 
 // SERVICE: add additional public functions...
