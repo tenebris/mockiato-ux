@@ -9,6 +9,7 @@ import {ActivatedRoute, Router} from '@angular/router';
       <ag-grid-angular
         style="width: 100%; height: 500px;"
         class="ag-theme-balham"
+        [suppressMovableColumns]="true"
         [enableColResize]="true"
         [enableSorting]="true"
         [enableFilter]="true"
