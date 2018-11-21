@@ -1,21 +1,22 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Service} from '../../model/service';
 
+
 @Component({
   selector: 'app-service-list',
   template: `
-    <table class="table service-list card card-strong">
-      <tbody>
-      <tr *ngFor="let service of services" (click)="selectService(service)">
-        <td class="service-title">{{service.name}}</td>
-      </tr>
-      </tbody>
-    </table>
+    <ag-grid-angular
+      style="width: 500px; height: 500px;"
+      class="ag-theme-balham"
+      [enableSorting]="true"
+      [enableFilter]="true"
+      [rowData]="services"
+      [columnDefs]="columnDefs"
+    ></ag-grid-angular>
   `,
   styleUrls: ['./service-list.component.scss']
 })
-export class ServiceListComponent
-{
+export class ServiceListComponent {
 
   @Input()
   services: Service[];
@@ -23,8 +24,11 @@ export class ServiceListComponent
   @Output('service')
   serviceEmitter = new EventEmitter<Service>();
 
-  selectService(service: Service)
-  {
+  columnDefs = [
+    {headerName: 'Name', field: 'name'},
+  ];
+
+  selectService(service: Service) {
     this.serviceEmitter.emit(service);
   }
 

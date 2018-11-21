@@ -14,6 +14,8 @@ import { SimpleHeaderComponent } from './shared/components/simple-header/simple-
 import { BrowseSystemV1Component } from './views/v1/browse-system/browse-system-v1.component';
 import { CommingSoonComponent } from './views/misc/comming-soon/comming-soon.component';
 import { ServiceListComponent } from './shared/components/service-list/service-list.component';
+import { AgGridModule } from 'ag-grid-angular';
+
 
 @NgModule({
   declarations: [
@@ -26,11 +28,12 @@ import { ServiceListComponent } from './shared/components/service-list/service-l
     SimpleHeaderComponent,
     BrowseSystemV1Component,
     CommingSoonComponent,
-    ServiceListComponent
+    ServiceListComponent,
   ],
   imports: [
     BrowserModule,
     HttpClientModule, // import after BrowserModule
+    AgGridModule.withComponents([]),
     AppRoutingModule
   ],
   providers: [],
