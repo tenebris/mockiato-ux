@@ -6,12 +6,14 @@ import {CallbackComponent} from './views/auth/callback/callback.component';
 import {LogoutComponent} from './views/auth/logout/logout.component';
 import {BrowseSystemV1Component} from './views/v1/browse-system/browse-system-v1.component';
 import {CommingSoonComponent} from './views/misc/comming-soon/comming-soon.component';
+import {ServiceDetailV1Component} from './views/v1/service-detail/service-detail-v1.component';
 
 const routes: Routes = [
   {path: 'callback', component: CallbackComponent},
   {path: 'logout', component: LogoutComponent},
   {path: 'prototype', component: PrototypeUxComponent},
   {path: 'prototype/browse', component: BrowseSystemV1Component},
+  {path: 'prototype/browse/service/:id', component: ServiceDetailV1Component},
   {path: 'prototype/mock', component: CommingSoonComponent},
   {path: 'prototype/data', component: CommingSoonComponent},
   {path: 'api', component: CommingSoonComponent},

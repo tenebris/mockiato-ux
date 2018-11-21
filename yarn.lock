@@ -319,9 +319,14 @@
   version "8.11.7"
   resolved "https://registry.yarnpkg.com/@types/auth0-js/-/auth0-js-8.11.7.tgz#8d6255be9ca9cca35dd664ad07e6d774e5198fdc"
 
-"@types/jasmine@*", "@types/jasmine@~2.8.8":
+"@types/jasmine@*":
   version "2.8.11"
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-2.8.11.tgz#0b5eba9e02616736b1a189112eacc163c3773b7b"
+
+"@types/jasmine@~3.3.0":
+  version "3.3.0"
+  resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-3.3.0.tgz#6b0e4b0192367d77e438ff660ccc4487c9602e7b"
+  integrity sha512-0VU8WsYEOYmoxVtUuafB66/+9G8gMdGAC3dhCE/CMpjXgNIz9fwC6g41kRlNxFgpQI/uX/aWNLArNg7KmeFYvw==
 
 "@types/jasminewd2@~2.0.3":
   version "2.0.6"

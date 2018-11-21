@@ -15,20 +15,27 @@ import { BrowseSystemV1Component } from './views/v1/browse-system/browse-system-
 import { CommingSoonComponent } from './views/misc/comming-soon/comming-soon.component';
 import { ServiceListComponent } from './shared/components/service-list/service-list.component';
 import { AgGridModule } from 'ag-grid-angular';
+import { ServiceDetailV1Component } from './views/v1/service-detail/service-detail-v1.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
+    // Top-Level Views
     PageNotFoundComponent,
     PrototypeUxComponent,
+    // Directives
     ShowIfAuthenticatedDirective,
-    CallbackComponent,
+    // Auth0 Related Components
     LogoutComponent,
+    CallbackComponent,
+    // Shared Components
     SimpleHeaderComponent,
-    BrowseSystemV1Component,
     CommingSoonComponent,
     ServiceListComponent,
+    // UX Views
+    BrowseSystemV1Component,
+    ServiceDetailV1Component,
   ],
   imports: [
     BrowserModule,
