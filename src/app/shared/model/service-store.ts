@@ -60,7 +60,7 @@ export class ServiceStore
         '_id': '2',
         'name': 'two',
         'owner': 'fred',
-        'type': ServiceType.REST,
+        'type': ServiceType.MQ,
       },
       {
         '_id': '3',
