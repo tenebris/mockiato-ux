@@ -2,6 +2,9 @@
   <h2>Browse Function</h2>
   <h3>Coming Soon...</h3>
   <div class="services-list-container v-h-center-block-parent">
-    <app-service-list [services]="services" (service)="selectService($event)"></app-service-list>
+    <app-service-list [services]="serviceStore.services|async" (service)="selectService($event)"></app-service-list>
   </div>
+
+  <hr/>
+  <button (click)="refreshServices()">refresh</button>
 </div>
