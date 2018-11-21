@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Service, ServiceType} from '../../model/service';
-
+import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
   selector: 'app-service-list',
@@ -15,6 +15,7 @@ import {Service, ServiceType} from '../../model/service';
         [rowData]="services"
         [columnDefs]="columnDefinitions"
         (firstDataRendered)="onFirstDataRendered($event)"
+        (cellDoubleClicked)="onCellDoubleClicked($event)"
       ></ag-grid-angular>
     </div>
   `,
@@ -22,6 +23,14 @@ import {Service, ServiceType} from '../../model/service';
 })
 export class ServiceListComponent
 {
+  private router: Router;
+  private route: ActivatedRoute;
+
+  constructor(router: Router, route: ActivatedRoute)
+  {
+    this.router = router;
+    this.route = route;
+  }
 
   @Input()
   services: Service[];
@@ -68,9 +77,15 @@ export class ServiceListComponent
     params.api.sizeColumnsToFit();
   }
 
-  selectService(service: Service)
+  onCellDoubleClicked(event)
   {
-    this.serviceEmitter.emit(service);
+    this.navigateToServiceDetail(new Service(event.data));
+  }
+
+  navigateToServiceDetail(target: Service)
+  {
+    console.log(`selected ${target.name}:_id=${target._id}`);
+    this.router.navigate(['service', target._id], {relativeTo: this.route});
   }
 
 

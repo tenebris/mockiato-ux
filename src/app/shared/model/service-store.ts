@@ -12,7 +12,7 @@ export class ServiceStore
     new BehaviorSubject([
       {
         '_id': '1',
-        'name': 'resource-clm-chwy-pharmacyclaims-v1',
+        'name': 'upm4:resource-clm-chwy-pharmacyclaims-v1',
         'type': ServiceType.REST,
         'owner': 'otter',
         lastModified: {
@@ -22,12 +22,12 @@ export class ServiceStore
       },
       {
         '_id': '3',
-        'name': 'dataservice-cams-myuhcreceiverservice-v9',
+        'name': 'upm4:dataservice-cams-myuhcreceiverservice-v9',
         'type': ServiceType.SOAP,
         'owner': 'otter',
         lastModified: {
           'user': 'otter',
-          'timestamp': new Date(Date.now()),
+          'timestamp': new Date(Date.parse('12/01/2017')),
         }
       }
     ]);
@@ -48,7 +48,7 @@ export class ServiceStore
     this._services.next([
       {
         '_id': '1',
-        'name': 'resource-clm-chwy-pharmacyclaims-v1',
+        'name': 'upm4:resource-clm-chwy-pharmacyclaims-v1',
         'type': ServiceType.REST,
         'owner': 'otter',
         lastModified: {
@@ -64,12 +64,12 @@ export class ServiceStore
       },
       {
         '_id': '3',
-        'name': 'dataservice-cams-myuhcreceiverservice-v9',
+        'name': 'upm4:dataservice-cams-myuhcreceiverservice-v9',
         'type': ServiceType.SOAP,
         'owner': 'otter',
         lastModified: {
-          'user': 'otter',
-          'timestamp': new Date(Date.now()),
+          'user': 'george',
+          'timestamp': new Date(Date.parse('12/01/2017')),
         }
       },
       {
