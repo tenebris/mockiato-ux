@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ServiceStore} from '../../../shared/model/service-store';
+import {ServiceStore} from '../../../shared/model/service/service-store';
 
 @Component({
   selector: 'app-browse-system-v1',
@@ -13,12 +13,8 @@ export class BrowseSystemV1Component implements OnInit
 
   ngOnInit() {}
 
-  selectService(data: any) {
-    console.log(data);
-  }
-
   refreshServices() {
-    this.serviceStore.test();
+    this.serviceStore.publishDummyData();
   }
 
 }

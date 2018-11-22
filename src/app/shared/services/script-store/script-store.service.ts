@@ -1,11 +1,11 @@
 import {Injectable} from '@angular/core';
 import {ScriptStore} from './script-store';
 
+
 declare var document: any;
 
-@Injectable({
-  providedIn: 'root'
-})
+
+@Injectable({providedIn: 'root'})
 export class ScriptStoreService {
 
   private scripts: any = {};

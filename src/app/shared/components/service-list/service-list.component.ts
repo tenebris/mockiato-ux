@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Service, ServiceType} from '../../model/service';
+import {Service, ServiceType} from '../../model/service/service';
 import {ActivatedRoute, Router} from '@angular/router';
 
 @Component({
