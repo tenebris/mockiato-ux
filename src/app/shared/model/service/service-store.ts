@@ -1,15 +1,24 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {Service, ServiceType} from './service';
-import {ServiceListService} from '../services/core/service-list.service';
+import {ServiceListService} from '../../services/core/service-list.service';
 
 
-@Injectable()
+@Injectable({providedIn: 'root'})
 export class ServiceStore
 {
-  // noinspection SpellCheckingInspection
-  private _services: BehaviorSubject<Array<Service>> =
-    new BehaviorSubject([
+// noinspection SpellCheckingInspection
+  private _services: BehaviorSubject<Array<Service>> = new BehaviorSubject([]);
+
+  public readonly services: Observable<Array<Service>> = this._services.asObservable();
+
+
+// ~~-~~-~~-~~-~~ Constructors ~~-~~-~~-~~-~~
+
+  constructor(private _backend: ServiceListService)
+  {
+    // TODO: initialize from backend service
+    this._services.next([
       {
         '_id': '1',
         'name': 'upm4:resource-clm-chwy-pharmacyclaims-v1',
@@ -32,16 +41,31 @@ export class ServiceStore
       }
     ]);
 
-  public readonly services: Observable<Array<Service>> = this._services.asObservable();
-
-
-  constructor(private backend: ServiceListService)
-  {
-    // DEBT: this.loadInitialData();
+    // FIXME (otter): this doesn't work yet... need to debug
+    // this._services.next(_backend.findAll());
   }
 
 
-  public test()
+  public getService(id: string): Service
+  {
+    let found: Service;
+    for (const service of this._services.getValue()) if (service._id === id) return service;
+
+    // if we are here we did not find the requested service
+    // go get it and put it in the store.
+    found = this._backend.findService(id);
+    if (found != null)
+    {
+      const value = this._services.getValue();
+      value.push(found);
+      this._services.next(value);
+    }
+
+    return found;
+  }
+
+
+  public publishDummyData()
   {
     // testing the dynamic update methodology
     // noinspection SpellCheckingInspection
@@ -80,6 +104,7 @@ export class ServiceStore
       }
     ]);
   }
+
 
 // SERVICE: add additional public functions...
 }
