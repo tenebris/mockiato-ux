@@ -5,7 +5,6 @@ import {ServiceStore} from '../../../shared/model/service/service-store';
   selector: 'app-browse-system-v1',
   templateUrl: './browse-system-v1.component.html',
   styleUrls: ['./browse-system-v1.component.scss'],
-  providers: [ServiceStore]
 })
 export class BrowseSystemV1Component implements OnInit
 {

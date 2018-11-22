@@ -1,3 +1,6 @@
+import {LastModifiedDetails} from '../common/last-modified-details';
+
+
 export class Service
 {
   /**
@@ -36,10 +39,7 @@ export class Service
   name: string;
   type: ServiceType;
   owner?: string;
-  lastModified?: {
-    timestamp: Date;
-    user: string;
-  };
+  lastModified?: LastModifiedDetails;
 }
 
 

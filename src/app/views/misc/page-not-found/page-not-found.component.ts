@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ScriptStoreService} from '../../../shared/services/script-store/script-store.service';
 import {ActivatedRoute} from '@angular/router';
 
+
 @Component({
   selector: 'app-page-not-found',
   templateUrl: './page-not-found.component.html',
@@ -11,7 +12,7 @@ export class PageNotFoundComponent implements OnInit
 {
 
   private _scripts = new ScriptStoreService();
-  protected here: string;
+  here: string;
 
   constructor(route: ActivatedRoute)
   {
