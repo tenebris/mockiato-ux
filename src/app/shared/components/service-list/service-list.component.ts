@@ -34,10 +34,16 @@ export class ServiceListComponent
   readonly columnDefinitions = [
     {headerName: 'Name', field: 'name'},
     {headerName: 'Type', valueGetter: (params) => ServiceType[params.data.type]},
+    {headerName: 'Group', field: 'group.name'},
     {headerName: 'Owner', field: 'owner'},
     {
       headerName: 'Last Modified', children: [
-        {headerName: 'User', field: 'lastModified.user'},
+        {
+          headerName: 'User', valueGetter: (params) => {
+            const lastModified = params.data.lastModified;
+            return lastModified ? lastModified.user : 'Unavailable';
+          }
+        },
         {
           headerName: 'When', field: 'lastModified.timestamp',
           filter: 'agDateColumnFilter',
@@ -46,18 +52,9 @@ export class ServiceListComponent
               const dateAsString = cellValue;
               const dateParts = dateAsString.split('/');
               const cellDate = new Date(Number(dateParts[2]), Number(dateParts[1]) - 1, Number(dateParts[0]));
-              if (filterLocalDateAtMidnight.getTime() === cellDate.getTime())
-              {
-                return 0;
-              }
-              if (cellDate < filterLocalDateAtMidnight)
-              {
-                return -1;
-              }
-              if (cellDate > filterLocalDateAtMidnight)
-              {
-                return 1;
-              }
+              if (filterLocalDateAtMidnight.getTime() === cellDate.getTime()) return 0;
+              if (cellDate < filterLocalDateAtMidnight) return -1;
+              if (cellDate > filterLocalDateAtMidnight) return 1;
             },
           },
         }
