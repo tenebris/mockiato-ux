@@ -1,8 +1,19 @@
 import {LastModifiedDetails} from '../common/last-modified-details';
+import {Group} from '../group/group';
 
 
 export class Service
 {
+  _id: string;
+  name: string;
+  type: ServiceType;
+  group: Group;
+  owner?: string;
+  lastModified?: LastModifiedDetails;
+
+
+// ~~-~~-~~-~~-~~ Constructors ~~-~~-~~-~~-~~
+
   /**
    * Maps known keys from input data to properties of a new Service instance.
    *
@@ -10,6 +21,8 @@ export class Service
    */
   constructor(data: any)
   {
+    console.log('constructing new Service from data');
+
     // TODO: this(); // make sure any defaults are created as needed.
 
     Object.keys(data).forEach(key => {
@@ -30,16 +43,12 @@ export class Service
         case 'lastModified':
           this.lastModified = data.lastModified;
           break;
+
+        default:
+          console.log(`ignoring unknown property: ${key}`);
       }
     });
   }
-
-
-  _id: string;
-  name: string;
-  type: ServiceType;
-  owner?: string;
-  lastModified?: LastModifiedDetails;
 }
 
 

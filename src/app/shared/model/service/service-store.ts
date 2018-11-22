@@ -23,6 +23,7 @@ export class ServiceStore
         '_id': '1',
         'name': 'upm4:resource-clm-chwy-pharmacyclaims-v1',
         'type': ServiceType.REST,
+        'group': { _id: 1, name: 'Unknown'},
         'owner': 'otter',
         lastModified: {
           'user': 'otter',
@@ -33,6 +34,7 @@ export class ServiceStore
         '_id': '3',
         'name': 'upm4:dataservice-cams-myuhcreceiverservice-v9',
         'type': ServiceType.SOAP,
+        'group': { _id: 1, name: 'Unknown'},
         'owner': 'otter',
         lastModified: {
           'user': 'otter',
@@ -74,6 +76,7 @@ export class ServiceStore
         '_id': '1',
         'name': 'upm4:resource-clm-chwy-pharmacyclaims-v1',
         'type': ServiceType.REST,
+        'group': { _id: 1, name: 'Unknown'},
         'owner': 'otter',
         lastModified: {
           'user': 'otter',
@@ -84,21 +87,28 @@ export class ServiceStore
         '_id': '2',
         'name': 'two',
         'owner': 'fred',
+        'group': { _id: 1, name: 'Regression'},
         'type': ServiceType.MQ,
-      },
-      {
-        '_id': '3',
-        'name': 'upm4:dataservice-cams-myuhcreceiverservice-v9',
-        'type': ServiceType.SOAP,
-        'owner': 'otter',
         lastModified: {
           'user': 'george',
           'timestamp': new Date(Date.parse('12/01/2017')),
         }
       },
       {
+        '_id': '3',
+        'name': 'upm4:dataservice-cams-myuhcreceiverservice-v9',
+        'type': ServiceType.SOAP,
+        'group': { _id: 1, name: 'Sandbox'},
+        'owner': 'otter',
+        lastModified: {
+          'user': 'fred',
+          'timestamp': new Date(Date.parse('08/01/2014')),
+        }
+      },
+      {
         '_id': '4',
         'name': 'four',
+        'group': { _id: 1, name: 'Sandbox'},
         'owner': 'george',
         'type': ServiceType.REST,
       }
