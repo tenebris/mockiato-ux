@@ -1,6 +1,6 @@
 # Mockiato UX
 
-[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
+[![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/tenebris/mockiato-ux/blob/master/LICENSE)
 [![DeepScan grade](https://deepscan.io/api/teams/2522/projects/3668/branches/32133/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=2522&pid=3668&bid=32133)
 [![Greenkeeper badge](https://badges.greenkeeper.io/tenebris/mockiato-ux.svg)](https://greenkeeper.io/)
 [![TeamCity badge](https://tenebris-buildserver.ngrok.io/app/rest/builds/buildType:(id:MockiatoUx_Build)/statusIcon)](https://tenebris-buildserver.ngrok.io/project.html?projectId=MockiatoUx&tab=projectOverview)
