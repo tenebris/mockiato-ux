@@ -2,6 +2,7 @@ import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Service, ServiceType} from '../../model/service/service';
 import {ActivatedRoute, Router} from '@angular/router';
 
+
 @Component({
   selector: 'app-service-list',
   template: `
@@ -24,22 +25,13 @@ import {ActivatedRoute, Router} from '@angular/router';
 })
 export class ServiceListComponent
 {
-  private router: Router;
-  private route: ActivatedRoute;
-
-  constructor(router: Router, route: ActivatedRoute)
-  {
-    this.router = router;
-    this.route = route;
-  }
-
   @Input()
   services: Service[];
 
   @Output('service')
   serviceEmitter = new EventEmitter<Service>();
 
-  columnDefinitions = [
+  readonly columnDefinitions = [
     {headerName: 'Name', field: 'name'},
     {headerName: 'Type', valueGetter: (params) => ServiceType[params.data.type]},
     {headerName: 'Owner', field: 'owner'},
@@ -73,17 +65,19 @@ export class ServiceListComponent
     }
   ];
 
-  onFirstDataRendered(params)
-  {
-    params.api.sizeColumnsToFit();
-  }
 
-  onCellDoubleClicked(event)
-  {
-    this.navigateToServiceDetail(new Service(event.data));
-  }
+// ~~-~~-~~-~~-~~ Constructors ~~-~~-~~-~~-~~
 
-  navigateToServiceDetail(target: Service)
+  constructor(private router: Router, private route: ActivatedRoute) {}
+
+
+  onFirstDataRendered(params): void { params.api.sizeColumnsToFit(); }
+
+
+  onCellDoubleClicked(event): void { this.navigateToServiceDetail(new Service(event.data)); }
+
+
+  private navigateToServiceDetail(target: Service): void
   {
     console.log(`selected ${target.name}:_id=${target._id}`);
     this.router.navigate(['service', target._id], {relativeTo: this.route});

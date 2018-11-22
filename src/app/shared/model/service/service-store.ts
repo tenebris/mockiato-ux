@@ -7,7 +7,6 @@ import {ServiceListService} from '../../services/core/service-list.service';
 @Injectable({providedIn: 'root'})
 export class ServiceStore
 {
-// noinspection SpellCheckingInspection
   private _services: BehaviorSubject<Array<Service>> = new BehaviorSubject([]);
 
   public readonly services: Observable<Array<Service>> = this._services.asObservable();
@@ -17,6 +16,7 @@ export class ServiceStore
 
   constructor(private _backend: ServiceListService)
   {
+    console.log(`constructing ServiceStore class ${this.toString()}`);
     // TODO: initialize from backend service
     this._services.next([
       {
