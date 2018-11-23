@@ -1,23 +1,20 @@
-import { TestBed } from '@angular/core/testing';
+import {TestBed} from '@angular/core/testing';
 
-import { LoggingService } from './logging.service';
+import {LoggingService} from './logging.service';
+
 
 describe('LoggingService', () => {
-  // beforeEach(() => TestBed.configureTestingModule({}));
-  //
-  // it('should be created', () => {
-  //   const service: LoggingService = TestBed.get(LoggingService);
-  //   expect(service).toBeTruthy();
-  // });
+  beforeEach(() => TestBed.configureTestingModule({}));
 
-  let service: LoggingService;
+  it('should be created', () => {
+    const service: LoggingService = TestBed.get(LoggingService);
+    expect(service).toBeTruthy();
 
-  beforeEach(() => {
-    service = new LoggingService();
-  });
-
-  it('log at various levels', () => {
-    const msgText = 'fubar';
-    service.debug();
+    service.trace('trace test');
+    service.debug('debug test');
+    service.info('info test');
+    service.warn('warn test');
+    service.error('error test');
+    service.critical('critical test');
   });
 });

@@ -21,7 +21,7 @@ export class ServiceDetailV1Component implements OnInit
   {
     this._route.params.subscribe((params) => {
       const found = this._store.getService(params.id);
-      // FIXME (otter): appLogger().debug(found);
+      appLogger().debug(found);
     });
   }
 

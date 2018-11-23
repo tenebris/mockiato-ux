@@ -16,7 +16,6 @@ export abstract class Logger
 
   protected readonly noop = (): any => undefined;
 
-
   protected shouldLogMessage(_input: LogLevel): boolean { return this.level <= _input; }
 }
 
