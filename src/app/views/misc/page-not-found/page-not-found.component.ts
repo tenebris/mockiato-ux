@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ScriptStoreService} from '../../../shared/services/script-store/script-store.service';
 import {ActivatedRoute} from '@angular/router';
+import {appLogger} from '../../../shared/app-logger';
 
 
 @Component({
@@ -11,19 +12,22 @@ import {ActivatedRoute} from '@angular/router';
 export class PageNotFoundComponent implements OnInit
 {
 
-  private _scripts = new ScriptStoreService();
   here: string;
+  private _scripts = new ScriptStoreService();
 
+
+// ~~-~~-~~-~~-~~ Constructors ~~-~~-~~-~~-~~
   constructor(route: ActivatedRoute)
   {
     this.here = '/' + route.snapshot.url.join('/');
   }
 
+
   ngOnInit()
   {
     this._scripts.load('tv-static').then(data => {
-      console.log('script loaded ', data);
-    }).catch(error => console.log(error));
+      appLogger().debug('script loaded ', data);
+    }).catch(error => appLogger().error(error));
   }
 
 }

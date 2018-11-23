@@ -1,6 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
 import {Service, ServiceType} from '../../model/service/service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {appLogger} from '../../app-logger';
 
 
 @Component({
@@ -31,6 +32,7 @@ export class ServiceListComponent
   @Output('service')
   serviceEmitter = new EventEmitter<Service>();
 
+  // noinspection JSUnusedGlobalSymbols
   readonly columnDefinitions = [
     {headerName: 'Name', field: 'name'},
     {headerName: 'Type', valueGetter: (params) => ServiceType[params.data.type]},
@@ -49,8 +51,7 @@ export class ServiceListComponent
           filter: 'agDateColumnFilter',
           filterParams: {
             comparator: function (filterLocalDateAtMidnight, cellValue) {
-              const dateAsString = cellValue;
-              const dateParts = dateAsString.split('/');
+              const dateParts = cellValue.split('/');
               const cellDate = new Date(Number(dateParts[2]), Number(dateParts[1]) - 1, Number(dateParts[0]));
               if (filterLocalDateAtMidnight.getTime() === cellDate.getTime()) return 0;
               if (cellDate < filterLocalDateAtMidnight) return -1;
@@ -76,7 +77,7 @@ export class ServiceListComponent
 
   private navigateToServiceDetail(target: Service): void
   {
-    console.log(`selected ${target.name}:_id=${target._id}`);
+    appLogger().debug(`selected ${target.name}:_id=${target._id}`);
     this.router.navigate(['service', target._id], {relativeTo: this.route});
   }
 

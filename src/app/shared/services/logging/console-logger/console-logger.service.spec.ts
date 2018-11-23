@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { GroupListService } from './group-list.service';
+import { ConsoleLoggerService } from './console-logger.service';
 
-describe('GroupListService', () => {
+describe('ConsoleLoggerService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: GroupListService = TestBed.get(GroupListService);
+    const service: ConsoleLoggerService = TestBed.get(ConsoleLoggerService);
     expect(service).toBeTruthy();
   });
 });
