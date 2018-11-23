@@ -7,6 +7,7 @@ import {appLogger} from '../../app-logger';
 // HACK: for initial testing only
 // TODO: use authenticated user-id
 // TODO: add ability to query a specific list of services -- e.g. for favorites and history lists
+// noinspection JSUnusedLocalSymbols -- TODO: remove when referenced
 const _initialViewQueryUrl = '/services/user/otter';
 const _findServiceQueryUrl = '/services/';
 

@@ -19,9 +19,7 @@ export class CoreSenderService
   async simpleQuery(path: string)
   {
     return await this.http.get(SENDER_CONFIG.target + path, {observe: 'response'}).toPromise()
-      .then(x => {
-        // FIXME (otter): appLogger().debug(x);
-      });
+      .then(x => { appLogger().debug(x); });
 
   }
 }
