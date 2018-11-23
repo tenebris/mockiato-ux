@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
-import {CoreSenderService} from './core-sender.service';
-import {Service, ServiceType} from '../../model/service/service';
-import {appLogger} from '../../app-logger';
+import {CoreSenderService} from '../core-sender/core-sender.service';
+import {Service, ServiceType} from '../../../model/service/service';
+import {appLogger} from '../../../app-logger';
 
 
 // HACK: for initial testing only

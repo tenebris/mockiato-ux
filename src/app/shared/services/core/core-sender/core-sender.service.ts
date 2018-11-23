@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
 import {SENDER_CONFIG} from './core-sender-variables';
-import {appLogger} from '../../app-logger';
+import {appLogger} from '../../../app-logger';
 
 
 @Injectable({

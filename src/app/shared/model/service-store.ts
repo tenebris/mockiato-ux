@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {Service, ServiceType} from './service';
-import {ServiceListService} from '../services/core/service-list.service';
+import {ServiceListService} from '../services/core/service-list/service-list.service';
 
 
 @Injectable()
