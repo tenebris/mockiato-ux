@@ -1,21 +1,21 @@
 import {inject, TestBed} from '@angular/core/testing';
-import {AuthService} from './auth.service';
+import {Auth0AuthenticationService} from './auth0-authentication.service';
 import {Router} from '@angular/router';
 
-describe('AuthService', () => {
+describe('Auth0AuthenticationService', () => {
   beforeEach(() => TestBed.configureTestingModule({}));
 
   it('should be created', () => {
-    const service: AuthService = TestBed.get(AuthService);
+    const service: Auth0AuthenticationService = TestBed.get(Auth0AuthenticationService);
     expect(service).toBeTruthy();
   });
 });
 
-describe('AuthService', () => {
+describe('Auth0AuthenticationService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       providers: [
-        AuthService,
+        Auth0AuthenticationService,
         {
           provide: Router, useValue: {
             navigate: () => {
@@ -25,7 +25,7 @@ describe('AuthService', () => {
     });
   });
 
-  it('should ...', inject([AuthService], (service: AuthService) => {
+  it('should ...', inject([Auth0AuthenticationService], (service: Auth0AuthenticationService) => {
     expect(service).toBeTruthy();
   }));
 });

@@ -1,19 +1,20 @@
-import {Injectable, Optional} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {AUTH_CONFIG} from './auth0-variables';
 import {Router} from '@angular/router';
 import * as auth0 from 'auth0-js';
-import {AuthenticationService} from './AuthenticationService';
-import {AuthenticationConfig} from './AuthenticationConfig';
+import {Authenticator} from '../authentication-service';
+
 
 (window as any).global = window;
 
-const ACCESS_TOKEN_KEY: string = 'mockiato-ux.access_token';
-const ID_TOKEN_KEY: string = 'mockiato-ux.id_token';
-const EXPIRES_AT_KEY: string = 'mockiato-ux.expires_at';
+const ACCESS_TOKEN_KEY: string = 'mockiato-ux.auth0.access_token';
+const ID_TOKEN_KEY: string = 'mockiato-ux.auth0.id_token';
+const EXPIRES_AT_KEY: string = 'mockiato-ux.auth0.expires_at';
 
 
 @Injectable({providedIn: 'root'})
-export class AuthService implements AuthenticationService {
+export class Auth0AuthenticationService extends Authenticator
+{
 
   readonly auth0 = new auth0.WebAuth({
     clientID: AUTH_CONFIG.clientID,
@@ -24,34 +25,17 @@ export class AuthService implements AuthenticationService {
 
   readonly name: string;
 
+
 // ~~-~~-~~-~~-~~ Constructors ~~-~~-~~-~~-~~
 
-  constructor(public router: Router) {}
+  constructor(public router: Router) { super(); }
 
 
-  public login(): void {
-    this.auth0.authorize();
-  }
+  public login(): void { this.auth0.authorize(); }
 
 
-  public handleAuthentication(): void {
-    this.auth0.parseHash((err, authResult) => {
-      if (authResult && authResult.accessToken && authResult.idToken) {
-
-        this.setSession(authResult);
-        this.router.navigate(['/']);
-
-      } else if (err) {
-
-        this.router.navigate(['/']);
-        console.log(err);
-        alert(`Error: ${err.error}. Check the console for further details.`);
-      }
-    });
-  }
-
-
-  public logout(): void {
+  public logout(): void
+  {
     // Remove tokens and expiry time from localStorage
 
     localStorage.removeItem(ACCESS_TOKEN_KEY);
@@ -61,7 +45,30 @@ export class AuthService implements AuthenticationService {
     this.router.navigate(['/']);
   }
 
-  public isAuthenticated(): boolean {
+
+  public handleAuthentication(): void
+  {
+    this.auth0.parseHash((err, authResult) => {
+      if (authResult && authResult.accessToken && authResult.idToken)
+      {
+
+        this.setSession(authResult);
+        this.router.navigate(['/']);
+
+      } else if (err)
+      {
+
+        this.router.navigate(['/']);
+        // FIXME (otter): thids seems to break things?
+        // appLogger().debug(err);
+        alert(`Error: ${err.error}. Check the console for further details.`);
+      }
+    });
+  }
+
+
+  public isAuthenticated(): boolean
+  {
     // Check whether the current time is past the
     // access token's expiry time
     const expiresAt = JSON.parse(localStorage.getItem(EXPIRES_AT_KEY) || '{}');
@@ -69,7 +76,8 @@ export class AuthService implements AuthenticationService {
   }
 
 
-  private setSession(authResult): void {
+  private setSession(authResult): void
+  {
     // Set the time that the access token will expire at
     const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
     localStorage.setItem(ACCESS_TOKEN_KEY, authResult.accessToken);

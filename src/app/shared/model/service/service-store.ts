@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {Service, ServiceType} from './service';
 import {ServiceListService} from '../../services/core/service-list.service';
+import {appLogger} from '../../app-logger';
 
 
 @Injectable({providedIn: 'root'})
@@ -16,16 +17,17 @@ export class ServiceStore
 
   constructor(private _backend: ServiceListService)
   {
-    console.log(`constructing ServiceStore class ${this.toString()}`);
+    appLogger().trace('constructing ServiceStore class');
     // TODO: initialize from backend service
     this._services.next([
       {
         '_id': '1',
         'name': 'upm4:resource-clm-chwy-pharmacyclaims-v1',
         'type': ServiceType.REST,
-        'group': { _id: 1, name: 'Unknown'},
+        'basePath': '/MockiatoUx/v1/api',
+        'group': {'name': 'Unit'},
         'owner': 'otter',
-        lastModified: {
+        'lastModified': {
           'user': 'otter',
           'timestamp': new Date(Date.now()),
         }
@@ -34,9 +36,10 @@ export class ServiceStore
         '_id': '3',
         'name': 'upm4:dataservice-cams-myuhcreceiverservice-v9',
         'type': ServiceType.SOAP,
-        'group': { _id: 1, name: 'Unknown'},
+        'basePath': '/cams/myuhcreceiverservice/v9',
+        'group': {'name': 'Regression'},
         'owner': 'otter',
-        lastModified: {
+        'lastModified': {
           'user': 'otter',
           'timestamp': new Date(Date.parse('12/01/2017')),
         }
@@ -76,9 +79,10 @@ export class ServiceStore
         '_id': '1',
         'name': 'upm4:resource-clm-chwy-pharmacyclaims-v1',
         'type': ServiceType.REST,
-        'group': { _id: 1, name: 'Unknown'},
+        'basePath': '/MockiatoUx/v1/api',
+        'group': {'name': 'Unit'},
         'owner': 'otter',
-        lastModified: {
+        'lastModified': {
           'user': 'otter',
           'timestamp': new Date(Date.now()),
         }
@@ -87,9 +91,10 @@ export class ServiceStore
         '_id': '2',
         'name': 'two',
         'owner': 'fred',
-        'group': { _id: 1, name: 'Regression'},
         'type': ServiceType.MQ,
-        lastModified: {
+        'basePath': '/',
+        'group': {'name': 'Sandbox'},
+        'lastModified': {
           'user': 'george',
           'timestamp': new Date(Date.parse('12/01/2017')),
         }
@@ -98,9 +103,10 @@ export class ServiceStore
         '_id': '3',
         'name': 'upm4:dataservice-cams-myuhcreceiverservice-v9',
         'type': ServiceType.SOAP,
-        'group': { _id: 1, name: 'Sandbox'},
+        'basePath': '/cams/myuhcreceiverservice/v9',
+        'group': {'name': 'Regression'},
         'owner': 'otter',
-        lastModified: {
+        'lastModified': {
           'user': 'fred',
           'timestamp': new Date(Date.parse('08/01/2014')),
         }
@@ -108,9 +114,10 @@ export class ServiceStore
       {
         '_id': '4',
         'name': 'four',
-        'group': { _id: 1, name: 'Sandbox'},
+        'basePath': '/',
+        'type': ServiceType.SOAP,
+        'group': {'name': 'Unit'},
         'owner': 'george',
-        'type': ServiceType.REST,
       }
     ]);
   }

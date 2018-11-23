@@ -1,12 +1,13 @@
 import {LastModifiedDetails} from '../common/last-modified-details';
 import {Group} from '../group/group';
-
+import {appLogger} from '../../app-logger';
 
 export class Service
 {
   _id: string;
   name: string;
   type: ServiceType;
+  basePath: string;
   group: Group;
   owner?: string;
   lastModified?: LastModifiedDetails;
@@ -21,9 +22,17 @@ export class Service
    */
   constructor(data: any)
   {
-    console.log('constructing new Service from data');
+    appLogger().trace('constructing new Service from data');
 
-    // TODO: this(); // make sure any defaults are created as needed.
+    // TODO: make sure any defaults are created as needed.
+    //     constructor();
+    //     constructor(obj: IBox);
+    //     constructor(obj?: any) {
+    //         this.x = obj && obj.x || 0
+    //         this.y = obj && obj.y || 0
+    //         this.height = obj && obj.height || 0
+    //         this.width = obj && obj.width || 0;
+    //     }
 
     Object.keys(data).forEach(key => {
       switch (key)
@@ -33,11 +42,23 @@ export class Service
           break;
 
         case 'name':
-          this.name = data.name;
+          this.name = data[key];
+          break;
+
+        case 'group':
+          this.group = data[key];
+          break;
+
+        case 'owner':
+          this.owner = data[key];
           break;
 
         case 'type':
           this.type = data.type;
+          break;
+
+        case 'basePath':
+          this.basePath = data.basePath;
           break;
 
         case 'lastModified':
@@ -45,7 +66,7 @@ export class Service
           break;
 
         default:
-          console.log(`ignoring unknown property: ${key}`);
+          appLogger().warn(`ignoring unknown property: ${key}`);
       }
     });
   }

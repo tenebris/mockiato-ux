@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ServiceStore} from '../../../shared/model/service/service-store';
+import {appLogger} from '../../../shared/app-logger';
 
 
 @Component({
@@ -20,7 +21,7 @@ export class ServiceDetailV1Component implements OnInit
   {
     this._route.params.subscribe((params) => {
       const found = this._store.getService(params.id);
-      console.log(found);
+      // FIXME (otter): appLogger().debug(found);
     });
   }
 

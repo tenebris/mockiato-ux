@@ -40,8 +40,8 @@
                   "with": "src/environments/environment.prod.ts"
                 },
                 {
-                  "replace": "src/app/shared/services/auth/auth0-variables.ts",
-                  "with": "src/app/shared/services/auth/auth0-variables.prod.ts"
+                  "replace": "src/app/shared/services/auth/auth0/auth0-variables.ts",
+                  "with": "src/app/shared/services/auth/auth0/auth0-variables.prod.ts"
                 },
                 {
                   "replace": "src/app/shared/services/core/core-sender-variables.ts",
