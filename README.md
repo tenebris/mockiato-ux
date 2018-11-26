@@ -1,5 +1,4 @@
 # Mockiato UX
-xxx
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://github.com/tenebris/mockiato-ux/blob/master/LICENSE)
 [![DeepScan grade](https://deepscan.io/api/teams/2522/projects/3668/branches/32133/badge/grade.svg)](https://deepscan.io/dashboard#view=project&tid=2522&pid=3668&bid=32133)
