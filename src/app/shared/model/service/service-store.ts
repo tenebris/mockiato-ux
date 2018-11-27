@@ -51,22 +51,15 @@ export class ServiceStore
   }
 
 
-  public getService(id: string): Service
+  public async getService(id: string): Promise<Service>
   {
-    let found: Service;
+    appLogger().trace('checking cache for service:' + id);
     for (const service of this._services.getValue()) if (service._id === id) return service;
 
     // if we are here we did not find the requested service
     // go get it and put it in the store.
-    found = this._backend.findService(id);
-    if (found != null)
-    {
-      const value = this._services.getValue();
-      value.push(found);
-      this._services.next(value);
-    }
-
-    return found;
+    appLogger().trace('cache miss for service:' + id);
+    return this._backend.findService(id);
   }
 
 
@@ -121,7 +114,4 @@ export class ServiceStore
       }
     ]);
   }
-
-
-// SERVICE: add additional public functions...
 }

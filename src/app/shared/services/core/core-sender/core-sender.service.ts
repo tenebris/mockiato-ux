@@ -2,7 +2,6 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 
 import {SENDER_CONFIG} from './core-sender-variables';
-import {appLogger} from '../../../app-logger';
 
 
 @Injectable({
@@ -16,10 +15,8 @@ export class CoreSenderService
   constructor(private http: HttpClient) {}
 
 
-  async simpleQuery(path: string)
+  simpleQuery(path: string): Promise<object>
   {
-    return await this.http.get(SENDER_CONFIG.target + path, {observe: 'response'}).toPromise()
-      .then(x => { appLogger().debug(x); });
-
+    return this.http.get<object>(SENDER_CONFIG.target + path).toPromise();
   }
 }
