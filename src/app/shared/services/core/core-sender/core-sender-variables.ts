@@ -4,6 +4,6 @@ interface SenderConfig {
 }
 
 export const SENDER_CONFIG: SenderConfig = {
-  target: 'http://tenebris-mockiato.ngrok.io/api',
+  target: 'https://tenebris-mockiato.ngrok.io/api',
   timeout_ms: 5000
 };
