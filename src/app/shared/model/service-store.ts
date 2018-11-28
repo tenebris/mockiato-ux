@@ -39,47 +39,4 @@ export class ServiceStore
   {
     // DEBT: this.loadInitialData();
   }
-
-
-  public test()
-  {
-    // testing the dynamic update methodology
-    // noinspection SpellCheckingInspection
-    this._services.next([
-      {
-        '_id': '1',
-        'name': 'upm4:resource-clm-chwy-pharmacyclaims-v1',
-        'type': ServiceType.REST,
-        'owner': 'otter',
-        lastModified: {
-          'user': 'otter',
-          'timestamp': new Date(Date.now()),
-        }
-      },
-      {
-        '_id': '2',
-        'name': 'two',
-        'owner': 'fred',
-        'type': ServiceType.MQ,
-      },
-      {
-        '_id': '3',
-        'name': 'upm4:dataservice-cams-myuhcreceiverservice-v9',
-        'type': ServiceType.SOAP,
-        'owner': 'otter',
-        lastModified: {
-          'user': 'george',
-          'timestamp': new Date(Date.parse('12/01/2017')),
-        }
-      },
-      {
-        '_id': '4',
-        'name': 'four',
-        'owner': 'george',
-        'type': ServiceType.REST,
-      }
-    ]);
-  }
-
-// SERVICE: add additional public functions...
 }

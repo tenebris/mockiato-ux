@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ServiceStore} from '../../../shared/model/service/service-store';
-import {appLogger} from '../../../shared/app-logger';
+import {Service} from '../../../shared/model/service';
 
 
 @Component({
@@ -11,6 +11,9 @@ import {appLogger} from '../../../shared/app-logger';
 })
 export class ServiceDetailV1Component implements OnInit
 {
+  private found: Service;
+  public err: any;
+
 
 // ~~-~~-~~-~~-~~ Constructors ~~-~~-~~-~~-~~
 
@@ -20,8 +23,15 @@ export class ServiceDetailV1Component implements OnInit
   ngOnInit()
   {
     this._route.params.subscribe((params) => {
-      const found = this._store.getService(params.id);
-      appLogger().debug(found);
+      this._store.getService(params.id)
+        .then((data) => {
+          this.found = data;
+          this.err = null;
+        })
+        .catch(err => {
+          this.found = null;
+          this.err = err;
+        });
     });
   }
 

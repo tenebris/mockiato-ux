@@ -1,3 +1,6 @@
+import {appLogger} from '../app-logger';
+
+
 export class Service
 {
   constructor(data: any)
@@ -20,6 +23,9 @@ export class Service
         case 'lastModified':
           this.lastModified = data.lastModified;
           break;
+
+        default:
+          appLogger().warn(`found unmapped key[${key}] while building service -- ignoring`);
       }
     });
   }
