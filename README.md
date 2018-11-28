@@ -5,8 +5,8 @@
 [![Greenkeeper badge](https://badges.greenkeeper.io/tenebris/mockiato-ux.svg)](https://greenkeeper.io/)
 
 [![TeamCity badge](https://tenebris-buildserver.ngrok.io/app/rest/builds/buildType:(id:MockiatoUx_Build)/statusIcon)](https://tenebris-buildserver.ngrok.io/project.html?projectId=MockiatoUx&tab=projectOverview)
-[![David DM](https://david-dm.org/tenebris/mockiato-ux.svg)](https://david-dm.org)
-[![David DM Dev](https://david-dm.org/tenebris/mockiato-ux/dev-status.svg)](https://david-dm.org)
+[![David DM](https://david-dm.org/tenebris/mockiato-ux.svg)](https://david-dm.org/tenebris/mockiato-ux)
+[![David DM Dev](https://david-dm.org/tenebris/mockiato-ux/dev-status.svg)](https://david-dm.org/tenebris/mockiato-ux?type=dev)
 
 [![Donate](https://img.shields.io/badge/Donate-PayPal-green.svg)](https://www.paypal.me/tenebris42)
 
