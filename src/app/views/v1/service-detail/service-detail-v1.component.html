@@ -1,5 +1,7 @@
-<p>
+<h1>
   service-detail-v1 works!
-</p>
+</h1>
 
-<hr/><pre>{{found|json}}</pre>
+<hr/>
+<pre *ngIf="found">{{found|json}}</pre>
+<pre *ngIf="err">{{err|json}}</pre>

@@ -108,7 +108,7 @@ export class ServiceListService
   {
     appLogger().trace('starting fetch of service:' + id);
 
-    const data = await this.sender.simpleQuery(_findServiceQueryUrl + id)
+    const data = this.sender.simpleQuery(_findServiceQueryUrl + id)
       .then(response => {
         return mapCoreDataToService(response);
       });
