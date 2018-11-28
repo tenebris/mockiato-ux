@@ -11,7 +11,8 @@ import {Service} from '../../../shared/model/service';
 })
 export class ServiceDetailV1Component implements OnInit
 {
-  public found: Service;
+  private found: Service;
+  public err: any;
 
 
 // ~~-~~-~~-~~-~~ Constructors ~~-~~-~~-~~-~~
@@ -23,7 +24,14 @@ export class ServiceDetailV1Component implements OnInit
   {
     this._route.params.subscribe((params) => {
       this._store.getService(params.id)
-        .then((data) => this.found = data);
+        .then((data) => {
+          this.found = data;
+          this.err = null;
+        })
+        .catch(err => {
+          this.found = null;
+          this.err = err;
+        });
     });
   }
 

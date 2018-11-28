@@ -5,6 +5,7 @@
 export const environment = {
   production: false,
   logLevel: 0, // see LogLevel in src/app/shared/services/logging/logging.service.ts
+  coreBaseUrl: 'http://localhost:8100',
 };
 
 /*
