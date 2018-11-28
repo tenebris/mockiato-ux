@@ -1,1 +1,38 @@
 @import '../simple-header/simple-header.component.scss';
+
+// Neutrals
+$dark: #1d2326;
+
+$white: #fff;
+$grey: darken(#f2f5f7,2%);
+$mediumgrey: #DDE4E9;
+
+$lightgreyblue: #B8D0DC;
+$greyblue: #678EB2;
+
+// Colors
+$red: #E03E4F;
+$darkred: #BF2F45;
+
+$yellow: #F2B139;
+$darkyellow: #d68d33;
+
+$green: #6da768;
+$darkgreen: #528552;
+
+$blue: #229FBF;
+$darkblue: #1d7ba3;
+
+
+
+.site-footer {
+    color:#FFF;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 1rem;
+    background-color: $dark;
+    text-align: center;
+}
+
