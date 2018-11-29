@@ -31,7 +31,7 @@
         </value>
       </option>
     </JavaCodeStyleSettings>
-    <TypeScriptCodeStyleSettings version="0">
+    <TypeScriptCodeStyleSettings version="1">
       <option name="FORCE_SEMICOLON_STYLE" value="true" />
       <option name="USE_DOUBLE_QUOTES" value="false" />
       <option name="FORCE_QUOTE_STYlE" value="true" />
@@ -117,10 +117,6 @@
         <groups>
           <group>
             <type>GROUP_PROPERTY_FIELD_WITH_GETTER_SETTER</type>
-            <order>KEEP</order>
-          </group>
-          <group>
-            <type>OVERRIDDEN_METHODS</type>
             <order>KEEP</order>
           </group>
         </groups>
@@ -317,6 +313,16 @@
                 <AND>
                   <METHOD>true</METHOD>
                   <PRIVATE>true</PRIVATE>
+                </AND>
+              </match>
+            </rule>
+          </section>
+          <section>
+            <rule>
+              <match>
+                <AND>
+                  <METHOD>true</METHOD>
+                  <OVERRIDDEN />
                 </AND>
               </match>
             </rule>
