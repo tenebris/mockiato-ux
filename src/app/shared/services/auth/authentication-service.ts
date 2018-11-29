@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {Router} from '@angular/router';
 import {appLogger} from '../../app-logger';
+import {ModalService} from '../modal-service/modal.service';
 
 
 export abstract class Authenticator
@@ -34,7 +35,7 @@ export class AuthenticationService extends Authenticator
 
 
 // ~~-~~-~~-~~-~~ Constructors ~~-~~-~~-~~-~~
-  constructor(private router: Router)
+  constructor(private router: Router, private modalService: ModalService)
   {
     super();
     this._state = Boolean(localStorage.getItem(this.ACCESS_TOKEN_KEY) || false);
@@ -50,9 +51,10 @@ export class AuthenticationService extends Authenticator
 
   login(): void
   {
-    this._state = true;
-    localStorage.setItem(this.ACCESS_TOKEN_KEY, String(true));
-    appLogger().info('set auth-state to --> ' + this._state);
+    this.modalService.open('login-modal');
+    // this._state = true;
+    // localStorage.setItem(this.ACCESS_TOKEN_KEY, String(true));
+    // appLogger().info('set auth-state to --> ' + this._state);
   }
 
 

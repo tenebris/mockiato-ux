@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
 import {AuthenticationService} from '../../services/auth/authentication-service';
+import {environment} from '../../../../environments/environment';
 import {appLogger} from '../../app-logger';
 
 
@@ -10,14 +11,19 @@ import {appLogger} from '../../app-logger';
 })
 export class SimpleHeaderComponent implements OnInit
 {
+  readonly env = environment;
+
 
 // ~~-~~-~~-~~-~~ Constructors ~~-~~-~~-~~-~~
 
   constructor(public auth: AuthenticationService) { }
 
 
-  ngOnInit() {
-    appLogger().debug('auth-state: ' + this.auth.isAuthenticated());
+  ngOnInit()
+  {
+    appLogger().debug(`Initializing Header Component
+    auth-state: ${this.auth.isAuthenticated()}
+    internal-auth: ${environment.internalAuthModal}`);
   }
 
 }
