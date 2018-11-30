@@ -112,7 +112,7 @@
     "@angular-devkit/core" "0.7.5"
     rxjs "^6.0.0"
 
-"@angular/animations@~7.1.0":
+"@angular/animations@~7.1.1":
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-7.1.1.tgz#8fecbd19417364946a9ea40c8fdf32462110232f"
   dependencies:
@@ -132,13 +132,13 @@
     semver "5.5.1"
     symbol-observable "1.2.0"
 
-"@angular/common@~7.1.0":
+"@angular/common@~7.1.1":
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/@angular/common/-/common-7.1.1.tgz#f78f884614ef81ab2fd648f1aa3e83aae370a6c8"
   dependencies:
     tslib "^1.9.0"
 
-"@angular/compiler-cli@~7.1.0":
+"@angular/compiler-cli@~7.1.1":
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/@angular/compiler-cli/-/compiler-cli-7.1.1.tgz#c5f6225fb72b56f42fa78c332fdee9755c64604e"
   dependencies:
@@ -154,47 +154,47 @@
     tslib "^1.9.0"
     yargs "9.0.1"
 
-"@angular/compiler@~7.1.0":
+"@angular/compiler@~7.1.1":
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-7.1.1.tgz#4efbcad27ab43d4cd36d936a8df2e073f6d02d0a"
   dependencies:
     tslib "^1.9.0"
 
-"@angular/core@~7.1.0":
+"@angular/core@~7.1.1":
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/@angular/core/-/core-7.1.1.tgz#9748b0103cd86226554e1ccbd0f43dd8c46f1ed1"
   dependencies:
     tslib "^1.9.0"
 
-"@angular/forms@~7.1.0":
+"@angular/forms@~7.1.1":
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-7.1.1.tgz#d16ef10a901c007062fd19144cd77917ef55ee24"
   dependencies:
     tslib "^1.9.0"
 
-"@angular/http@~7.1.0":
+"@angular/http@~7.1.1":
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/@angular/http/-/http-7.1.1.tgz#f19f17ad42e7f3cdabcf1250ca757640d0f02219"
   dependencies:
     tslib "^1.9.0"
 
-"@angular/language-service@~7.1.0":
+"@angular/language-service@~7.1.1":
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/@angular/language-service/-/language-service-7.1.1.tgz#6bbe35b2430ad54618a1803f881efb5894b296c9"
 
-"@angular/platform-browser-dynamic@~7.1.0":
+"@angular/platform-browser-dynamic@~7.1.1":
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-7.1.1.tgz#6945298446173338782f437a996226110cda0d3e"
   dependencies:
     tslib "^1.9.0"
 
-"@angular/platform-browser@~7.1.0":
+"@angular/platform-browser@~7.1.1":
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-7.1.1.tgz#a6bd408f656dc43ee5a2d8af3dfaa786c7c1dfca"
   dependencies:
     tslib "^1.9.0"
 
-"@angular/router@~7.1.0":
+"@angular/router@~7.1.1":
   version "7.1.1"
   resolved "https://registry.yarnpkg.com/@angular/router/-/router-7.1.1.tgz#80a4cdffc03a529b73485c2ad63a30ec435364ea"
   dependencies:
@@ -3413,6 +3413,10 @@ jasminewd2@^2.1.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/jasminewd2/-/jasminewd2-2.2.0.tgz#e37cf0b17f199cce23bea71b2039395246b4ec4e"
 
+jquery@1.9.1:
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-1.9.1.tgz#e4cd4835faaefbade535857613c0fc3ff2adaf34"
+
 js-base64@^2.1.8:
   version "2.4.9"
   resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.4.9.tgz#748911fb04f48a60c4771b375cac45a80df11c03"
@@ -4715,6 +4719,10 @@ pkg-dir@^3.0.0:
   resolved "https://registry.yarnpkg.com/pkg-dir/-/pkg-dir-3.0.0.tgz#2749020f239ed990881b1f71210d51eb6523bea3"
   dependencies:
     find-up "^3.0.0"
+
+popper.js@^1.14.3:
+  version "1.14.6"
+  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.14.6.tgz#ab20dd4edf9288b8b3b6531c47c361107b60b4b0"
 
 portfinder@1.0.17:
   version "1.0.17"
