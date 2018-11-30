@@ -1,0 +1,17 @@
+<div id="mock-data-generator">
+  <div class="debug-block" *ngIf="!env.production">
+    Debug Information<br/>
+    <div class="debug-info">
+      Model<br/>
+      <pre>{{model|json}}</pre>
+    </div>
+    <div class="debug-info" [hidden]="!submitted">
+      Generated {{results.length}} rows.<br/>
+      <pre>{{results|json}}</pre>
+    </div>
+  </div>
+
+  <form #generateForm="ngForm">
+    <button (click)="onSubmit()" [disabled]="submitted" type="submit" class="btn btn-success">Submit</button>
+  </form>
+</div>
