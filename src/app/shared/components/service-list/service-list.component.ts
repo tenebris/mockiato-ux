@@ -72,7 +72,7 @@ export class ServiceListComponent
   onFirstDataRendered(params): void { params.api.sizeColumnsToFit(); }
 
 
-  onCellDoubleClicked(event): void { this.navigateToServiceDetail(new Service(event.data)); }
+  onCellDoubleClicked(event): void { this.navigateToServiceDetail(event.data as Service); }
 
 
   private navigateToServiceDetail(target: Service): void
