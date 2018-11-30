@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {CoreSenderService} from '../core-sender/core-sender.service';
 import {Service} from '../../../model/service/service';
+import {RRPair} from '../../../model/rr-pair';
 import {appLogger} from '../../../app-logger';
 
 
@@ -12,10 +13,46 @@ const _initialViewQueryUrl = '/services/user/otter';
 const _findServiceQueryUrl = '/services/';
 
 
+function mapRRPairData(data: object): RRPair
+{
+  const _rrp = {} as RRPair;
+  Object.keys(data).forEach(key => {
+    switch (key)
+    {
+      case '_id':
+        _rrp._id = data[key];
+        break;
+
+      case 'verb':
+        _rrp.verb = data[key];
+        break;
+
+      case 'payloadType':
+        _rrp.payloadType = data[key];
+        break;
+
+      case 'resStatus':
+        _rrp.responseStatus = data[key];
+        break;
+
+      case 'path':
+        _rrp.path = data[key];
+        break;
+
+      default:
+        appLogger().warn(`found unmapped rrpair key[${key}] from backend -- ignoring`);
+    }
+  });
+
+  return _rrp;
+}
+
+
 function mapCoreDataToService(data: object): Service
 {
   appLogger().trace('starting mapping of core data to service:', data);
-  const s: any = {};
+
+  const s = {} as Service;
   Object.keys(data).forEach(key => {
     switch (key)
     {
@@ -46,6 +83,12 @@ function mapCoreDataToService(data: object): Service
         };
         break;
 
+      case 'rrpairs':
+        s.rrpairs = new Array<RRPair>();
+        const pairs = data[key] as Array<any>;
+        for (const pair of pairs) s.rrpairs.push(mapRRPairData(pair));
+        break;
+
       case 'lastModified':
         s.lastModified = data[key];
         break;
@@ -55,7 +98,7 @@ function mapCoreDataToService(data: object): Service
     }
   });
 
-  return new Service(s);
+  return s;
 }
 
 

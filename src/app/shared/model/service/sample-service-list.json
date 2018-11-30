@@ -1,0 +1,492 @@
+[
+  {
+    "_id": "5bf37d29cda5fd00699e4ae0",
+    "sut": {
+      "name": "MockiatoUx",
+      "_id": "5bf37d29cda5fd00699e4af1"
+    },
+    "user": {
+      "uid": "otter",
+      "mail": "robert@tenebris.us",
+      "_id": "5bf37d29cda5fd00699e4af0"
+    },
+    "name": "ux-testing-v1",
+    "type": "REST",
+    "basePath": "/MockiatoUx/v1/api",
+    "__v": 0,
+    "running": true,
+    "txnCount": 0,
+    "delay": 0,
+    "rrpairs": [
+      {
+        "path": "login",
+        "verb": "POST",
+        "reqHeaders": {
+          "Content-Type": "application/json"
+        },
+        "payloadType": "JSON",
+        "resHeaders": {
+          "Content-Type": "application/json"
+        },
+        "resData": {
+          "success": false,
+          "token": "",
+          "message": ""
+        },
+        "reqData": {
+          "username": "",
+          "password": ""
+        },
+        "_id": "5bf37d29cda5fd00699e4aef",
+        "resStatus": 200
+      },
+      {
+        "path": "login",
+        "verb": "POST",
+        "reqHeaders": {
+          "Content-Type": "application/json"
+        },
+        "payloadType": "JSON",
+        "resHeaders": {
+          "Content-Type": "application/json"
+        },
+        "resData": {
+          "success": false,
+          "token": "",
+          "message": ""
+        },
+        "reqData": {
+          "username": "",
+          "password": ""
+        },
+        "_id": "5bf37d29cda5fd00699e4aee",
+        "resStatus": 401
+      },
+      {
+        "path": "services",
+        "verb": "POST",
+        "reqHeaders": {
+          "Content-Type": "application/json"
+        },
+        "payloadType": "JSON",
+        "resHeaders": {
+          "Content-Type": "application/json"
+        },
+        "resData": {
+          "sut": {
+            "name": ""
+          },
+          "user": {
+            "uid": "",
+            "mail": ""
+          },
+          "name": "",
+          "type": "",
+          "basePath": "",
+          "matchTemplates": [
+            ""
+          ],
+          "rrpairs": [
+            {
+              "verb": "",
+              "path": "",
+              "payloadType": "",
+              "resStatus": 0
+            }
+          ],
+          "delay": 0,
+          "running": false
+        },
+        "reqData": {
+          "sut": {
+            "name": ""
+          },
+          "user": {
+            "uid": "",
+            "mail": ""
+          },
+          "name": "",
+          "type": "",
+          "basePath": "",
+          "matchTemplates": [
+            ""
+          ],
+          "rrpairs": [
+            {
+              "verb": "",
+              "path": "",
+              "payloadType": "",
+              "resStatus": 0
+            }
+          ],
+          "delay": 0,
+          "running": false
+        },
+        "_id": "5bf37d29cda5fd00699e4aed",
+        "resStatus": 200
+      },
+      {
+        "path": "services/fromSpec",
+        "verb": "POST",
+        "queries": {
+          "name": "",
+          "type": "",
+          "group": "",
+          "url": ""
+        },
+        "reqHeaders": {
+          "Content-Type": "application/json"
+        },
+        "payloadType": "JSON",
+        "resHeaders": {
+          "Content-Type": "application/json"
+        },
+        "resData": {
+          "sut": {
+            "name": ""
+          },
+          "user": {
+            "uid": "",
+            "mail": ""
+          },
+          "name": "",
+          "type": "",
+          "basePath": "",
+          "matchTemplates": [
+            ""
+          ],
+          "rrpairs": [
+            {
+              "verb": "",
+              "path": "",
+              "payloadType": "",
+              "resStatus": 0
+            }
+          ],
+          "delay": 0,
+          "running": false
+        },
+        "_id": "5bf37d29cda5fd00699e4aec",
+        "resStatus": 200
+      },
+      {
+        "path": "services/{id}",
+        "verb": "GET",
+        "reqHeaders": {
+          "Content-Type": "application/json"
+        },
+        "payloadType": "JSON",
+        "resHeaders": {
+          "Content-Type": "application/json"
+        },
+        "resData": {
+          "sut": {
+            "name": ""
+          },
+          "user": {
+            "uid": "",
+            "mail": ""
+          },
+          "name": "",
+          "type": "",
+          "basePath": "",
+          "matchTemplates": [
+            ""
+          ],
+          "rrpairs": [
+            {
+              "verb": "",
+              "path": "",
+              "payloadType": "",
+              "resStatus": 0
+            }
+          ],
+          "delay": 0,
+          "running": false
+        },
+        "_id": "5bf37d29cda5fd00699e4aeb",
+        "resStatus": 200
+      },
+      {
+        "path": "services/{id}",
+        "verb": "PUT",
+        "reqHeaders": {
+          "Content-Type": "application/json"
+        },
+        "payloadType": "JSON",
+        "resHeaders": {
+          "Content-Type": "application/json"
+        },
+        "resData": {
+          "sut": {
+            "name": ""
+          },
+          "user": {
+            "uid": "",
+            "mail": ""
+          },
+          "name": "",
+          "type": "",
+          "basePath": "",
+          "matchTemplates": [
+            ""
+          ],
+          "rrpairs": [
+            {
+              "verb": "",
+              "path": "",
+              "payloadType": "",
+              "resStatus": 0
+            }
+          ],
+          "delay": 0,
+          "running": false
+        },
+        "reqData": {
+          "sut": {
+            "name": ""
+          },
+          "user": {
+            "uid": "",
+            "mail": ""
+          },
+          "name": "",
+          "type": "",
+          "basePath": "",
+          "matchTemplates": [
+            ""
+          ],
+          "rrpairs": [
+            {
+              "verb": "",
+              "path": "",
+              "payloadType": "",
+              "resStatus": 0
+            }
+          ],
+          "delay": 0,
+          "running": false
+        },
+        "_id": "5bf37d29cda5fd00699e4aea",
+        "resStatus": 200
+      },
+      {
+        "path": "services/{id}",
+        "verb": "DELETE",
+        "reqHeaders": {
+          "Content-Type": "application/json"
+        },
+        "payloadType": "JSON",
+        "resHeaders": {
+          "Content-Type": "application/json"
+        },
+        "_id": "5bf37d29cda5fd00699e4ae9",
+        "resStatus": 200
+      },
+      {
+        "path": "api/services/{id}/toggle",
+        "verb": "POST",
+        "reqHeaders": {
+          "Content-Type": "application/json"
+        },
+        "payloadType": "JSON",
+        "resHeaders": {
+          "Content-Type": "application/json"
+        },
+        "resData": {
+          "message": "",
+          "service": {
+            "sut": {
+              "name": ""
+            },
+            "user": {
+              "uid": "",
+              "mail": ""
+            },
+            "name": "",
+            "type": "",
+            "basePath": "",
+            "matchTemplates": [
+              ""
+            ],
+            "rrpairs": [
+              {
+                "verb": "",
+                "path": "",
+                "payloadType": "",
+                "resStatus": 0
+              }
+            ],
+            "delay": 0,
+            "running": false
+          }
+        },
+        "_id": "5bf37d29cda5fd00699e4ae8",
+        "resStatus": 200
+      },
+      {
+        "path": "services/sut/{name}",
+        "verb": "GET",
+        "reqHeaders": {
+          "Content-Type": "application/json"
+        },
+        "payloadType": "JSON",
+        "resHeaders": {
+          "Content-Type": "application/json"
+        },
+        "resData": [
+          {
+            "sut": {
+              "name": ""
+            },
+            "user": {
+              "uid": "",
+              "mail": ""
+            },
+            "name": "",
+            "type": "",
+            "basePath": "",
+            "matchTemplates": [
+              ""
+            ],
+            "rrpairs": [
+              {
+                "verb": "",
+                "path": "",
+                "payloadType": "",
+                "resStatus": 0
+              }
+            ],
+            "delay": 0,
+            "running": false
+          }
+        ],
+        "_id": "5bf37d29cda5fd00699e4ae7",
+        "resStatus": 200
+      },
+      {
+        "path": "services/user/{name}",
+        "verb": "GET",
+        "reqHeaders": {
+          "Content-Type": "application/json"
+        },
+        "payloadType": "JSON",
+        "resHeaders": {
+          "Content-Type": "application/json"
+        },
+        "resData": [
+          {
+            "sut": {
+              "name": ""
+            },
+            "user": {
+              "uid": "",
+              "mail": ""
+            },
+            "name": "",
+            "type": "",
+            "basePath": "",
+            "matchTemplates": [
+              ""
+            ],
+            "rrpairs": [
+              {
+                "verb": "",
+                "path": "",
+                "payloadType": "",
+                "resStatus": 0
+              }
+            ],
+            "delay": 0,
+            "running": false
+          }
+        ],
+        "_id": "5bf37d29cda5fd00699e4ae6",
+        "resStatus": 200
+      },
+      {
+        "path": "systems",
+        "verb": "GET",
+        "reqHeaders": {
+          "Content-Type": "application/json"
+        },
+        "payloadType": "JSON",
+        "resHeaders": {
+          "Content-Type": "application/json"
+        },
+        "resData": [
+          {
+            "name": ""
+          }
+        ],
+        "_id": "5bf37d29cda5fd00699e4ae5",
+        "resStatus": 200
+      },
+      {
+        "path": "systems",
+        "verb": "POST",
+        "reqHeaders": {
+          "Content-Type": "application/json"
+        },
+        "payloadType": "JSON",
+        "resHeaders": {
+          "Content-Type": "application/json"
+        },
+        "resData": {
+          "name": ""
+        },
+        "reqData": {
+          "name": ""
+        },
+        "_id": "5bf37d29cda5fd00699e4ae4",
+        "resStatus": 200
+      },
+      {
+        "path": "systems",
+        "verb": "DELETE",
+        "reqHeaders": {
+          "Content-Type": "application/json"
+        },
+        "payloadType": "JSON",
+        "resHeaders": {
+          "Content-Type": "application/json"
+        },
+        "_id": "5bf37d29cda5fd00699e4ae3",
+        "resStatus": 200
+      },
+      {
+        "path": "users",
+        "verb": "GET",
+        "reqHeaders": {
+          "Content-Type": "application/json"
+        },
+        "payloadType": "JSON",
+        "resHeaders": {
+          "Content-Type": "application/json"
+        },
+        "resData": [
+          {
+            "uid": "",
+            "mail": ""
+          }
+        ],
+        "_id": "5bf37d29cda5fd00699e4ae2",
+        "resStatus": 200
+      },
+      {
+        "path": "users",
+        "verb": "DELETE",
+        "reqHeaders": {
+          "Content-Type": "application/json"
+        },
+        "payloadType": "JSON",
+        "resHeaders": {
+          "Content-Type": "application/json"
+        },
+        "_id": "5bf37d29cda5fd00699e4ae1",
+        "resStatus": 200
+      }
+    ],
+    "matchTemplates": []
+  }
+]

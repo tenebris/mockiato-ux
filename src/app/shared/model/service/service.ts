@@ -1,6 +1,9 @@
 import {LastModifiedDetails} from '../common/last-modified-details';
 import {Group} from '../group/group';
+import {MockiatoUser} from '../mockiato-user';
+import {RRPair} from '../rr-pair';
 import {appLogger} from '../../app-logger';
+
 
 export class Service
 {
@@ -8,8 +11,9 @@ export class Service
   name: string;
   type: ServiceType;
   basePath: string;
+  rrpairs?: RRPair[];
   group: Group;
-  owner?: string;
+  owner?: MockiatoUser;
   lastModified?: LastModifiedDetails;
 
 
