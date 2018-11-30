@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ServiceStore} from '../../../shared/model/service/service-store';
-import {Service} from '../../../shared/model/service';
+import {Service} from '../../../shared/model/service/service';
 
 
 @Component({

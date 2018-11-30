@@ -37,7 +37,7 @@ export class ServiceListComponent
     {headerName: 'Name', field: 'name'},
     {headerName: 'Type', valueGetter: (params) => ServiceType[params.data.type]},
     {headerName: 'Group', field: 'group.name'},
-    {headerName: 'Owner', field: 'owner'},
+    {headerName: 'Owner', field: 'owner.name'},
     {
       headerName: 'Last Modified', children: [
         {
