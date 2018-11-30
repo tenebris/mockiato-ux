@@ -1,4 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
+import {FormsModule} from '@angular/forms';
 import {Injector, NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 
@@ -22,6 +23,7 @@ import {ServiceListComponent} from './shared/components/service-list/service-lis
 
 import {BrowseSystemV1Component} from './views/v1/browse-system/browse-system-v1.component';
 import {ServiceDetailV1Component} from './views/v1/service-detail/service-detail-v1.component';
+import {MockDataGenerationV1Component} from './views/v1/mock-data-generation/mock-data-generation-v1.component';
 
 import {appInjector} from './shared/app-injector';
 import {appLogger} from './shared/app-logger';
@@ -32,7 +34,6 @@ import {AuthenticationService} from './shared/services/auth/authentication-servi
 import {Auth0AuthenticationService} from './shared/services/auth/auth0/auth0-authentication.service';
 import {LoginModalComponent} from './views/auth/login-modal/login-modal.component';
 import {SimpleModalComponent} from './shared/components/simple-modal/simple-modal.component';
-
 
 @NgModule({
   declarations: [
@@ -45,7 +46,7 @@ import {SimpleModalComponent} from './shared/components/simple-modal/simple-moda
     // Page-Level Views
     BrowseSystemV1Component,
     ServiceDetailV1Component,
-    SimpleFooterComponent,
+    MockDataGenerationV1Component,
 
     // Directives
     ShowIfAuthenticatedDirective,
@@ -57,6 +58,7 @@ import {SimpleModalComponent} from './shared/components/simple-modal/simple-moda
 
     // Shared Components
     SimpleHeaderComponent,
+    SimpleFooterComponent,
     CommingSoonComponent,
     ServiceListComponent,
     LoginModalComponent,
@@ -65,6 +67,7 @@ import {SimpleModalComponent} from './shared/components/simple-modal/simple-moda
   imports:
     [
       BrowserModule,
+      FormsModule,
       HttpClientModule, // import after BrowserModule
       AgGridModule.withComponents([]),
       AppRoutingModule
