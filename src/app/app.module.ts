@@ -34,6 +34,11 @@ import {AuthenticationService} from './shared/services/auth/authentication-servi
 import {Auth0AuthenticationService} from './shared/services/auth/auth0/auth0-authentication.service';
 import {LoginModalComponent} from './views/auth/login-modal/login-modal.component';
 import {SimpleModalComponent} from './shared/components/simple-modal/simple-modal.component';
+import {RRPairListComponent} from './shared/components/rrpair-list/rrpair-list.component';
+import {RRPairComponent} from './shared/components/rrpair/rrpair.component';
+import {DebugBlockComponent} from './shared/components/debug-block/debug-block.component';
+import {CoreModule} from './shared/core.module';
+
 
 @NgModule({
   declarations: [
@@ -61,11 +66,15 @@ import {SimpleModalComponent} from './shared/components/simple-modal/simple-moda
     SimpleFooterComponent,
     CommingSoonComponent,
     ServiceListComponent,
+    RRPairListComponent,
+    RRPairComponent,
+    DebugBlockComponent,
     LoginModalComponent,
     SimpleModalComponent,
   ],
   imports:
     [
+      CoreModule,
       BrowserModule,
       FormsModule,
       HttpClientModule, // import after BrowserModule
