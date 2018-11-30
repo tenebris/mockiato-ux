@@ -1,6 +1,6 @@
 export class MockiatoUser
 {
-  _id: string;
+  _id?: string;
   name: string;
   mail?: string;
 }

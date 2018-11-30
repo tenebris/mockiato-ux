@@ -26,7 +26,7 @@ export class ServiceStore
         'type': ServiceType.REST,
         'basePath': '/MockiatoUx/v1/api',
         'group': {'name': 'Unit'},
-        'owner': 'otter',
+        'owner': { name: 'otter' },
         'lastModified': {
           'user': 'otter',
           'timestamp': new Date(Date.now()),
@@ -38,7 +38,7 @@ export class ServiceStore
         'type': ServiceType.SOAP,
         'basePath': '/cams/myuhcreceiverservice/v9',
         'group': {'name': 'Regression'},
-        'owner': 'otter',
+        'owner': { name: 'otter' },
         'lastModified': {
           'user': 'otter',
           'timestamp': new Date(Date.parse('12/01/2017')),
