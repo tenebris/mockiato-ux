@@ -13,6 +13,8 @@ export class ResponseData
 }
 
 
+// TODO: make abstract -- should always be a sub-class of rr-pair
+// TODO: move anything that is not generic to thier sub-types
 export class RRPair
 {
   _id: string;
@@ -28,4 +30,21 @@ export class RRPair
   responseData: ResponseData;
   responseHeaders: HttpHeaders[];
 
+}
+
+
+export class SoapRRPair extends RRPair
+{
+  // TODO: add distinguishing/unique data
+}
+
+
+export class RestRRPair extends RRPair
+{
+  // TODO: add distinguishing/unique data
+}
+
+export class MqRRPair extends RRPair
+{
+  // TODO: add distinguishing/unique data
 }
