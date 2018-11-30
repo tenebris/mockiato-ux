@@ -74,7 +74,7 @@ export class ServiceStore
         'type': ServiceType.REST,
         'basePath': '/MockiatoUx/v1/api',
         'group': {'name': 'Unit'},
-        'owner': 'otter',
+        'owner': { name: 'otter' },
         'lastModified': {
           'user': 'otter',
           'timestamp': new Date(Date.now()),
@@ -83,7 +83,7 @@ export class ServiceStore
       {
         '_id': '2',
         'name': 'two',
-        'owner': 'fred',
+        'owner': { name: 'fred' },
         'type': ServiceType.MQ,
         'basePath': '/',
         'group': {'name': 'Sandbox'},
@@ -98,7 +98,7 @@ export class ServiceStore
         'type': ServiceType.SOAP,
         'basePath': '/cams/myuhcreceiverservice/v9',
         'group': {'name': 'Regression'},
-        'owner': 'otter',
+        'owner': { name: 'otter' },
         'lastModified': {
           'user': 'fred',
           'timestamp': new Date(Date.parse('08/01/2014')),
@@ -110,7 +110,7 @@ export class ServiceStore
         'basePath': '/',
         'type': ServiceType.SOAP,
         'group': {'name': 'Unit'},
-        'owner': 'george',
+        'owner': { name: 'george' },
       }
     ]);
   }
