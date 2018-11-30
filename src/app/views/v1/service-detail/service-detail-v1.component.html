@@ -8,7 +8,7 @@
 <div *ngIf="found">
   <pre>
   found   --> {{found.name}}/{{found.type}}/{{found._id}}
-  rrpairs --> {{found.rrpairs.length}}
+  rrpairs --> {{found.rrpairs && found.rrpairs.length || 0}}
   </pre>
   <app-rrpair-list [data]="found.rrpairs"></app-rrpair-list>
 </div>
