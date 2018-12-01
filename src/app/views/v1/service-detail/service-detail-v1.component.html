@@ -1,7 +1,14 @@
-<h1>
-  service-detail-v1 works!
-</h1>
+<app-debug-block>
+  <h1>Service Detail View</h1>
+  <hr/>
+  <pre *ngIf="found">{{found|json}}</pre>
+  <pre *ngIf="err">{{err|json}}</pre>
+</app-debug-block>
 
-<hr/>
-<pre *ngIf="found">{{found|json}}</pre>
-<pre *ngIf="err">{{err|json}}</pre>
+<div *ngIf="found">
+  <pre>
+  found   --> {{found.name}}/{{found.type}}/{{found._id}}
+  rrpairs --> {{found.rrpairs && found.rrpairs.length || 0}}
+  </pre>
+  <app-rrpair-list [data]="found.rrpairs"></app-rrpair-list>
+</div>

@@ -7,6 +7,7 @@ import {ServiceDetailV1Component} from './views/v1/service-detail/service-detail
 import {CommingSoonComponent} from './views/misc/comming-soon/comming-soon.component';
 import {PageNotFoundComponent} from './views/misc/page-not-found/page-not-found.component';
 import {PrototypeUxComponent} from './views/home/prototype-ux/prototype-ux.component';
+import {MockDataGenerationV1Component} from './views/v1/mock-data-generation/mock-data-generation-v1.component';
 
 const routes: Routes = [
   {path: 'callback', component: CallbackComponent},
@@ -15,7 +16,7 @@ const routes: Routes = [
   {path: 'prototype/browse', component: BrowseSystemV1Component},
   {path: 'prototype/browse/service/:id', component: ServiceDetailV1Component},
   {path: 'prototype/mock', component: CommingSoonComponent},
-  {path: 'prototype/data', component: CommingSoonComponent},
+  {path: 'prototype/data', component: MockDataGenerationV1Component},
   {path: 'api', component: CommingSoonComponent},
   {path: 'wiki', component: CommingSoonComponent},
   {

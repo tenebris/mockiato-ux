@@ -37,7 +37,7 @@ export class ServiceListComponent
     {headerName: 'Name', field: 'name'},
     {headerName: 'Type', valueGetter: (params) => ServiceType[params.data.type]},
     {headerName: 'Group', field: 'group.name'},
-    {headerName: 'Owner', field: 'owner'},
+    {headerName: 'Owner', field: 'owner.name'},
     {
       headerName: 'Last Modified', children: [
         {
@@ -72,7 +72,7 @@ export class ServiceListComponent
   onFirstDataRendered(params): void { params.api.sizeColumnsToFit(); }
 
 
-  onCellDoubleClicked(event): void { this.navigateToServiceDetail(new Service(event.data)); }
+  onCellDoubleClicked(event): void { this.navigateToServiceDetail(event.data as Service); }
 
 
   private navigateToServiceDetail(target: Service): void

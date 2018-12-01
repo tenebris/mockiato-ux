@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute} from '@angular/router';
 import {ServiceStore} from '../../../shared/model/service/service-store';
-import {Service} from '../../../shared/model/service';
+import {Service} from '../../../shared/model/service/service';
 
 
 @Component({
@@ -11,8 +11,8 @@ import {Service} from '../../../shared/model/service';
 })
 export class ServiceDetailV1Component implements OnInit
 {
-  private found: Service;
-  public err: any;
+  found: Service;
+  err: any;
 
 
 // ~~-~~-~~-~~-~~ Constructors ~~-~~-~~-~~-~~

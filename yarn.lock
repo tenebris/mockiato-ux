@@ -112,9 +112,9 @@
     "@angular-devkit/core" "0.7.5"
     rxjs "^6.0.0"
 
-"@angular/animations@~7.1.0":
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-7.1.0.tgz#3f03175217a45b72e53310d9ab35e69802ad9555"
+"@angular/animations@~7.1.1":
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/@angular/animations/-/animations-7.1.1.tgz#8fecbd19417364946a9ea40c8fdf32462110232f"
   dependencies:
     tslib "^1.9.0"
 
@@ -132,15 +132,15 @@
     semver "5.5.1"
     symbol-observable "1.2.0"
 
-"@angular/common@~7.1.0":
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/@angular/common/-/common-7.1.0.tgz#89b0a34fd8f2a323704369551be4ac7491dda0b7"
+"@angular/common@~7.1.1":
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/@angular/common/-/common-7.1.1.tgz#f78f884614ef81ab2fd648f1aa3e83aae370a6c8"
   dependencies:
     tslib "^1.9.0"
 
-"@angular/compiler-cli@~7.1.0":
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/@angular/compiler-cli/-/compiler-cli-7.1.0.tgz#b02b2f94b9510caadc2b16bf1f97aa41d21a3ce2"
+"@angular/compiler-cli@~7.1.1":
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/@angular/compiler-cli/-/compiler-cli-7.1.1.tgz#c5f6225fb72b56f42fa78c332fdee9755c64604e"
   dependencies:
     canonical-path "1.0.0"
     chokidar "^1.4.2"
@@ -154,49 +154,49 @@
     tslib "^1.9.0"
     yargs "9.0.1"
 
-"@angular/compiler@~7.1.0":
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-7.1.0.tgz#3455eeb575d0b9b68a099b5781d3cce78468146a"
+"@angular/compiler@~7.1.1":
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/@angular/compiler/-/compiler-7.1.1.tgz#4efbcad27ab43d4cd36d936a8df2e073f6d02d0a"
   dependencies:
     tslib "^1.9.0"
 
-"@angular/core@~7.1.0":
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/@angular/core/-/core-7.1.0.tgz#a55fbbc28b2c9da767121f433733683780266eb3"
+"@angular/core@~7.1.1":
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/@angular/core/-/core-7.1.1.tgz#9748b0103cd86226554e1ccbd0f43dd8c46f1ed1"
   dependencies:
     tslib "^1.9.0"
 
-"@angular/forms@~7.1.0":
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-7.1.0.tgz#8e6ab4412c5b6ad1d3b2f0be6612d601104dcf78"
+"@angular/forms@~7.1.1":
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/@angular/forms/-/forms-7.1.1.tgz#d16ef10a901c007062fd19144cd77917ef55ee24"
   dependencies:
     tslib "^1.9.0"
 
-"@angular/http@~7.1.0":
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/@angular/http/-/http-7.1.0.tgz#9243d6a0fae5b5fd12aa9408e3dbaffad54deb9b"
+"@angular/http@~7.1.1":
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/@angular/http/-/http-7.1.1.tgz#f19f17ad42e7f3cdabcf1250ca757640d0f02219"
   dependencies:
     tslib "^1.9.0"
 
-"@angular/language-service@~7.1.0":
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/@angular/language-service/-/language-service-7.1.0.tgz#148e2f9714a6f4bd9d00a7b532b60c21cd947651"
+"@angular/language-service@~7.1.1":
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/@angular/language-service/-/language-service-7.1.1.tgz#6bbe35b2430ad54618a1803f881efb5894b296c9"
 
-"@angular/platform-browser-dynamic@~7.1.0":
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-7.1.0.tgz#c7d07f6b1c08fa12c54b4e310da930da613c7e6e"
+"@angular/platform-browser-dynamic@~7.1.1":
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/@angular/platform-browser-dynamic/-/platform-browser-dynamic-7.1.1.tgz#6945298446173338782f437a996226110cda0d3e"
   dependencies:
     tslib "^1.9.0"
 
-"@angular/platform-browser@~7.1.0":
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-7.1.0.tgz#0d40fed536a08d66ea580f6c4d2976310d559111"
+"@angular/platform-browser@~7.1.1":
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/@angular/platform-browser/-/platform-browser-7.1.1.tgz#a6bd408f656dc43ee5a2d8af3dfaa786c7c1dfca"
   dependencies:
     tslib "^1.9.0"
 
-"@angular/router@~7.1.0":
-  version "7.1.0"
-  resolved "https://registry.yarnpkg.com/@angular/router/-/router-7.1.0.tgz#19b66e127065dfc2106793e81d660790422e73b0"
+"@angular/router@~7.1.1":
+  version "7.1.1"
+  resolved "https://registry.yarnpkg.com/@angular/router/-/router-7.1.1.tgz#80a4cdffc03a529b73485c2ad63a30ec435364ea"
   dependencies:
     tslib "^1.9.0"
 
@@ -319,6 +319,10 @@
 "@types/auth0-js@^8.11.7":
   version "8.11.7"
   resolved "https://registry.yarnpkg.com/@types/auth0-js/-/auth0-js-8.11.7.tgz#8d6255be9ca9cca35dd664ad07e6d774e5198fdc"
+
+"@types/chance@^1.0.1":
+  version "1.0.1"
+  resolved "https://registry.yarnpkg.com/@types/chance/-/chance-1.0.1.tgz#c10703020369602c40dd9428cc6e1437027116df"
 
 "@types/jasmine@*", "@types/jasmine@~3.3.0":
   version "3.3.0"
@@ -992,6 +996,10 @@ bonjour@^3.5.0:
     multicast-dns "^6.0.1"
     multicast-dns-service-types "^1.1.0"
 
+bootstrap@^4.1.3:
+  version "4.1.3"
+  resolved "https://registry.yarnpkg.com/bootstrap/-/bootstrap-4.1.3.tgz#0eb371af2c8448e8c210411d0cb824a6409a12be"
+
 brace-expansion@^1.1.7:
   version "1.1.11"
   resolved "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-1.1.11.tgz#3c7fcbf529d87226f3d2f52b966ff5271eb441dd"
@@ -1253,6 +1261,10 @@ chalk@^2.0.0, chalk@^2.0.1, chalk@^2.3.0, chalk@^2.4.1:
     ansi-styles "^3.2.1"
     escape-string-regexp "^1.0.5"
     supports-color "^5.3.0"
+
+chance@^1.0.16:
+  version "1.0.17"
+  resolved "https://registry.yarnpkg.com/chance/-/chance-1.0.17.tgz#3d67f1bd60d1a14de90e36a625920543707c6538"
 
 chardet@^0.7.0:
   version "0.7.0"
@@ -3401,6 +3413,10 @@ jasminewd2@^2.1.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/jasminewd2/-/jasminewd2-2.2.0.tgz#e37cf0b17f199cce23bea71b2039395246b4ec4e"
 
+jquery@1.9.1:
+  version "1.9.1"
+  resolved "https://registry.yarnpkg.com/jquery/-/jquery-1.9.1.tgz#e4cd4835faaefbade535857613c0fc3ff2adaf34"
+
 js-base64@^2.1.8:
   version "2.4.9"
   resolved "https://registry.yarnpkg.com/js-base64/-/js-base64-2.4.9.tgz#748911fb04f48a60c4771b375cac45a80df11c03"
@@ -4163,8 +4179,8 @@ node-pre-gyp@^0.10.0:
     tar "^4"
 
 node-releases@^1.0.1:
-  version "1.0.4"
-  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-1.0.4.tgz#2d585de8c6c81d00017e063e7810a63889aa6756"
+  version "1.0.5"
+  resolved "https://registry.yarnpkg.com/node-releases/-/node-releases-1.0.5.tgz#a641adcc968b039a27345d92ef10b093e5cbd41d"
   dependencies:
     semver "^5.3.0"
 
@@ -4703,6 +4719,10 @@ pkg-dir@^3.0.0:
   resolved "https://registry.yarnpkg.com/pkg-dir/-/pkg-dir-3.0.0.tgz#2749020f239ed990881b1f71210d51eb6523bea3"
   dependencies:
     find-up "^3.0.0"
+
+popper.js@^1.14.3:
+  version "1.14.6"
+  resolved "https://registry.yarnpkg.com/popper.js/-/popper.js-1.14.6.tgz#ab20dd4edf9288b8b3b6531c47c361107b60b4b0"
 
 portfinder@1.0.17:
   version "1.0.17"
