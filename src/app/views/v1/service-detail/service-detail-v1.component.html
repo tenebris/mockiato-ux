@@ -6,6 +6,13 @@
 </app-debug-block>
 
 <div *ngIf="found">
+  <div>
+    <fa-icon icon="edit"></fa-icon>&nbsp;
+    <fa-icon icon="trash-alt"></fa-icon>&nbsp;
+    <fa-icon icon="stop-circle"></fa-icon>&nbsp;
+    <fa-icon icon="play-circle"></fa-icon>&nbsp;
+    <fa-icon [icon]="['fas', 'coffee']"></fa-icon>
+  </div>
   <pre>
   found   --> {{found.name}}/{{found.type}}/{{found._id}}
   rrpairs --> {{found.rrpairs && found.rrpairs.length || 0}}
