@@ -1,12 +1,12 @@
 export class RequestData
 {
-  name: string;
+  payload: any;
 }
 
 
 export class ResponseData
 {
-  success: boolean;
+  payload: any;
 }
 
 
