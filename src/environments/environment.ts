@@ -8,7 +8,7 @@ import {EnvironmentConfiguration} from '../app/shared/model/common/environment-c
 export const environment: EnvironmentConfiguration = {
   production: false,                              // guess... :)
   logLevel: 0,                                    // see LogLevel in src/app/shared/services/logging/logging.service.ts
-  coreBaseUrl: 'https://tenebris-mockiato.ngrok.io', // FIXME (otter): revert this line
+  coreBaseUrl: 'http://localhost:8100',           // base-url to use when referencing the core
   internalAuthModal: false,                       // enable if using internal authentication modal
 };
 
