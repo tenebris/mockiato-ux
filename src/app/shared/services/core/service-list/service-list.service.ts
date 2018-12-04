@@ -16,6 +16,7 @@ const _findServiceQueryUrl = '/services/';
 function mapRRPairData(data: object): RRPair
 {
   const _rrp = {} as RRPair;
+
   Object.keys(data).forEach(key => {
     switch (key)
     {
@@ -53,8 +54,16 @@ function mapRRPairData(data: object): RRPair
             {'name': name, 'value': data[key][name]}));
         break;
 
+      case 'reqData':
+        _rrp.requestData = { payload: data[key] };
+        break;
+
+      case 'resData':
+        _rrp.responseData = { payload: data[key] };
+        break;
+
       default:
-        appLogger().warn(`found unmapped rrpair key[${key}] from backend -- ignoring`);
+        appLogger().warn(`found unmapped rrpair key[${key}] from backend -- ignoring`, data[key]);
     }
   });
 
@@ -114,7 +123,7 @@ function mapCoreDataToService(data: object): Service
         break;
 
       default:
-        appLogger().warn(`found unmapped service key[${key}] from backend -- ignoring`);
+        appLogger().warn(`found unmapped service key[${key}] from backend -- ignoring`, data[key]);
     }
   });
 
