@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {CoreSenderService} from '../core-sender/core-sender.service';
 import {Service} from '../../../model/service/service';
-import {RRPair} from '../../../model/rr-pair';
+import {HttpHeader, RRPair} from '../../../model/rr-pair';
 import {appLogger} from '../../../app-logger';
 
 
@@ -37,6 +37,20 @@ function mapRRPairData(data: object): RRPair
 
       case 'path':
         _rrp.path = data[key];
+        break;
+
+      case 'reqHeaders':
+        _rrp.requestHeaders = new Array<HttpHeader>();
+        Object.keys(data[key]).forEach(
+          name => _rrp.requestHeaders.push(
+            {'name': name, 'value': data[key][name]}));
+        break;
+
+      case 'resHeaders':
+        _rrp.responseHeaders = new Array<HttpHeader>();
+        Object.keys(data[key]).forEach(
+          name => _rrp.responseHeaders.push(
+            {'name': name, 'value': data[key][name]}));
         break;
 
       default:
