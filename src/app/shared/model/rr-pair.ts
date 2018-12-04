@@ -1,6 +1,3 @@
-import {HttpHeaders} from '@angular/common/http';
-
-
 export class RequestData
 {
   name: string;
@@ -24,26 +21,37 @@ export class RRPair
   payloadType: MimeType;
 
   requestData: RequestData;
-  requestHeaders: HttpHeaders[];
+  requestHeaders: HttpHeader[];
 
   responseStatus: number;
   responseData: ResponseData;
-  responseHeaders: HttpHeaders[];
+  responseHeaders: HttpHeader[];
 
 }
 
 
+export class HttpHeader
+{
+  name: string;
+  value: string;
+}
+
+
+// noinspection JSUnusedGlobalSymbols
 export class SoapRRPair extends RRPair
 {
   // TODO: add distinguishing/unique data
 }
 
 
+// noinspection JSUnusedGlobalSymbols
 export class RestRRPair extends RRPair
 {
   // TODO: add distinguishing/unique data
 }
 
+
+// noinspection JSUnusedGlobalSymbols
 export class MqRRPair extends RRPair
 {
   // TODO: add distinguishing/unique data
