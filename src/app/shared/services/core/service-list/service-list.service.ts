@@ -92,9 +92,7 @@ function mapCoreDataToService(data: object): Service
         // TODO: need to delay evaluation of RR-Pairs until after the rest
         //  of the data has been processed so we know the type to build
 
-        s.rrpairs = new Array<RRPair>();
-        const pairs = data[key] as Array<any>;
-        for (const pair of pairs) s.rrpairs.push(mapRRPairData(pair));
+        s.rrpairs = data[key].map(mapRRPairData);
         break;
 
       case 'lastModified':

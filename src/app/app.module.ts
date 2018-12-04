@@ -2,7 +2,11 @@ import {BrowserModule} from '@angular/platform-browser';
 import {FormsModule} from '@angular/forms';
 import {Injector, NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
-
+// TODO: move these, along with 'library' call in ctor into our CoreModule
+import {FaIconService, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
+import {library} from '@fortawesome/fontawesome-svg-core';
+import {faCoffee} from '@fortawesome/free-solid-svg-icons';
+import {faEdit, faPlayCircle, faStopCircle, faTrashAlt} from '@fortawesome/free-regular-svg-icons';
 
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
@@ -79,7 +83,8 @@ import {CoreModule} from './shared/core.module';
       FormsModule,
       HttpClientModule, // import after BrowserModule
       AgGridModule.withComponents([]),
-      AppRoutingModule
+      AppRoutingModule,
+      FontAwesomeModule
     ],
   providers:
     [
@@ -93,10 +98,19 @@ export class AppModule
 
 // ~~-~~-~~-~~-~~ Constructors ~~-~~-~~-~~-~~
 
-  constructor(injector: Injector, logger: LoggingService)
+  constructor(injector: Injector, logger: LoggingService, faIconService: FaIconService)
   {
     // save these for simple global access
     appInjector(injector);
     appLogger(logger);
+
+    faIconService.defaultPrefix = 'far';
+
+    library.add(faCoffee);
+    library.add(faEdit);
+    library.add(faTrashAlt);
+    library.add(faStopCircle);
+    library.add(faPlayCircle);
+
   }
 }
