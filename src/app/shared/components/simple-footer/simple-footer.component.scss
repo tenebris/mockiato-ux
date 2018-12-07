@@ -23,6 +23,73 @@ $darkgreen: #528552;
 $blue: #229FBF;
 $darkblue: #1d7ba3;
 
+// Fonts
+$base-font-family: Lato, 'Helvetica Neue', sans-serif;
+$alt-font-family: 'Roboto Slab', serif;
+
+$base-font-size: 20px;
+$base-line-height: 1.4;
+
+$h1-font-size: 3.6;
+$h2-font-size: 1.8;
+$h3-font-size: 1.4;
+$h4-font-size: 1;
+$h5-font-size: 0.8;
+$h6-font-size: 0.7;
+
+$h1-mobile-size: 2.8;
+
+// Sizes
+
+$unit: $base-line-height * 1rem !default;
+
+$padding-xs: $unit / 2;
+$padding-s: $unit;
+$padding-m: $unit * 2;
+$padding-l: $unit * 3;
+$padding-xl: $unit * 4;
+
+$pixel-width: 1200px;
+$width: $pixel-width / $base-font-size * 1em;
+$half-width: $width / 2;
+
+$border-s: 4px;
+$border-m: 6px;
+
+$border-radius: 3px;
+
+//media queries mixin 
+$breakpoints: (
+    "phone": 400px,
+    "phone-wide": 480px,
+    "phablet": 560px,
+    "tablet-small": 640px,
+    "tablet": 768px,
+    "tablet-wide":1024px,
+    "desktop":1248px,
+    "desktop-wide": 1440px,
+);
+@mixin mq($width, $type: min){
+    @if map_has_key($breakpoints, $width){
+        $width: map_get($breakpoints, $width);
+        @if $type == max {
+            $width: $width -1px;
+        }
+        @media only screen and(#{$type}-width: $width){
+            @content;
+        }
+    }
+}
+
+/* usage 
+.site-footer {
+    padding:2rem;
+    font-size: 1.8rem;
+    @include mq('tablet-wide'){
+        padding-top:4rem;
+        font-size:2.4rem;
+
+*/
 
 
 .site-footer {
@@ -34,5 +101,23 @@ $darkblue: #1d7ba3;
     padding: 1rem;
     background-color: $dark;
     text-align: center;
+    display: none;
+    @include mq('tablet'){
+        display: block;
+    }
+   
+
+    ul {
+        li {
+        display: inline-block;
+        flex:auto;
+        list-style: none;
+        white-space: nowrap;
+        a {
+            display: inline-block;
+            padding: $padding-xs;
+            }
+        }
+    }
 }
 
