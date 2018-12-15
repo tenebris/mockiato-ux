@@ -11,7 +11,7 @@
   </app-debug-block>
 
   <div [hidden]="submitted">
-    <form #dataStructureForm="ngForm" (ngSubmit)="onSubmit()">
+    <form #dataStructure="ngForm" (ngSubmit)="onSubmit()">
       <!--<app-mock-type-select></app-mock-type-select>-->
 
       <!-- TODO: make name/type side-by-side -->
@@ -43,7 +43,7 @@
       </div>
 
 
-      <button type="submit" class="btn btn-success" [disabled]="submitted">Submit</button>
+      <button type="submit" class="btn btn-success" [disabled]="!dataStructure.form.valid">Submit</button>
     </form>
   </div>
 
