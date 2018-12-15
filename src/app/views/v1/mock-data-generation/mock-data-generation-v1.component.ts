@@ -28,10 +28,10 @@ export class MockDataGenerationV1Component implements OnInit
 
     this.results.push({
       name: generator.personData.fullName(),
-      birthday: generator.personData.birthday()
-      // address: generator.address(),
-      // state: generator.state(),
-      // zip: generator.zipCode(),
+      birthday: generator.personData.birthday(),
+      address: generator.locationData.address(),
+      state: generator.locationData.state(),
+      zip: generator.locationData.zipPlusFour(),
     });
   }
 
