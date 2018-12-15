@@ -80,11 +80,15 @@ class Impl implements MockPersonDataService, MockLocationDataService
   /** Generates a full name with a chance of getting a middle-name (25%) and/or suffix (10%) */
   fullName(): string
   {
-    // TODO: add a weighted chance of getting names from other nationalities
     const chance = this.chance;
+
+    // selects a nationality for the nameusing a weighted list
+    const nation = chance.weighted(['en', 'it'], [50, 1]);
+
     return chance.name({
       middle: chance.bool({likelihood: 25}),
       suffix: chance.bool({likelihood: 10}),
+      nationality: nation,
     });
   }
 
