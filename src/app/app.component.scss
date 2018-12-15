@@ -1,4 +1,27 @@
-.ux-body {
-  padding: 2em 1em;
-  clear: both;
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+}
+
+#container {
+  min-height: 100%;
+  position: relative;
+}
+
+#header {
+  padding-bottom: 1em;
+}
+
+#body {
+  padding-left: 1em;
+  padding-right: 1em;
+}
+
+#footer {
+  padding-top: 1em;
+  position: sticky;
+  bottom: 0;
+  width: 100%;
 }
