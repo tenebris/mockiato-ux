@@ -15,10 +15,7 @@ export interface MockPersonDataService
   gender(): string;
 
 
-  age(): number;
-
-
-  birthday(): Date;
+  age(): PersonAge;
 
 
   ssn(): string;
@@ -28,13 +25,31 @@ export interface MockPersonDataService
 }
 
 
+export interface PersonAge
+{
+  years: number;
+
+  birthday: Date;
+}
+
+
 export interface MockLocationDataService
 {
   address(): string;
+
+
   city(): string;
+
+
   state(): string;
+
+
   zipCode(): string;
+
+
   zipPlusFour(): string;
+
+
   country(): string;
 }
 
