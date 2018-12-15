@@ -8,7 +8,6 @@ import {ChanceMockDataGeneratorService} from './generators/chance/mock-data-gene
 
 @NgModule({
   declarations: [
-    // MockTypeSelectComponent,
     MockElementDynamicFormComponent
   ],
   imports: [
@@ -16,7 +15,6 @@ import {ChanceMockDataGeneratorService} from './generators/chance/mock-data-gene
   ],
   exports: [
     MockElementDynamicFormComponent,
-    // MockTypeSelectComponent,
   ],
   providers: [
     {provide: MockDataGeneratorService, useClass: ChanceMockDataGeneratorService},
