@@ -7,17 +7,18 @@
 
 <div *ngIf="found">
   <div>
+    <fa-icon *ngIf="found.running"  (click)="onRequestStop()"  icon="stop-circle"></fa-icon>
+    <fa-icon *ngIf="!found.running" (click)="onRequestStart()" icon="play-circle"></fa-icon>
+      &nbsp;
     <fa-icon icon="edit"></fa-icon>&nbsp;
     <fa-icon icon="eye"></fa-icon>&nbsp;
     <fa-icon icon="trash-alt"></fa-icon>&nbsp;
-    <fa-icon icon="stop-circle"></fa-icon>&nbsp;
-    <fa-icon icon="play-circle"></fa-icon>&nbsp;
     <fa-icon icon="question-circle"></fa-icon>&nbsp;
     <fa-icon [icon]="['fas', 'coffee']"></fa-icon>
   </div>
   <pre>
   found   --> {{found.name}}/{{found.type}}/{{found._id}}
-  rrpairs --> {{found.rrpairs && found.rrpairs.length || 0}}
+    rrpairs --> {{found.rrpairs && found.rrpairs.length || 0}}
   </pre>
   <app-rrpair-list [data]="found.rrpairs"></app-rrpair-list>
 </div>
