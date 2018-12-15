@@ -1,6 +1,13 @@
 import {Component, OnInit} from '@angular/core';
-import {DatePipe} from '@angular/common';
-import {MockDataGeneratorService} from '../../../shared/services/mock-data-generator/mock-data-generator.service';
+import {MockDataGeneratorService, MockDataStructure} from '../../../shared/services/mock-data-generator/mock-data-generator.service';
+
+
+function processModel(model: {}): MockDataStructure
+{
+  return MockDataStructure.newMockDataStructure();
+
+  // TODO: populate a valid structure from the model
+}
 
 
 @Component({
@@ -12,7 +19,12 @@ export class MockDataGenerationV1Component implements OnInit
 {
 
   submitted = false;
-  model = {};
+  model = {
+    name: 'mock-data',
+    type: 'json',
+    count: 5,
+    structure: {},
+  };
 
   _supportedFileTypes = [ 'json', 'xml' ]
 
@@ -21,8 +33,7 @@ export class MockDataGenerationV1Component implements OnInit
 
 // ~~-~~-~~-~~-~~ Constructors ~~-~~-~~-~~-~~
 
-  constructor(private generator: MockDataGeneratorService,
-              private datePipe: DatePipe)
+  constructor(private generator: MockDataGeneratorService)
   {
     // nothing need here...
   }
@@ -31,19 +42,7 @@ export class MockDataGenerationV1Component implements OnInit
   onSubmit()
   {
     this.submitted = true;
-
-    const generator = this.generator; // to make references less verbose...
-
-    const personAge = generator.personData.age();
-
-    this.results.push({
-      name: generator.personData.fullName(),
-      age: personAge.years,
-      birthday: this.datePipe.transform(personAge.birthday, 'yyyy-MM-dd'),
-      address: generator.locationData.address(),
-      state: generator.locationData.state(),
-      zip: generator.locationData.zipPlusFour(),
-    });
+    this.results = this.generator.generate(processModel(this.model.structure), this.model.count);
   }
 
 
