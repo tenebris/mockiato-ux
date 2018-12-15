@@ -4,6 +4,8 @@ import {Injector, NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {DatePipe} from '@angular/common';
 
+import { NgSelectModule } from '@ng-select/ng-select';
+
 // TODO: move these, along with 'library' call in ctor into our CoreModule
 import {FaIconService, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {library as FaLibrary} from '@fortawesome/fontawesome-svg-core';
@@ -25,6 +27,9 @@ import {SimpleModalComponent} from './shared/components/simple-modal/simple-moda
 import {RRPairListComponent} from './shared/components/rrpair-list/rrpair-list.component';
 import {RRPairComponent} from './shared/components/rrpair/rrpair.component';
 import {DebugBlockComponent} from './shared/components/debug-block/debug-block.component';
+
+import {ServiceListComponent} from './shared/components/service-list/service-list.component';
+import {MockTypeSelectComponent} from './shared/services/mock-data-generator/type-select-component/mock-type-select.component';
 
 import {CallbackComponent} from './views/auth/auth0/callback/callback.component';
 import {LogoutComponent} from './views/auth/auth0/logout/logout.component';
@@ -81,11 +86,13 @@ import {CoreModule} from './shared/core.module';
     DebugBlockComponent,
     LoginModalComponent,
     SimpleModalComponent,
+    MockTypeSelectComponent
   ],
   imports:
     [
       CoreModule,
       BrowserModule,
+      NgSelectModule,
       FormsModule,
       HttpClientModule, // import after BrowserModule
       AgGridModule.withComponents([]),
