@@ -20,6 +20,16 @@
       <!-- TODO: add ability to create a group of fields -- i.e. hierarchical data -->
 
       <div class="form-group">
+        <label for="count">Count of items.</label>
+        <input type="text" class="form-control" id="count" name="count" required [(ngModel)]="model.count" #count="ngModel">
+        {{name.className}}
+        <div [hidden]="count.valid || count.pristine"
+             class="alert alert-danger">
+          Count is required
+        </div>
+      </div>
+
+      <div class="form-group">
         <!-- TODO: make this the downloaded filename with pattern-restriction so one cannot enter invalid filename -->
         <label for="name">Name</label>
         <input type="text" class="form-control" id="name" name="name" required [(ngModel)]="model.name" #name="ngModel">
@@ -33,7 +43,7 @@
       <div class="form-group">
         <label for="fileType">File Type</label>
         <select class="form-control" id="fileType"
-                required [(ngModel)]="model.fileType" name="fileType" #fileType="ngModel">
+                required [(ngModel)]="model.type" name="fileType" #fileType="ngModel">
           <option *ngFor="let type of _supportedFileTypes" [value]="type">{{type}}</option>
         </select>
         <div [hidden]="fileType.valid || fileType.pristine"

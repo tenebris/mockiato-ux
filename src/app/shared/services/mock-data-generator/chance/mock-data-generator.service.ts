@@ -1,8 +1,15 @@
 import {Injectable} from '@angular/core';
 
-import {MockDataGeneratorService, MockLocationDataService, MockPersonDataService, PersonAge} from '../mock-data-generator.service';
+import {
+  MockDataGeneratorService,
+  MockDataStructure,
+  MockLocationDataService,
+  MockPersonDataService,
+  PersonAge
+} from '../mock-data-generator.service';
 import {Chance} from 'chance';
 import * as moment from 'moment';
+import {DatePipe} from '@angular/common';
 
 
 /**
@@ -14,10 +21,44 @@ import * as moment from 'moment';
 export class ChanceMockDataGeneratorService implements MockDataGeneratorService
 {
 
-  private impl = new Impl();
 
+  private readonly impl = new Impl();
+
+  // noinspection JSUnusedGlobalSymbols -- used indirectly
   readonly personData = this.impl;
+
+  // noinspection JSUnusedGlobalSymbols -- used indirectly
   readonly locationData = this.impl;
+
+
+// ~~-~~-~~-~~-~~ Constructors ~~-~~-~~-~~-~~
+
+  constructor(private datePipe: DatePipe) {}
+
+
+  generate(structure: MockDataStructure, requested?: number): any
+  {
+    const count = requested || 10;
+    const results = [];
+
+    for (let i = count; i > 0; i--)
+    {
+      // TODO: pay attention to the requested data-type
+
+      const personAge = this.personData.age();
+
+      results.push({
+        name: this.personData.fullName(),
+        age: personAge.years,
+        birthday: this.datePipe.transform(personAge.birthday, 'yyyy-MM-dd'),
+        address: this.locationData.address(),
+        state: this.locationData.state(),
+        zip: this.locationData.zipCode(),
+      });
+    }
+
+    return results;
+  }
 
 }
 
@@ -36,7 +77,7 @@ class Impl implements MockPersonDataService, MockLocationDataService
   firstName(): string { return this.chance.first(); }
 
 
-  /** Generates a full name with a chance of getting a middle-name and/or suffix */
+  /** Generates a full name with a chance of getting a middle-name (25%) and/or suffix (10%) */
   fullName(): string
   {
     // TODO: add a weighted chance of getting names from other nationalities
@@ -54,7 +95,7 @@ class Impl implements MockPersonDataService, MockLocationDataService
   age(): PersonAge
   {
     const _when = moment(this.chance.birthday()).startOf('day');
-    const _age = moment().diff(_when, 'years')
+    const _age = moment().diff(_when, 'years');
     const _birthday = _when.toDate();
 
     return {
@@ -88,10 +129,17 @@ class Impl implements MockPersonDataService, MockLocationDataService
   state(): string { return this.chance.state(); }
 
 
-  zipCode(): string { return this.chance.zip(); }
+  /** returns a zip+4 in 30% of the calls */
+  zipCode(): string
+  {
+    const chance = this.chance;
+    return chance.zip({plusfour: chance.bool({likelihood: 30})});
+  }
 
 
-  zipPlusFour(): string { return this.chance.zip({plusfour: true}); }
+  /** always returns a zip+4 */
+  zipPlusFour(): string
+  { return this.chance.zip({plusfour: true}); }
 
 }
 
