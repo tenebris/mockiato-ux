@@ -20,6 +20,20 @@ export class ServiceDetailV1Component implements OnInit
   constructor(private _route: ActivatedRoute, private _store: ServiceStore) { }
 
 
+  onRequestStop(): void
+  {
+    this.found.running = false;
+    // TODO: execute service call to stop this service
+  }
+
+
+  onRequestStart(): void
+  {
+    this.found.running = true;
+    // TODO: execute service call to stop this service
+  }
+
+
   ngOnInit()
   {
     this._route.params.subscribe((params) => {
