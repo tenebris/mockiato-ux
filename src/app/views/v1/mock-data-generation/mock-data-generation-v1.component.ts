@@ -13,6 +13,9 @@ export class MockDataGenerationV1Component implements OnInit
 
   submitted = false;
   model = {};
+
+  _supportedFileTypes = [ 'json', 'xml' ]
+
   results = [];
 
 

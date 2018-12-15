@@ -10,7 +10,41 @@
     </div>
   </app-debug-block>
 
-  <form #generateForm="ngForm">
-    <button (click)="onSubmit()" [disabled]="submitted" type="submit" class="btn btn-success">Submit</button>
-  </form>
+  <div [hidden]="submitted">
+    <form #dataStructureForm="ngForm" (ngSubmit)="onSubmit()">
+      <!--<app-mock-type-select></app-mock-type-select>-->
+
+      <!-- TODO: make name/type side-by-side -->
+      <!-- TODO: add ability to dynamically insert a new field -->
+      <!-- TODO: add ability to rearrange fields -->
+      <!-- TODO: add ability to create a group of fields -- i.e. hierarchical data -->
+
+      <div class="form-group">
+        <!-- TODO: make this the downloaded filename with pattern-restriction so one cannot enter invalid filename -->
+        <label for="name">Name</label>
+        <input type="text" class="form-control" id="name" name="name" required [(ngModel)]="model.name" #name="ngModel">
+        {{name.className}}
+        <div [hidden]="name.valid || name.pristine"
+             class="alert alert-danger">
+          Name is required
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="fileType">File Type</label>
+        <select class="form-control" id="fileType"
+                required [(ngModel)]="model.fileType" name="fileType" #fileType="ngModel">
+          <option *ngFor="let type of _supportedFileTypes" [value]="type">{{type}}</option>
+        </select>
+        <div [hidden]="fileType.valid || fileType.pristine"
+             class="alert alert-danger">
+          File type is required
+        </div>
+      </div>
+
+
+      <button type="submit" class="btn btn-success" [disabled]="submitted">Submit</button>
+    </form>
+  </div>
+
 </div>
