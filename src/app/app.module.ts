@@ -43,6 +43,8 @@ import {RRPairListComponent} from './shared/components/rrpair-list/rrpair-list.c
 import {RRPairComponent} from './shared/components/rrpair/rrpair.component';
 import {DebugBlockComponent} from './shared/components/debug-block/debug-block.component';
 import {CoreModule} from './shared/core.module';
+import {MockDataGeneratorService} from './shared/services/mock-data-generator/mock-data-generator.service';
+import {ChanceMockDataGeneratorService} from './shared/services/mock-data-generator/chance/mock-data-generator.service';
 
 @NgModule({
   declarations: [
@@ -90,6 +92,7 @@ import {CoreModule} from './shared/core.module';
     [
       {provide: LoggingService, useClass: ConsoleLoggerService},
       {provide: AuthenticationService, useClass: Auth0AuthenticationService}, // TODO: make dynamic via environment in AuthenticationModule
+      {provide: MockDataGeneratorService, useClass: ChanceMockDataGeneratorService}, // TODO: make dynamic via environment in MockDataModule
     ],
   bootstrap: [AppComponent]
 })
