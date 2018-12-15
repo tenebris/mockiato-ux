@@ -4,11 +4,12 @@
       Model<br/>
       <pre>{{model|json}}</pre>
     </div>
-    <div class="debug-info" [hidden]="!submitted">
-      Generated {{results.length}} rows.<br/>
-      <pre>{{results|json}}</pre>
-    </div>
   </app-debug-block>
+
+  <div class="debug-info" [hidden]="!submitted">
+    Generated {{results.length}} rows.<br/>
+    <pre>{{results|json}}</pre>
+  </div>
 
   <div [hidden]="submitted">
     <form #dataStructure="ngForm" (ngSubmit)="onSubmit()">
