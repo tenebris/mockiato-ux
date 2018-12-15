@@ -28,6 +28,17 @@ export interface MockPersonDataService
 }
 
 
+export interface MockLocationDataService
+{
+  address(): string;
+  city(): string;
+  state(): string;
+  zipCode(): string;
+  zipPlusFour(): string;
+  country(): string;
+}
+
+
 /**
  * Provides a stable interface to the mock-data generation implementation.
  */
@@ -35,19 +46,5 @@ export interface MockPersonDataService
 export abstract class MockDataGeneratorService
 {
   personData: MockPersonDataService;
+  locationData: MockLocationDataService;
 }
-
-
-enum __PersonDataTypes
-{
-  _prefix,
-  _fullName,
-  _firstName,
-  _lastName,
-  _gender,
-  _age,
-  _ssn,
-  _profession,
-}
-
-
