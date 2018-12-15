@@ -2,14 +2,14 @@ import {Injectable} from '@angular/core';
 
 import {
   MockDataGeneratorService,
-  MockDataStructure,
   MockLocationDataService,
   MockPersonDataService,
   PersonAge
-} from '../mock-data-generator.service';
+} from '../../mock-data-generator.service';
 import {Chance} from 'chance';
 import * as moment from 'moment';
 import {DatePipe} from '@angular/common';
+import {MockDataStructure} from '../../mock-data-structure';
 
 
 /**

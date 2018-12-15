@@ -1,10 +1,11 @@
 import {Injector, NgModule, Optional, SkipSelf} from '@angular/core';
 
 import {CommonModule} from '@angular/common';
-import {LoggingService} from './services/logging/logging.service';
 
 import {appInjector} from './app-injector';
 import {appLogger} from './app-logger';
+
+import {LoggingService} from './services/logging/logging.service';
 
 
 // TODO: Placeholder for all of this app's core services.
@@ -12,7 +13,7 @@ import {appLogger} from './app-logger';
   imports: [CommonModule],
   declarations: [],
   exports: [],
-  providers: []
+  providers: [],
 })
 export class CoreModule
 {

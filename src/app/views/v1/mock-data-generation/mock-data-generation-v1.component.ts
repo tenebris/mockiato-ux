@@ -1,5 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {MockDataGeneratorService, MockDataStructure} from '../../../shared/services/mock-data-generator/mock-data-generator.service';
+import {MockDataGeneratorService} from '../../../shared/services/mock-data-generator/mock-data-generator.service';
+import {MockDataStructure} from '../../../shared/services/mock-data-generator/mock-data-structure';
 
 
 function processModel(model: {}): MockDataStructure

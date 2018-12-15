@@ -4,8 +4,6 @@ import {Injector, NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {DatePipe} from '@angular/common';
 
-import { NgSelectModule } from '@ng-select/ng-select';
-
 // TODO: move these, along with 'library' call in ctor into our CoreModule
 import {FaIconService, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {library as FaLibrary} from '@fortawesome/fontawesome-svg-core';
@@ -29,7 +27,6 @@ import {RRPairComponent} from './shared/components/rrpair/rrpair.component';
 import {DebugBlockComponent} from './shared/components/debug-block/debug-block.component';
 
 import {ServiceListComponent} from './shared/components/service-list/service-list.component';
-import {MockTypeSelectComponent} from './shared/services/mock-data-generator/type-select-component/mock-type-select.component';
 
 import {CallbackComponent} from './views/auth/auth0/callback/callback.component';
 import {LogoutComponent} from './views/auth/auth0/logout/logout.component';
@@ -46,12 +43,10 @@ import {appLogger} from './shared/app-logger';
 
 import {LoggingService} from './shared/services/logging/logging.service';
 import {ConsoleLoggerService} from './shared/services/logging/console-logger/console-logger.service';
-import {AuthenticationService} from './shared/services/auth/authentication-service';
-import {Auth0AuthenticationService} from './shared/services/auth/auth0/auth0-authentication.service';
-import {MockDataGeneratorService} from './shared/services/mock-data-generator/mock-data-generator.service';
-import {ChanceMockDataGeneratorService} from './shared/services/mock-data-generator/chance/mock-data-generator.service';
 
 import {CoreModule} from './shared/core.module';
+import {MockDataModule} from './shared/services/mock-data-generator/mock-data.module';
+import {AuthenticationModule} from './shared/services/auth/authentication.module';
 
 
 @NgModule({
@@ -86,16 +81,16 @@ import {CoreModule} from './shared/core.module';
     DebugBlockComponent,
     LoginModalComponent,
     SimpleModalComponent,
-    MockTypeSelectComponent
   ],
   imports:
     [
       CoreModule,
       BrowserModule,
-      NgSelectModule,
       FormsModule,
       HttpClientModule, // import after BrowserModule
       AgGridModule.withComponents([]),
+      MockDataModule,
+      AuthenticationModule,
       AppRoutingModule,
       FontAwesomeModule
     ],
@@ -103,8 +98,6 @@ import {CoreModule} from './shared/core.module';
     [
       DatePipe,
       {provide: LoggingService, useClass: ConsoleLoggerService},
-      {provide: AuthenticationService, useClass: Auth0AuthenticationService}, // TODO: make dynamic via environment in AuthenticationModule
-      {provide: MockDataGeneratorService, useClass: ChanceMockDataGeneratorService}, // TODO: make dynamic via environment in MockDataModule
     ],
   bootstrap: [AppComponent]
 })
