@@ -30,7 +30,7 @@ import {CallbackComponent} from './views/auth/auth0/callback/callback.component'
 import {LogoutComponent} from './views/auth/auth0/logout/logout.component';
 
 import {CommingSoonComponent} from './views/misc/comming-soon/comming-soon.component';
-import {ServiceListComponent} from './shared/components/service-list/service-list.component';
+import {IntentionallyBlankComponent} from './shared/components/intentionally-blank/intentionally-blank.component';
 
 import {BrowseSystemV1Component} from './views/v1/browse-system/browse-system-v1.component';
 import {ServiceDetailV1Component} from './views/v1/service-detail/service-detail-v1.component';
@@ -74,6 +74,7 @@ import {CoreModule} from './shared/core.module';
     SimpleHeaderComponent,
     SimpleFooterComponent,
     CommingSoonComponent,
+    IntentionallyBlankComponent,
     ServiceListComponent,
     RRPairListComponent,
     RRPairComponent,
