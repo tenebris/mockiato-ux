@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 
-import {MockDataGeneratorService, MockLocationDataService, MockPersonDataService} from '../mock-data-generator.service';
+import {MockDataGeneratorService, MockLocationDataService, MockPersonDataService, PersonAge} from '../mock-data-generator.service';
 import {Chance} from 'chance';
+import * as moment from 'moment';
 
 
 /**
@@ -32,12 +33,6 @@ class Impl implements MockPersonDataService, MockLocationDataService
   constructor() { this.chance = Chance(); }
 
 
-  age(): number { return this.chance.age(); }
-
-
-  birthday(): Date { return this.chance.birthday(); }
-
-
   firstName(): string { return this.chance.first(); }
 
 
@@ -54,6 +49,19 @@ class Impl implements MockPersonDataService, MockLocationDataService
 
 
   gender(): string { return this.chance.gender(); }
+
+
+  age(): PersonAge
+  {
+    const _when = moment(this.chance.birthday()).startOf('day');
+    const _age = moment().diff(_when, 'years')
+    const _birthday = _when.toDate();
+
+    return {
+      years: _age,
+      birthday: _birthday,
+    };
+  }
 
 
   lastName(): string { return this.chance.last(); }
