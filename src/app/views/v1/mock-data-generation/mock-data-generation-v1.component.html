@@ -6,7 +6,14 @@
     </div>
   </app-debug-block>
 
-  <div class="debug-info" [hidden]="!submitted">
+  <div *ngIf="results">
+    <!-- Form to allow reset of generation or download of results... -->
+    <form (ngSubmit)="onRestResults()" [formGroup]="_resetForm">
+      <button type="submit" class="btn btn-success" [disabled]="!_resetForm.valid">Reset</button>
+    </form>
+  </div>
+
+  <div *ngIf="results" class="debug-info" [hidden]="!submitted">
     Generated {{results.length}} rows.<br/>
     <pre>{{results|json}}</pre>
   </div>
