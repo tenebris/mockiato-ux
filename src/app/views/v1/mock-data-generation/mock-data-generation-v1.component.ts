@@ -13,8 +13,10 @@ export class MockDataGenerationV1Component implements OnInit
 {
 
   _root: FormGroup;
+  _resetForm: FormGroup;
+
   submitted = false;
-  results = [];
+  results = undefined;
 
   readonly _supportedFileTypes = ['json', 'xml'];
 
@@ -43,6 +45,14 @@ export class MockDataGenerationV1Component implements OnInit
       fileType: new FormControl('json'),
       itemCount: new FormControl(10),
     });
+
+    this._resetForm = new FormGroup({});
   }
 
+
+  onRestResults()
+  {
+    this.results = undefined;
+    this.submitted = false;
+  }
 }
