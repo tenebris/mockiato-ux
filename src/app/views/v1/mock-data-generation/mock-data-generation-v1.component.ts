@@ -5,7 +5,7 @@ import {FormControl, FormGroup} from '@angular/forms';
 
 
 @Component({
-  selector: 'app-view-mock-data-generation-v1',
+  selector: 'app-view-mock-data-generation',
   templateUrl: './mock-data-generation-v1.component.html',
   styleUrls: ['./mock-data-generation-v1.component.scss']
 })
