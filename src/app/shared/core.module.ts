@@ -7,12 +7,14 @@ import {appLogger} from './app-logger';
 
 import {LoggingService} from './services/logging/logging.service';
 
+import {DebugBlockComponent} from './components/debug-block/debug-block.component';
+
 
 // TODO: Placeholder for all of this app's core services.
 @NgModule({
   imports: [CommonModule],
-  declarations: [],
-  exports: [],
+  declarations: [DebugBlockComponent],
+  exports: [DebugBlockComponent],
   providers: [],
 })
 export class CoreModule

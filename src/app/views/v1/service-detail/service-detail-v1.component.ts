@@ -5,7 +5,7 @@ import {Service} from '../../../shared/model/service/service';
 
 
 @Component({
-  selector: 'app-service-detail-v1',
+  selector: 'app-view-service-detail-v1',
   templateUrl: './service-detail-v1.component.html',
   styleUrls: ['./service-detail-v1.component.scss']
 })

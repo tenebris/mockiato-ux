@@ -1,7 +1,7 @@
 import {Component, Input} from '@angular/core';
 import {FormGroup} from '@angular/forms';
 
-import {MockElementBase} from './mock-element-base';
+import {MockElementBase} from '../mock-element-base';
 
 
 @Component({

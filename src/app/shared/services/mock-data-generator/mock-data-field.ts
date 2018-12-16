@@ -1,6 +1,6 @@
 export enum MockDataFieldType
 {
-  root, group
+  root, group, address
 }
 
 

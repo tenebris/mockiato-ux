@@ -1,40 +1,27 @@
 import {Component, OnInit} from '@angular/core';
 import {MockDataGeneratorService} from '../../../shared/services/mock-data-generator/mock-data-generator.service';
-import {MockDataStructure} from '../../../shared/services/mock-data-generator/mock-data-structure';
-
-
-function processModel(model: {}): MockDataStructure
-{
-  return MockDataStructure.newMockDataStructure();
-
-  // TODO: populate a valid structure from the model
-}
+import {MockDataFormGroupService} from '../../../shared/services/mock-data-generator/form/mock-data-form-group.service';
+import {FormControl, FormGroup} from '@angular/forms';
 
 
 @Component({
-  selector: 'app-mock-data-generation',
+  selector: 'app-view-mock-data-generation-v1',
   templateUrl: './mock-data-generation-v1.component.html',
   styleUrls: ['./mock-data-generation-v1.component.scss']
 })
 export class MockDataGenerationV1Component implements OnInit
 {
 
+  _root: FormGroup;
   submitted = false;
-  model = {
-    name: 'mock-data',
-    type: 'json',
-    count: 5,
-    structure: {},
-  };
-
-  _supportedFileTypes = [ 'json', 'xml' ]
-
   results = [];
+
+  readonly _supportedFileTypes = ['json', 'xml'];
 
 
 // ~~-~~-~~-~~-~~ Constructors ~~-~~-~~-~~-~~
 
-  constructor(private generator: MockDataGeneratorService)
+  constructor(private generator: MockDataGeneratorService, private formGroupGenerator: MockDataFormGroupService)
   {
     // nothing need here...
   }
@@ -43,10 +30,19 @@ export class MockDataGenerationV1Component implements OnInit
   onSubmit()
   {
     this.submitted = true;
-    this.results = this.generator.generate(processModel(this.model.structure), this.model.count);
+
+    const value = this._root.value;
+    this.results = this.generator.generate({itemCount: value.itemCount});
   }
 
 
-  ngOnInit() {}
+  ngOnInit()
+  {
+    this._root = new FormGroup({
+      fileName: new FormControl('mock-data'),
+      fileType: new FormControl('json'),
+      itemCount: new FormControl(10),
+    });
+  }
 
 }
