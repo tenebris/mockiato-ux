@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {FormsModule} from '@angular/forms';
+import {ReactiveFormsModule} from '@angular/forms';
 import {Injector, NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {DatePipe} from '@angular/common';
@@ -24,7 +24,6 @@ import {LoginModalComponent} from './views/auth/login-modal/login-modal.componen
 import {SimpleModalComponent} from './shared/components/simple-modal/simple-modal.component';
 import {RRPairListComponent} from './shared/components/rrpair-list/rrpair-list.component';
 import {RRPairComponent} from './shared/components/rrpair/rrpair.component';
-import {DebugBlockComponent} from './shared/components/debug-block/debug-block.component';
 
 import {ServiceListComponent} from './shared/components/service-list/service-list.component';
 
@@ -78,7 +77,6 @@ import {AuthenticationModule} from './shared/services/auth/authentication.module
     ServiceListComponent,
     RRPairListComponent,
     RRPairComponent,
-    DebugBlockComponent,
     LoginModalComponent,
     SimpleModalComponent,
   ],
@@ -86,7 +84,7 @@ import {AuthenticationModule} from './shared/services/auth/authentication.module
     [
       CoreModule,
       BrowserModule,
-      FormsModule,
+      ReactiveFormsModule,
       HttpClientModule, // import after BrowserModule
       AgGridModule.withComponents([]),
       MockDataModule,

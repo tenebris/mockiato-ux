@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {ServiceStore} from '../../../shared/model/service/service-store';
 
 @Component({
-  selector: 'app-browse-system-v1',
+  selector: 'app-view-browse-system-v1',
   templateUrl: './browse-system-v1.component.html',
   styleUrls: ['./browse-system-v1.component.scss'],
 })

@@ -36,9 +36,9 @@ export class ChanceMockDataGeneratorService implements MockDataGeneratorService
   constructor(private datePipe: DatePipe) {}
 
 
-  generate(structure: MockDataStructure, requested?: number): any
+  generate(options: {structure?: MockDataStructure, itemCount?: number}): any
   {
-    const count = requested || 10;
+    const count = options.itemCount || 10;
     const results = [];
 
     for (let i = count; i > 0; i--)

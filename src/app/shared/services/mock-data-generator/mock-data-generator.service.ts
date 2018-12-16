@@ -73,5 +73,5 @@ export abstract class MockDataGeneratorService
    * @param structure of data to generate
    * @param requested count of items to generate -- default is 10
    */
-  public abstract generate(structure: MockDataStructure, requested?: number): any;
+  public abstract generate(options: {structure?: MockDataStructure, itemCount?: number}): any;
 }
