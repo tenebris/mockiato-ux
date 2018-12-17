@@ -1,38 +1,13 @@
 <div class="mock-data-container">
   <div class="mock-data-root">
-    <app-debug-block><br/>root structure</app-debug-block>
 
-<!--
-    <div class="form-row">
-      <div class="form-group">
-        <label for="elementName">Name</label>
-        <input type="text" class="form-control" id="elementName" name="elementName" required>
-      </div>
-      &lt;!&ndash; FIXME (otter): need to adjust this once model is integrated correctly
-              <div [hidden]="elementName.valid || elementName.pristine"
-                   class="alert alert-danger">
-                Element name is required
-              </div>
-      &ndash;&gt;
-
-      <div class="form-group">
-        <label for="elementType">Type</label>
-        <select class="form-control" id="elementType" name="elementType" required>
-          <option *ngFor="let type of _supportedDataTypes" [value]="type.name">{{type.value}}</option>
-        </select>
-        &lt;!&ndash; FIXME (otter): need to adjust this once model is integrated correctly
-                <div [hidden]="elementType.valid || elementType.pristine"
-                     class="alert alert-danger">
-                  Element type is required
-                </div>
-        &ndash;&gt;
-      </div>
-    </div>
--->
+    <!-- TODO: add ability to dynamically insert a new field -->
+    <!-- TODO: add ability to rearrange fields -->
+    <!-- TODO: add ability to create a group of fields -- i.e. hierarchical data -->
 
     <div class="form-row">
-      <button type="button" (click)="doAddElement()" class="btn btn-primary btn-sm">Add</button>
+      <button type="button" (click)="doAddRootElement()" class="btn btn-primary btn-sm">Add</button>
     </div>
-
   </div>
+
 </div>

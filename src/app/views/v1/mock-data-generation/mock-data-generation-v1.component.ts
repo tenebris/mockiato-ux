@@ -38,21 +38,22 @@ export class MockDataGenerationV1Component implements OnInit
   }
 
 
+  onResetResults()
+  {
+    this.results = undefined;
+    this.submitted = false;
+  }
+
+
   ngOnInit()
   {
     this._root = new FormGroup({
       fileName: new FormControl('mock-data'),
       fileType: new FormControl('json'),
       itemCount: new FormControl(10),
-    });
+  })
+    ;
 
     this._resetForm = new FormGroup({});
-  }
-
-
-  onRestResults()
-  {
-    this.results = undefined;
-    this.submitted = false;
   }
 }
