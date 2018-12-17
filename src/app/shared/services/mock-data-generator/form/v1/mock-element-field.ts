@@ -1,5 +1,5 @@
 import {MockElementBase} from './mock-element-base';
-import {MockDataFieldType} from '../mock-data-field';
+import {MockDataFieldType} from '../../mock-data-field';
 
 
 export interface MockElement
