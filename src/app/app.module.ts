@@ -21,7 +21,6 @@ import {PageNotFoundComponent} from './views/misc/page-not-found/page-not-found.
 import {SimpleHeaderComponent} from './shared/components/simple-header/simple-header.component';
 import {SimpleFooterComponent} from './shared/components/simple-footer/simple-footer.component';
 import {LoginModalComponent} from './views/auth/login-modal/login-modal.component';
-import {SimpleModalComponent} from './shared/components/simple-modal/simple-modal.component';
 import {RRPairListComponent} from './shared/components/rrpair-list/rrpair-list.component';
 import {RRPairComponent} from './shared/components/rrpair/rrpair.component';
 
@@ -78,7 +77,6 @@ import {AuthenticationModule} from './shared/services/auth/authentication.module
     RRPairListComponent,
     RRPairComponent,
     LoginModalComponent,
-    SimpleModalComponent,
   ],
   imports:
     [

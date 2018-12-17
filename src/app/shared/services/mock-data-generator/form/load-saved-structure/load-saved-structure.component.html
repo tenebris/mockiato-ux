@@ -1,0 +1,31 @@
+<app-simple-modal [id]="_modal_id"
+                  [clickToClose]="true">
+  <h1>Testing</h1>
+</app-simple-modal>
+
+<div class="form-group" [formGroup]="myFormGroup">
+
+  <div class="form-row">
+    <label for="savedStructureName">Saved Structure</label>
+    <!-- FIXME (otter): binding doesn't appear to be working -- need to research :) -->
+    <select type="text" id="savedStructureName" name="savedStructureName" required
+            class="form-control" formControlName="savedStructureName">
+      <option *ngFor="let item of namedStructures" [value]="item">{{item}}</option>
+    </select>
+    <button type="button" class="form-inline btn btn-outline-primary btn-sm"
+            (click)="showLoadSavedModal()">
+      Load
+    </button>
+  </div>
+
+</div>
+
+
+<app-debug-block>
+  <br/>saved structures<br/>
+  <pre>{{namedStructures|json}}</pre>
+
+  <br/>root structure<br/>
+  <pre>{{structure|json}}</pre>
+</app-debug-block>
+

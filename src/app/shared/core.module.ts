@@ -8,13 +8,14 @@ import {appLogger} from './app-logger';
 import {LoggingService} from './services/logging/logging.service';
 
 import {DebugBlockComponent} from './components/debug-block/debug-block.component';
+import {SimpleModalComponent} from './components/simple-modal/simple-modal.component';
 
 
 // TODO: Placeholder for all of this app's core services.
 @NgModule({
   imports: [CommonModule],
-  declarations: [DebugBlockComponent],
-  exports: [DebugBlockComponent],
+  declarations: [DebugBlockComponent, SimpleModalComponent],
+  exports: [DebugBlockComponent, SimpleModalComponent],
   providers: [],
 })
 export class CoreModule
