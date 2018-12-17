@@ -21,46 +21,52 @@
 
   <div [hidden]="submitted">
     <form (ngSubmit)="onSubmit()" [formGroup]="_root">
+      <div class="container-fluid bg-light border">
+        <div class="form-group">
 
-      <div class="form-row">
-        <div class="form-group">
-          <label for="fileName">File Name</label>
-          <input type="text" id="fileName" name="fileName" required
-                 class="form-control" formControlName="fileName">
-          <div [hidden]="_root.get('fileName').valid || _root.get('fileName').pristine"
-               class="alert alert-danger">
-            Name is required
+          <div class="form-row">
+            <div class="form-group">
+              <label for="fileName">File Name</label>
+              <input type="text" id="fileName" name="fileName" required
+                     class="form-control" formControlName="fileName">
+              <div [hidden]="_root.get('fileName').valid || _root.get('fileName').pristine"
+                   class="alert alert-danger">
+                Name is required
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="itemCount">Count</label>
+              <input type="number" id="itemCount" name="itemCount" required
+                     class="form-control" formControlName="itemCount">
+              <div [hidden]="_root.get('itemCount').valid || _root.get('itemCount').pristine"
+                   class="alert alert-danger">
+                Count is required
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="fileType">Type</label>
+              <select type="text" id="fileType" name="fileType" required
+                      class="form-control" formControlName="fileType">
+                <option *ngFor="let item of _supportedFileTypes" [value]="item">{{item}}</option>
+              </select>
+            </div>
           </div>
-        </div>
-        <div class="form-group">
-          <label for="itemCount">Count</label>
-          <input type="number" id="itemCount" name="itemCount" required
-                 class="form-control" formControlName="itemCount">
-          <div [hidden]="_root.get('itemCount').valid || _root.get('itemCount').pristine"
-               class="alert alert-danger">
-            Count is required
-          </div>
-        </div>
-        <div class="form-group">
-          <label for="fileType">Type</label>
-          <select type="text" id="fileType" name="fileType" required
-                  class="form-control" formControlName="fileType">
-            <option *ngFor="let item of _supportedFileTypes" [value]="item">{{item}}</option>
-          </select>
+
+          <app-mock-data-load-saved-form [structure]="_root.get('structure')" [form]="_root"></app-mock-data-load-saved-form>
+
+          <button type="submit" class="btn btn-success" [disabled]="!_root.valid">Submit</button>
         </div>
       </div>
+      <div class="container-fluid bg-light border">
+        <div class="form-group">
+          <h1>Structure</h1>
+          <!-- TODO: provide means to save/select structures -->
 
-      <app-mock-data-load-saved-form [form]="_root"></app-mock-data-load-saved-form>
+          <p>Add and arrange new elements in order to define the structure of the data to generate.</p>
 
-      <button type="submit" class="btn btn-success" [disabled]="!_root.valid">Submit</button>
-
-      <h1>Structure</h1>
-      <!-- TODO: provide means to save/select structures -->
-
-      <p>Add and arrange new elements in order to define the structure of the data to generate.</p>
-
-      <app-mock-data-structure [form]="_root"></app-mock-data-structure>
-
+          <app-mock-data-structure [structure]="_root.get('structure')" [form]="_root"></app-mock-data-structure>
+        </div>
+      </div>
     </form>
   </div>
 

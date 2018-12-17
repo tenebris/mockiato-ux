@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormGroup} from '@angular/forms';
+import {FormControl, FormGroup} from '@angular/forms';
 import {appLogger} from '../../../../app-logger';
 
 
@@ -12,6 +12,7 @@ export class MockDataStructureComponent implements OnInit
 {
 
   @Input() form: FormGroup;
+  @Input() structure: FormControl;
 
 
   // ~~-~~-~~-~~-~~ Constructors ~~-~~-~~-~~-~~
@@ -21,7 +22,7 @@ export class MockDataStructureComponent implements OnInit
 
   doAddRootElement(): void
   {
-    // this.structure[this.key] = {}; // TODO: move this to a reactive service/store
+    this.structure.value['testing'] = 'address';
     appLogger().debug('addingElement: '); // TODO: add name/type to log message...
   }
 

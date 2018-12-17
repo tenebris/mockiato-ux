@@ -4,10 +4,10 @@ import {FormControl, FormGroup} from '@angular/forms';
 
 
 const STRUCTURE_STORAGE_PREFIX = 'mock-data.structure.';
-const STRUCTURE_STORAGE_KEY_LAST = 'last';
+const STRUCTURE_STORAGE_KEY_LAST_USED = 'last';
 
 
-class SavedStructure
+export class SavedStructure
 { // TODO: move out of component into service...
 
   /** determines the names of any saved structures in localStorage */
@@ -31,11 +31,11 @@ class SavedStructure
 
 
   /**
-   * Reads the last used structure from local storage.
+   * Reads the last-used structure from local storage.
    * @return parsed object or undefined if no structure has been saved yet.
    */
   static readLast(): any
-  {return SavedStructure.read(STRUCTURE_STORAGE_KEY_LAST);}
+  {return SavedStructure.read(STRUCTURE_STORAGE_KEY_LAST_USED);}
 
 
   /**
@@ -48,9 +48,11 @@ class SavedStructure
     return lastSaved ? JSON.parse(lastSaved) : undefined;
   }
 
+  /** Writes the given data to the last-used key in local storage */
+  static writeLast(data: any): void { SavedStructure.write(STRUCTURE_STORAGE_KEY_LAST_USED, data); }
 
   /** writes the given structure to localStorage under the specified name */
-  static write(name: string, data: any): any
+  static write(name: string, data: any): void
   { // TODO: move out of component into service...
     localStorage.setItem(STRUCTURE_STORAGE_PREFIX + name, JSON.stringify(data));
   }
@@ -65,7 +67,7 @@ class SavedStructure
 })
 export class LoadSavedStructureComponent implements OnInit
 {
-  @Input() structure: any;
+  @Input() structure: FormControl;
   @Input() form: FormGroup;
 
   myFormGroup: FormGroup;
@@ -86,8 +88,9 @@ export class LoadSavedStructureComponent implements OnInit
 
   doLoadStructure(): void
   {
-    this.structure = this.myFormGroup.get('newStructure').value;
+    this.structure.setValue(this.myFormGroup.get('newStructure').value);
     this.modalService.close(this._modal_id);
+    this.myFormGroup.get('newStructure').setValue(undefined);
   }
 
 
@@ -96,14 +99,14 @@ export class LoadSavedStructureComponent implements OnInit
     const name: string = this.myFormGroup.get('savedStructureName').value;
     const value = SavedStructure.read(name);
     this.myFormGroup.get('newStructure').setValue(value);
-    if (this.structure) this.showLoadSavedModal();
-    else this.structure = value;
+    if (this.structure.value) this.showLoadSavedModal();
+    else this.doLoadStructure();
   }
 
 
   ngOnInit(): void
   {
-    if (!this.structure) this.structure = SavedStructure.readLast();
+    if (!this.structure.value) this.structure.setValue(SavedStructure.readLast());
     this.namedStructures = SavedStructure.readNames();
 
     this.myFormGroup = new FormGroup({
