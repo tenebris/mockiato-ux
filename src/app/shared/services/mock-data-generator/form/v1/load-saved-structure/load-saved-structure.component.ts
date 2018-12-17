@@ -1,14 +1,13 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {ModalService} from '../../../modal-service/modal.service';
+import {Component, Inject, Input, OnInit} from '@angular/core';
+import {ModalService} from '../../../../modal-service/modal.service';
 import {FormControl, FormGroup} from '@angular/forms';
-
+import {appLogger} from '../../../../../app-logger';
 
 const STRUCTURE_STORAGE_PREFIX = 'mock-data.structure.';
 const STRUCTURE_STORAGE_KEY_LAST_USED = 'last';
 
-
 export class SavedStructure
-{ // TODO: move out of component into service...
+{ // TODO: move out of component into service?
 
   /** determines the names of any saved structures in localStorage */
   static readNames(): string[]
@@ -35,7 +34,7 @@ export class SavedStructure
    * @return parsed object or undefined if no structure has been saved yet.
    */
   static readLast(): any
-  {return SavedStructure.read(STRUCTURE_STORAGE_KEY_LAST_USED);}
+  {return SavedStructure.read(STRUCTURE_STORAGE_KEY_LAST_USED); }
 
 
   /**
@@ -44,18 +43,38 @@ export class SavedStructure
    */
   static read(name: string): any
   { // TODO: move out of component into service...
-    const lastSaved = localStorage.getItem(STRUCTURE_STORAGE_PREFIX + name);
-    return lastSaved ? JSON.parse(lastSaved) : undefined;
+    const value = localStorage.getItem(STRUCTURE_STORAGE_PREFIX + name);
+    return value ? value.startsWith('{')
+                   ? JSON.parse(value)
+                   : JSON.parse(this.decompressValue(value))
+                 : undefined;
   }
 
+
   /** Writes the given data to the last-used key in local storage */
-  static writeLast(data: any): void { SavedStructure.write(STRUCTURE_STORAGE_KEY_LAST_USED, data); }
+  static writeLast(data: any): void
+  { SavedStructure.write(STRUCTURE_STORAGE_KEY_LAST_USED, data); }
+
 
   /** writes the given structure to localStorage under the specified name */
   static write(name: string, data: any): void
   { // TODO: move out of component into service...
-    localStorage.setItem(STRUCTURE_STORAGE_PREFIX + name, JSON.stringify(data));
+    const jsonString = JSON.stringify(data);
+    localStorage.setItem(STRUCTURE_STORAGE_PREFIX + name, this.compressValue(jsonString));
   }
+
+
+  static getLastUsedKeyName() { return STRUCTURE_STORAGE_KEY_LAST_USED; }
+
+
+  private static decompressValue(value: string): string
+  // { return decompress(value, {inputEncoding: 'Base64'}); }
+  { return value; } // TODO: replace no-op with compression library
+
+
+  private static compressValue(value: string): string
+  // { return LZUTF8.compress(value, {outputEncoding: 'Base64'}); }
+  { return value; } // TODO: replace no-op with compression library
 
 }
 
@@ -94,11 +113,18 @@ export class LoadSavedStructureComponent implements OnInit
   }
 
 
-  doLoadRequested(): void
+  doSoftLoad(): void
   {
     const name: string = this.myFormGroup.get('savedStructureName').value;
+    appLogger().debug(`soft-loading key [${name}]`);
     const value = SavedStructure.read(name);
     this.myFormGroup.get('newStructure').setValue(value);
+  }
+
+
+  doLoadRequested(): void
+  {
+    this.doSoftLoad();
     if (this.structure.value) this.showLoadSavedModal();
     else this.doLoadStructure();
   }
@@ -110,13 +136,11 @@ export class LoadSavedStructureComponent implements OnInit
     this.namedStructures = SavedStructure.readNames();
 
     this.myFormGroup = new FormGroup({
-      savedStructureName: new FormControl(''),
-      newStructure: new FormControl({}),
+      savedStructureName: new FormControl(SavedStructure.getLastUsedKeyName()),
+      newStructure: new FormControl(undefined),
     });
 
     this.form.addControl('LoadSavedStructureComponent', this.myFormGroup);
-
-    this.myFormGroup.get('savedStructureName').setValue('simple');
   }
 
 }

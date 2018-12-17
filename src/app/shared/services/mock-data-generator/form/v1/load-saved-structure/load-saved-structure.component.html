@@ -16,22 +16,25 @@
     </div>
   </app-simple-modal>
 
-  <div class="form-group" [formGroup]="myFormGroup">
-
+  <div class="form-group w-25" [formGroup]="myFormGroup">
     <div class="form-row">
       <label for="savedStructureName">Saved Structure</label>
       <!-- FIXME (otter): binding doesn't appear to be working -- need to research :) -->
       <select type="text" id="savedStructureName" name="savedStructureName" required
-              class="form-control" formControlName="savedStructureName">
+              class="form-control" formControlName="savedStructureName"
+              (change)="doSoftLoad()">
         <option *ngFor="let item of namedStructures" [value]="item">{{item}}</option>
       </select>
-      <button type="button" class="form-inline btn btn-outline-primary btn-sm"
-              (click)="doLoadRequested()">
-        Load
-      </button>
     </div>
-
   </div>
+
+  <div class="form-row">
+    <button type="button" class="form-inline btn btn-outline-primary btn-sm"
+            (click)="doLoadRequested()">
+      Load
+    </button>
+  </div>
+
 
 </div>
 

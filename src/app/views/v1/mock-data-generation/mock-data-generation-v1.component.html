@@ -1,23 +1,24 @@
-<div id="mock-data-generator">
-
-  <app-debug-block>
-    <div class="debug-info">
-      Model<br/>
-      <pre>{{_root.value|json}}</pre>
-    </div>
-  </app-debug-block>
-
-  <div *ngIf="results">
-    <!-- Form to allow reset of generation or download of results... -->
-    <form (ngSubmit)="onResetResults()" [formGroup]="_resetForm">
-      <button type="submit" class="btn btn-success" [disabled]="!_resetForm.valid">Reset</button>
-    </form>
+<app-debug-block>
+  <div class="debug-info">
+    Model<br/>
+    <pre>{{_root.value|json}}</pre>
   </div>
+</app-debug-block>
 
-  <div *ngIf="results" class="debug-info" [hidden]="!submitted">
+<div *ngIf="results">
+  <!-- Form to allow reset of generation or download of results... -->
+  <form (ngSubmit)="onResetResults()" [formGroup]="_resetForm">
+    <button type="submit" class="btn btn-success" [disabled]="!_resetForm.valid">Reset</button>
+  </form>
+
+  <div class="debug-info">
     Generated {{results.length}} rows.<br/>
     <pre>{{results|json}}</pre>
   </div>
+
+</div>
+
+<div id="mock-data-generator">
 
   <div [hidden]="submitted">
     <form (ngSubmit)="onSubmit()" [formGroup]="_root">
@@ -57,17 +58,9 @@
           <button type="submit" class="btn btn-success" [disabled]="!_root.valid">Submit</button>
         </div>
       </div>
-      <div class="container-fluid bg-light border">
-        <div class="form-group">
-          <h1>Structure</h1>
-          <!-- TODO: provide means to save/select structures -->
-
-          <p>Add and arrange new elements in order to define the structure of the data to generate.</p>
-
-          <app-mock-data-structure [structure]="_root.get('structure')" [form]="_root"></app-mock-data-structure>
-        </div>
-      </div>
     </form>
   </div>
+
+  <app-mock-data-generator-form [structure]="_root.get('structure')" [form]="_root"></app-mock-data-generator-form>
 
 </div>

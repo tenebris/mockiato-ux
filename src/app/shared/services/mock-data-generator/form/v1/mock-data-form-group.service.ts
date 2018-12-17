@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {FormControl, FormGroup} from '@angular/forms';
-import {appLogger} from '../../../app-logger';
-import {MockDataFieldType} from '../mock-data-field';
+import {appLogger} from '../../../../app-logger';
+import {MockDataFieldType} from '../../mock-data-field';
 import {MockElementField} from './mock-element-field';
 
 
