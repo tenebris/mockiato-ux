@@ -30,18 +30,22 @@ class SavedStructure
   }
 
 
-  /** reads the last used structure from local storage */
+  /**
+   * Reads the last used structure from local storage.
+   * @return parsed object or undefined if no structure has been saved yet.
+   */
   static readLast(): any
-  {
-    return SavedStructure.read(STRUCTURE_STORAGE_KEY_LAST);
-  }
+  {return SavedStructure.read(STRUCTURE_STORAGE_KEY_LAST);}
 
 
-  /** reads the named structure from local Storage */
+  /**
+   * Reads the named structure from local Storage
+   * @return parsed object or undefined if named item doesn't exist
+   */
   static read(name: string): any
   { // TODO: move out of component into service...
     const lastSaved = localStorage.getItem(STRUCTURE_STORAGE_PREFIX + name);
-    return lastSaved ? JSON.parse(lastSaved) : {};
+    return lastSaved ? JSON.parse(lastSaved) : undefined;
   }
 
 
@@ -80,13 +84,31 @@ export class LoadSavedStructureComponent implements OnInit
   showLoadSavedModal(): void { this.modalService.open(this._modal_id); }
 
 
+  doLoadStructure(): void
+  {
+    this.structure = this.myFormGroup.get('newStructure').value;
+    this.modalService.close(this._modal_id);
+  }
+
+
+  doLoadRequested(): void
+  {
+    const name: string = this.myFormGroup.get('savedStructureName').value;
+    const value = SavedStructure.read(name);
+    this.myFormGroup.get('newStructure').setValue(value);
+    if (this.structure) this.showLoadSavedModal();
+    else this.structure = value;
+  }
+
+
   ngOnInit(): void
   {
     if (!this.structure) this.structure = SavedStructure.readLast();
     this.namedStructures = SavedStructure.readNames();
 
     this.myFormGroup = new FormGroup({
-      savedStructureName: new FormControl('')
+      savedStructureName: new FormControl(''),
+      newStructure: new FormControl({}),
     });
 
     this.form.addControl('LoadSavedStructureComponent', this.myFormGroup);
