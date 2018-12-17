@@ -1,25 +1,39 @@
-<app-simple-modal [id]="_modal_id"
-                  [clickToClose]="true">
-  <h1>Testing</h1>
-</app-simple-modal>
+<div *ngIf="namedStructures?.length > 0">
 
-<div class="form-group" [formGroup]="myFormGroup">
+  <app-simple-modal [id]="_modal_id" [clickToClose]="true">
+    <!-- TODO: refine content of model -->
+    <strong>Reset to the following structure?</strong>
+    <pre>{{myFormGroup.value|json}}</pre>
+    <div class="form-row">
+      <button type="button" class="form-inline btn btn-outline-primary btn-sm"
+              (click)="doLoadStructure()">
+        Proceed
+      </button>
+      <button type="button" class="form-inline btn btn-outline-primary btn-sm"
+              (click)="modalService.close(_modal_id)">
+        Cancel
+      </button>
+    </div>
+  </app-simple-modal>
 
-  <div class="form-row">
-    <label for="savedStructureName">Saved Structure</label>
-    <!-- FIXME (otter): binding doesn't appear to be working -- need to research :) -->
-    <select type="text" id="savedStructureName" name="savedStructureName" required
-            class="form-control" formControlName="savedStructureName">
-      <option *ngFor="let item of namedStructures" [value]="item">{{item}}</option>
-    </select>
-    <button type="button" class="form-inline btn btn-outline-primary btn-sm"
-            (click)="showLoadSavedModal()">
-      Load
-    </button>
+  <div class="form-group col-auto" [formGroup]="myFormGroup">
+
+    <div class="form-row">
+      <label for="savedStructureName">Saved Structure</label>
+      <!-- FIXME (otter): binding doesn't appear to be working -- need to research :) -->
+      <select type="text" id="savedStructureName" name="savedStructureName" required
+              class="form-control" formControlName="savedStructureName">
+        <option *ngFor="let item of namedStructures" [value]="item">{{item}}</option>
+      </select>
+      <button type="button" class="form-inline btn btn-outline-primary btn-sm"
+              (click)="doLoadRequested()">
+        Load
+      </button>
+    </div>
+
   </div>
 
 </div>
-
 
 <app-debug-block>
   <br/>saved structures<br/>
@@ -28,4 +42,3 @@
   <br/>root structure<br/>
   <pre>{{structure|json}}</pre>
 </app-debug-block>
-
