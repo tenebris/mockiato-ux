@@ -5,6 +5,10 @@
     <!-- TODO: add ability to rearrange fields -->
     <!-- TODO: add ability to create a group of fields -- i.e. hierarchical data -->
 
+    <div class="data-element-container" *ngFor="let element of builder.controls">
+      <app-mock-element [element]="element"></app-mock-element>
+    </div>
+
     <div class="form-row">
       <button type="button" (click)="doAddRootElement()" class="btn btn-primary btn-sm">Add</button>
     </div>

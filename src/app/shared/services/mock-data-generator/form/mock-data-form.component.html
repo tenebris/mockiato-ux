@@ -1,4 +1,11 @@
 <div class="container-fluid bg-light border">
+  <app-debug-block>
+    <div class="debug-info">
+      Model<br/>
+      <pre>{{form.value|json}}</pre>
+    </div>
+  </app-debug-block>
+
   <div class="form-group">
     <h1>Structure</h1>
     <!-- TODO: provide means to save/select structures -->
@@ -6,6 +13,7 @@
     <p>Add and arrange new elements in order to define the structure of the data to generate.</p>
 
     <!-- TODO: inline and remove this component -->
-    <app-mock-data-structure [structure]="structure" [builder]="form.get('builder')"></app-mock-data-structure>
+    <app-mock-data-structure [structure]="structure" [builder]="form.get('builder')">
+    </app-mock-data-structure>
   </div>
 </div>

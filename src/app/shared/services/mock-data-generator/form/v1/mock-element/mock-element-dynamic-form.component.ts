@@ -1,7 +1,5 @@
 import {Component, Input} from '@angular/core';
-import {FormGroup} from '@angular/forms';
-
-import {MockElementBase} from '../mock-element-base';
+import {FormControl} from '@angular/forms';
 
 
 @Component({
@@ -11,9 +9,10 @@ import {MockElementBase} from '../mock-element-base';
 })
 export class MockElementDynamicFormComponent
 {
-  @Input() element: MockElementBase<any>;
-  @Input() form: FormGroup;
+  @Input() element: FormControl;
 
+  // TODO: replace with references to service/enum
+  _supportedTypes = ['name', 'address', 'state', 'zip'];
 
-  get isValid() { return this.form.controls[this.element.key].valid; }
+  get isValid() { return this.element.valid; }
 }
