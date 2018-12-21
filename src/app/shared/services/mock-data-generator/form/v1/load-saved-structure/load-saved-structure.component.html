@@ -19,7 +19,6 @@
   <div class="form-group w-25" [formGroup]="myFormGroup">
     <div class="form-row">
       <label for="savedStructureName">Saved Structure</label>
-      <!-- FIXME (otter): binding doesn't appear to be working -- need to research :) -->
       <select type="text" id="savedStructureName" name="savedStructureName" required
               class="form-control" formControlName="savedStructureName"
               (change)="doSoftLoad()">
@@ -41,6 +40,11 @@
 <app-debug-block>
   <br/>saved structures<br/>
   <pre>{{namedStructures|json}}</pre>
+
+  <div *ngIf="form.get('LoadSavedStructureComponent').get('newStructure').value">
+    <br/>new structure<br/>
+    <pre>{{form.get('LoadSavedStructureComponent').value|json}}</pre>
+  </div>
 
   <br/>root structure<br/>
   <pre>{{structure.value|json}}</pre>

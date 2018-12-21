@@ -1,10 +1,3 @@
-<app-debug-block>
-  <div class="debug-info">
-    Model<br/>
-    <pre>{{_root.value|json}}</pre>
-  </div>
-</app-debug-block>
-
 <div *ngIf="results">
   <!-- Form to allow reset of generation or download of results... -->
   <form (ngSubmit)="onResetResults()" [formGroup]="_resetForm">

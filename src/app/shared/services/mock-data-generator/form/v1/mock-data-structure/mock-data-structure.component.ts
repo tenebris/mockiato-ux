@@ -22,12 +22,9 @@ export class MockDataStructureComponent implements OnInit
 
   doAddRootElement(): void
   {
-    this.structure.value['testing'] = 'address';
-    appLogger().debug('addingElement: '); // TODO: add name/type to log message...
-
     this.builder.push(new FormGroup({
-      name: new FormControl('name'),
-      type: new FormControl('type')
+      name: new FormControl('f' + (this.builder.length + 1)),
+      type: new FormControl('name')
     }));
   }
 
@@ -37,16 +34,21 @@ export class MockDataStructureComponent implements OnInit
     /* FIXME (otter): move this to a service which creates the FormGroup
            doing it here causes issues with ExpressionChangedAfterItHasBeenCheckedError */
 
-    const current = this.structure.value;
-    appLogger().debug('initializing MockDataStructureComponent with value', current);
-    for (const i of Object.keys(current))
+    if (this.structure.value)
     {
-      appLogger().debug('adding element', i);
-      this.builder.push(new FormGroup({
-        name: new FormControl(i),
-        type: new FormControl(current[i])
-      }));
-    }
-  }
+      const current = this.structure.value;
+      appLogger().debug('initializing MockDataStructureComponent with value', current);
 
+      for (const i of Object.keys(current))
+      {
+        appLogger().debug('adding element', i);
+        this.builder.push(new FormGroup({
+          name: new FormControl(i),
+          type: new FormControl(current[i])
+        }));
+      }
+
+    }
+
+  }
 }

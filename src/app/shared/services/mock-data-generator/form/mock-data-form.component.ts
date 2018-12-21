@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup} from '@angular/forms';
+import {appLogger} from '../../../app-logger';
 
 
 @Component({
@@ -21,6 +22,20 @@ export class MockDataFormComponent implements OnInit
 
   ngOnInit()
   {
-    this.form.addControl('builder', new FormArray([]));
+    const builderArray = new FormArray([]);
+    builderArray.valueChanges.subscribe(x => {
+      appLogger().debug('value change on builder'
+                        + (builderArray.valid ? ': ' : ' [invalid]: ')
+                        + JSON.stringify(x));
+
+      const newStructure = {};
+      const builder = builderArray.value;
+      for (const item of builder) { newStructure[item.name] = item.type; }
+
+      appLogger().debug('new structure: ' + JSON.stringify(newStructure))
+      this.structure.setValue(newStructure);
+    });
+
+    this.form.addControl('builder', builderArray);
   }
 }
