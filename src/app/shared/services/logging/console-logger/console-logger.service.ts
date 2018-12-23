@@ -1,7 +1,6 @@
+/* tslint:disable:no-console */
 import {Injectable} from '@angular/core';
 import {Logger, LogLevel} from '../logging.service';
-
-
 
 
 /** Provides a simile logger which outputs to the console. */
@@ -26,6 +25,7 @@ export class ConsoleLoggerService extends Logger
            ? console.debug.bind(console, LogLevel[LogLevel.TRACE] + ':')
            : this.noop;
   }
+
 
   // noinspection JSUnusedGlobalSymbols -- WebStorm doesn't recognize this override
   get debug(): any
@@ -75,5 +75,4 @@ export class ConsoleLoggerService extends Logger
            ? console.error.bind(console, LogLevel[LogLevel.CRITICAL] + ':')
            : this.noop;
   }
-
 }

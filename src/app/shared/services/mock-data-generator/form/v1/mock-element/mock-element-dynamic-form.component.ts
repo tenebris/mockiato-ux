@@ -1,5 +1,6 @@
 import {Component, Input} from '@angular/core';
 import {FormControl} from '@angular/forms';
+import {MockDataGeneratorService} from '../../../mock-data-generator.service';
 
 
 @Component({
@@ -11,8 +12,11 @@ export class MockElementDynamicFormComponent
 {
   @Input() element: FormControl;
 
-  // TODO: replace with references to service/enum
-  _supportedTypes = ['name', 'address', 'state', 'zip'];
+  private _supportedTypes: { type: string; displayValue?: string }[];
 
-  get isValid() { return this.element.valid; }
+
+  // ~~-~~-~~-~~-~~ Constructors ~~-~~-~~-~~-~~
+
+  constructor(generator: MockDataGeneratorService)
+  { this._supportedTypes = generator.supportedDataTypes; }
 }

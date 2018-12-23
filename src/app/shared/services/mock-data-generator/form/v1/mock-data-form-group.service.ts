@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
-import {FormControl, FormGroup} from '@angular/forms';
-import {appLogger} from '../../../../app-logger';
+import {FormControl} from '@angular/forms';
 import {MockDataFieldType} from '../../mock-data-field';
 import {MockElementField} from './mock-element-field';
 
@@ -20,18 +19,19 @@ export class MockDataFormGroupService
   }
 
 
-  generateFormGroup(structure: any): FormGroup
-  {
-    const elements: any = {};
-
-
-    Object.keys(structure).forEach(key => {
-      const item = structure[key];
-      appLogger().debug(`found key: ${key}/${JSON.stringify(item)}`);
-
-      elements[key] = MockDataFormGroupService.toFormControl(structure[key], MockDataFieldType.address);
-    });
-
-    return new FormGroup(elements);
-  }
+  // TODO: uncomment when ready to generate form-group lazily
+  // generateFormGroup(structure: any): FormGroup
+  // {
+  //   const elements: any = {};
+  //
+  //
+  //   Object.keys(structure).forEach(key => {
+  //     const item = structure[key];
+  //     appLogger().debug(`found key: ${key}/${JSON.stringify(item)}`);
+  //
+  //     elements[key] = MockDataFormGroupService.toFormControl(structure[key], MockDataFieldType.address);
+  //   });
+  //
+  //   return new FormGroup(elements);
+  // }
 }

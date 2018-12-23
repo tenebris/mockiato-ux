@@ -3,6 +3,7 @@ import {MockDataGeneratorService} from '../../../shared/services/mock-data-gener
 import {MockDataFormGroupService} from '../../../shared/services/mock-data-generator/form/v1/mock-data-form-group.service';
 import {FormControl, FormGroup} from '@angular/forms';
 import {SavedStructure} from '../../../shared/services/mock-data-generator/form/v1/load-saved-structure/load-saved-structure.component';
+import {MockDataStructure} from '../../../shared/services/mock-data-generator/mock-data-structure';
 
 
 @Component({
@@ -34,11 +35,11 @@ export class MockDataGenerationV1Component implements OnInit
   {
     this.submitted = true;
 
-    // HACK: this responsibility should be in the mock-data-generator module
-    SavedStructure.writeLast(this._root.get('structure').value);
+    const itemCount = this._root.value.itemCount;
+    const value = this._root.get('structure').value;
+    const structure = this.generator.buildStructure(value);
 
-    const value = this._root.value;
-    this.results = this.generator.generate({itemCount: value.itemCount});
+    this.results = this.generator.generate(structure, itemCount);
   }
 
 
