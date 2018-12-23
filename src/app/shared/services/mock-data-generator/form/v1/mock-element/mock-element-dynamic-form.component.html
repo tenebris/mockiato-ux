@@ -14,7 +14,7 @@
       <label for="fieldType">Type</label>
       <select type="text" id="fieldType" name="fieldType" required
               class="form-control" formControlName="type">
-        <option *ngFor="let item of _supportedTypes" [value]="item">{{item}}</option>
+        <option *ngFor="let item of _supportedTypes" [value]="item.type">{{item.displayValue}}</option>
       </select>
     </div>
   </div>

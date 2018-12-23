@@ -1,6 +1,6 @@
 export enum MockDataFieldType
 {
-  root, group, address
+  root, group, field
 }
 
 
@@ -8,4 +8,5 @@ export interface MockDataFieldDefinition
 {
   name: string;
   type: MockDataFieldType;
+  value: any;
 }

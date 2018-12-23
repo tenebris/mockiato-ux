@@ -11,12 +11,13 @@ export abstract class Logger
   error: any;
   critical: any;
 
-
   protected readonly level: LogLevel = environment.hasOwnProperty('logLevel') ? environment['logLevel'] : LogLevel.TRACE;
 
   protected readonly noop = (): any => undefined;
 
-  protected shouldLogMessage(_input: LogLevel): boolean { return this.level <= _input; }
+
+  public shouldLogMessage(_input: LogLevel): boolean { return this.level <= _input; }
+
 }
 
 
