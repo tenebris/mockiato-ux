@@ -1,11 +1,11 @@
 <div class="mock-data-container">
-  <div class="mock-data-root">
+  <div class="mock-data-root" cdkDropList (cdkDropListDropped)="onDrop($event)">
 
     <!-- TODO: add ability to dynamically insert a new field -->
     <!-- TODO: add ability to rearrange fields -->
     <!-- TODO: add ability to create a group of fields -- i.e. hierarchical data -->
 
-    <div class="data-element-container" *ngFor="let element of builder.controls">
+    <div class="data-element-container" *ngFor="let element of builder.controls" cdkDrag>
       <app-mock-element [element]="element"></app-mock-element>
     </div>
 

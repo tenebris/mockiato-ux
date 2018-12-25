@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormArray, FormControl, FormGroup} from '@angular/forms';
 import {appLogger} from '../../../../../app-logger';
+import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 
 
 @Component({
@@ -24,8 +25,14 @@ export class MockDataStructureComponent implements OnInit
   {
     this.builder.push(new FormGroup({
       name: new FormControl('f' + (this.builder.length + 1)),
-      type: new FormControl('name')
+      type: new FormControl(undefined)
     }));
+  }
+
+
+  onDrop(event: CdkDragDrop<string[]>)
+  {
+    moveItemInArray(this.builder.controls, event.previousIndex, event.currentIndex);
   }
 
 

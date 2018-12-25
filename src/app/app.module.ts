@@ -1,9 +1,9 @@
 import {BrowserModule} from '@angular/platform-browser';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {ReactiveFormsModule} from '@angular/forms';
 import {Injector, NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {DatePipe} from '@angular/common';
-
 // TODO: move these, along with 'library' call in ctor into our CoreModule
 import {FaIconService, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {library as FaLibrary} from '@fortawesome/fontawesome-svg-core';
@@ -82,6 +82,7 @@ import {AuthenticationModule} from './shared/services/auth/authentication.module
     [
       CoreModule,
       BrowserModule,
+      BrowserAnimationsModule,
       ReactiveFormsModule,
       HttpClientModule, // import after BrowserModule
       AgGridModule.withComponents([]),
