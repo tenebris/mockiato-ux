@@ -1,5 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CommonModule} from '@angular/common';
+import {DragDropModule} from '@angular/cdk/drag-drop';
 
 import {CoreModule} from '../../core.module';
 
@@ -23,6 +24,7 @@ import {MockDataFormComponent} from './form/mock-data-form.component';
     CommonModule,
     ReactiveFormsModule,
     CoreModule,
+    DragDropModule,
   ],
   exports: [
     LoadSavedStructureComponent,
