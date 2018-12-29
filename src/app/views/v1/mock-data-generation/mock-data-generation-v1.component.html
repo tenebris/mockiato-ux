@@ -46,7 +46,8 @@
             </div>
           </div>
 
-          <app-mock-data-load-saved-form [structure]="_root.get('structure')" [form]="_root"></app-mock-data-load-saved-form>
+          <app-mock-data-load-saved-form (loaded)="processLoadEvent($event)" [structure]="_root.get('structure')" [form]="_root">
+          </app-mock-data-load-saved-form>
 
           <button type="submit" class="btn btn-success" [disabled]="!_root.valid">Submit</button>
         </div>

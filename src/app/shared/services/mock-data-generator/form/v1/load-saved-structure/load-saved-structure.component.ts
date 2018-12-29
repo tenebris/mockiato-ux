@@ -1,10 +1,12 @@
-import {Component, Inject, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import {ModalService} from '../../../../modal-service/modal.service';
 import {FormControl, FormGroup} from '@angular/forms';
 import {appLogger} from '../../../../../app-logger';
 
+
 const STRUCTURE_STORAGE_PREFIX = 'mock-data.structure.';
 const STRUCTURE_STORAGE_KEY_LAST_USED = 'last';
+
 
 export class SavedStructure
 { // TODO: move out of component into service?
@@ -89,6 +91,9 @@ export class LoadSavedStructureComponent implements OnInit
   @Input() structure: FormControl;
   @Input() form: FormGroup;
 
+  @Output()
+  loaded = new EventEmitter<object>();
+
   myFormGroup: FormGroup;
 
   readonly _modal_id = STRUCTURE_STORAGE_PREFIX + 'modal';
@@ -107,9 +112,12 @@ export class LoadSavedStructureComponent implements OnInit
 
   doLoadStructure(): void
   {
-    this.structure.setValue(this.myFormGroup.get('newStructure').value);
     this.modalService.close(this._modal_id);
+    const value =  this.myFormGroup.get('newStructure').value;
     this.myFormGroup.get('newStructure').setValue(undefined);
+
+    appLogger().trace('emitting load event', value);
+    this.loaded.emit(value);
   }
 
 

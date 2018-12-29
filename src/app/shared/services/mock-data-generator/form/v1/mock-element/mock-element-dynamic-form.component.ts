@@ -12,7 +12,7 @@ export class MockElementDynamicFormComponent
 {
   @Input() element: FormControl;
 
-  private _supportedTypes: { type: string; displayValue?: string }[];
+  _supportedTypes: { type: string; displayValue?: string }[];
 
 
   // ~~-~~-~~-~~-~~ Constructors ~~-~~-~~-~~-~~
