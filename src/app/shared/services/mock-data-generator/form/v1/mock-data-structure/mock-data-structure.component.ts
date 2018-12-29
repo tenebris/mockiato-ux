@@ -32,7 +32,19 @@ export class MockDataStructureComponent implements OnInit
 
   onDrop(event: CdkDragDrop<string[]>)
   {
+    // capture the current builder value
+    const builder = this.builder.value;
+
+    // move both the control and the value in their respective arrays
     moveItemInArray(this.builder.controls, event.previousIndex, event.currentIndex);
+    moveItemInArray(builder, event.previousIndex, event.currentIndex);
+
+    // rebuild the structure given the changes
+    const newStructure = {};
+    for (const item of builder) newStructure[item.name] = item.type;
+
+    appLogger().debug('new structure: ' + JSON.stringify(newStructure));
+    this.structure.setValue(newStructure);
   }
 
 
