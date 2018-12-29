@@ -2,8 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {MockDataGeneratorService} from '../../../shared/services/mock-data-generator/mock-data-generator.service';
 import {MockDataFormGroupService} from '../../../shared/services/mock-data-generator/form/v1/mock-data-form-group.service';
 import {FormControl, FormGroup} from '@angular/forms';
-import {SavedStructure} from '../../../shared/services/mock-data-generator/form/v1/load-saved-structure/load-saved-structure.component';
-import {MockDataStructure} from '../../../shared/services/mock-data-generator/mock-data-structure';
+import {appLogger} from '../../../shared/app-logger';
 
 
 @Component({
@@ -14,8 +13,10 @@ import {MockDataStructure} from '../../../shared/services/mock-data-generator/mo
 export class MockDataGenerationV1Component implements OnInit
 {
 
-  _root: FormGroup;
-  _resetForm: FormGroup;
+  readonly _root: FormGroup;
+  readonly _resetForm: FormGroup;
+  readonly structure = new FormControl(undefined);
+
 
   submitted = false;
   results = undefined;
@@ -27,7 +28,14 @@ export class MockDataGenerationV1Component implements OnInit
 
   constructor(private generator: MockDataGeneratorService, private formGroupGenerator: MockDataFormGroupService)
   {
-    // nothing need here...
+    this._root = new FormGroup({
+      fileName: new FormControl('mock-data'),
+      fileType: new FormControl('json'),
+      itemCount: new FormControl(10),
+      structure: this.structure,
+    });
+
+    this._resetForm = new FormGroup({});
   }
 
 
@@ -36,7 +44,7 @@ export class MockDataGenerationV1Component implements OnInit
     this.submitted = true;
 
     const itemCount = this._root.value.itemCount;
-    const value = this._root.get('structure').value;
+    const value = this.structure.value;
     const structure = this.generator.buildStructure(value);
 
     this.results = this.generator.generate(structure, itemCount);
@@ -50,16 +58,12 @@ export class MockDataGenerationV1Component implements OnInit
   }
 
 
-  ngOnInit()
+  processLoadEvent(event: object)
   {
-    this._root = new FormGroup({
-      fileName: new FormControl('mock-data'),
-      fileType: new FormControl('json'),
-      itemCount: new FormControl(10),
-      structure: new FormControl(undefined),
-    })
-    ;
-
-    this._resetForm = new FormGroup({});
+    appLogger().trace('detected load event', event);
+    this.structure.setValue(event);
   }
+
+
+  ngOnInit() {}
 }
