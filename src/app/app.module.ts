@@ -4,6 +4,7 @@ import {ReactiveFormsModule} from '@angular/forms';
 import {Injector, NgModule} from '@angular/core';
 import {HttpClientModule} from '@angular/common/http';
 import {DatePipe} from '@angular/common';
+
 // TODO: move these, along with 'library' call in ctor into our CoreModule
 import {FaIconService, FontAwesomeModule} from '@fortawesome/angular-fontawesome';
 import {library as FaLibrary} from '@fortawesome/fontawesome-svg-core';
@@ -13,6 +14,7 @@ import {faEdit, faEye, faPlayCircle, faQuestionCircle, faStopCircle, faTrashAlt}
 import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {AgGridModule} from 'ag-grid-angular';
+import {MaterialModule} from './material.module';
 
 import {ShowIfAuthenticatedDirective} from './shared/directives/show-if-authenticated/show-if-authenticated.directive';
 
@@ -21,10 +23,10 @@ import {PageNotFoundComponent} from './views/misc/page-not-found/page-not-found.
 import {SimpleHeaderComponent} from './shared/components/simple-header/simple-header.component';
 import {SimpleFooterComponent} from './shared/components/simple-footer/simple-footer.component';
 import {LoginModalComponent} from './views/auth/login-modal/login-modal.component';
-import {RRPairListComponent} from './shared/components/rrpair-list/rrpair-list.component';
-import {RRPairComponent} from './shared/components/rrpair/rrpair.component';
+import {RRPairListComponent} from './shared/components/v1/rrpair-list/rrpair-list.component';
+import {RRPairComponent} from './shared/components/v1/rrpair/rrpair.component';
 
-import {ServiceListComponent} from './shared/components/service-list/service-list.component';
+import {ServiceListComponent} from './shared/components/v1/service-list/service-list.component';
 
 import {CallbackComponent} from './views/auth/auth0/callback/callback.component';
 import {LogoutComponent} from './views/auth/auth0/logout/logout.component';
@@ -33,6 +35,7 @@ import {CommingSoonComponent} from './views/misc/comming-soon/comming-soon.compo
 import {IntentionallyBlankComponent} from './shared/components/intentionally-blank/intentionally-blank.component';
 
 import {BrowseSystemV1Component} from './views/v1/browse-system/browse-system-v1.component';
+import {BrowseSystemV2Component} from './views/v2/browse-system-v2/browse-system-v2.component';
 import {ServiceDetailV1Component} from './views/v1/service-detail/service-detail-v1.component';
 import {MockDataGenerationV1Component} from './views/v1/mock-data-generation/mock-data-generation-v1.component';
 
@@ -46,7 +49,6 @@ import {CoreModule} from './shared/core.module';
 import {MockDataModule} from './shared/services/mock-data-generator/mock-data.module';
 import {AuthenticationModule} from './shared/services/auth/authentication.module';
 
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,6 +59,7 @@ import {AuthenticationModule} from './shared/services/auth/authentication.module
 
     // Page-Level Views
     BrowseSystemV1Component,
+    BrowseSystemV2Component,
     ServiceDetailV1Component,
     MockDataGenerationV1Component,
 
@@ -76,7 +79,7 @@ import {AuthenticationModule} from './shared/services/auth/authentication.module
     ServiceListComponent,
     RRPairListComponent,
     RRPairComponent,
-    LoginModalComponent,
+    LoginModalComponent
   ],
   imports:
     [
@@ -89,7 +92,8 @@ import {AuthenticationModule} from './shared/services/auth/authentication.module
       MockDataModule,
       AuthenticationModule,
       AppRoutingModule,
-      FontAwesomeModule
+      FontAwesomeModule,
+      MaterialModule
     ],
   providers:
     [

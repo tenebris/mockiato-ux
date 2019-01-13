@@ -15,6 +15,10 @@ for a given view.  They will be versioned if any major changes are made to
 allow for easy testing and fall back.  Ideally we will eventually have a 
 configuration file which indicates which version of which view is in use.
 
+### v2
+
+Second generation of views.  May pull in v1 shared components.
+
 ### home
 
 These views are intended to be the main landing pages available to the application.

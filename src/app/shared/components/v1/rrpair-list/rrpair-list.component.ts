@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {RRPair} from '../../model/rr-pair';
+import {RRPair} from '../../../model/rr-pair';
 
 
 @Component({
