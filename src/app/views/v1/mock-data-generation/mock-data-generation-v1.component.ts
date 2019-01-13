@@ -6,6 +6,22 @@ import {appLogger} from '../../../shared/app-logger';
 import {of} from 'rxjs';
 
 
+function structureToHeaderRow(structure: object): string
+{
+  const cols: string[] = [];
+  for (const key of Object.keys(structure)) cols.push(`"${key}"`);
+  return cols.join(',');
+}
+
+
+function structureToRow(row: object): string
+{
+  const cols: string[] = [];
+  for (const key of Object.keys(row)) cols.push(`"${row[key]}"`);
+  return cols.join(',');
+}
+
+
 @Component({
   selector: 'app-view-mock-data-generation',
   templateUrl: './mock-data-generation-v1.component.html',
@@ -18,7 +34,7 @@ export class MockDataGenerationV1Component implements OnInit
   readonly _root: FormGroup;
   readonly _resetForm: FormGroup;
   readonly structure = new FormControl(undefined);
-  readonly _supportedFileTypes = ['json', 'text'];
+  readonly _supportedFileTypes = ['json', 'csv'];
   submitted = false;
   results = undefined;
   private _downloadElement = null as HTMLElement;
@@ -79,30 +95,40 @@ export class MockDataGenerationV1Component implements OnInit
 
     const value = this._root.value;
 
-    let fileType; // = value.fileType === 'json' ? 'text/json' : 'text/plain';
-    let suffix; // = value.fileType === 'json' ? 'text/json' : 'text/plain';
+    // these are set based on the file-type requested
+    let fileType;
+    let suffix;
+    let text;
 
     switch (value.fileType)
     {
+      case 'csv':
+        const csv: string[] = [];
+        csv.push(structureToHeaderRow(this.structure.value));
+        csv.push(this.results.map(structureToRow));
+
+        fileType = 'text/csv';
+        suffix = '.csv';
+        text = csv.join('\n');
+        break;
+
       case 'json':
         fileType = 'text/json';
         suffix = '.json';
+        text = JSON.stringify(value);
         break;
 
-      case 'text':
       default:
-        fileType = 'text/plain';
-        suffix = '.txt';
+        throw new Error(`unknown fileType: ${value.fileType}`);
     }
 
     const fileName = value.fileName + suffix;
-    const text = JSON.stringify(data);
-
     const element = this._downloadElement;
+    const event = new MouseEvent('click');
+
     element.setAttribute('href', `data:${fileType};charset=utf-8,${encodeURIComponent(text)}`);
     element.setAttribute('download', fileName);
 
-    const event = new MouseEvent('click');
     element.dispatchEvent(event);
   }
 
