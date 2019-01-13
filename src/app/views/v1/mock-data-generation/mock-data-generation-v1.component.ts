@@ -3,23 +3,7 @@ import {MockDataGeneratorService} from '../../../shared/services/mock-data-gener
 import {MockDataFormGroupService} from '../../../shared/services/mock-data-generator/form/v1/mock-data-form-group.service';
 import {FormControl, FormGroup} from '@angular/forms';
 import {appLogger} from '../../../shared/app-logger';
-import {of} from 'rxjs';
-
-
-function structureToHeaderRow(structure: object): string
-{
-  const cols: string[] = [];
-  for (const key of Object.keys(structure)) cols.push(`"${key}"`);
-  return cols.join(',');
-}
-
-
-function structureToRow(row: object): string
-{
-  const cols: string[] = [];
-  for (const key of Object.keys(row)) cols.push(`"${row[key]}"`);
-  return cols.join(',');
-}
+import {downloadMockData} from '../../../shared/services/mock-data-generator/form/mock-data-form-utilities.module';
 
 
 @Component({
@@ -36,11 +20,11 @@ export class MockDataGenerationV1Component implements OnInit
   readonly structure = new FormControl(undefined);
   readonly _supportedFileTypes = ['json', 'csv'];
   submitted = false;
-  results = undefined;
-  private _downloadElement = null as HTMLElement;
+  results: object[] = undefined;
 
 
 // ~~-~~-~~-~~-~~ Constructors ~~-~~-~~-~~-~~
+
   constructor(private generator: MockDataGeneratorService, private formGroupGenerator: MockDataFormGroupService)
   {
     this._root = new FormGroup({
@@ -59,16 +43,20 @@ export class MockDataGenerationV1Component implements OnInit
   {
     this.submitted = true;
 
-    const itemCount = this._root.value.itemCount;
-    const value = this.structure.value;
-    const structure = this.generator.buildStructure(value);
+    let options = this._root.value;
+    const itemCount = options.itemCount;
 
-    this.results = this.generator.generate(structure, itemCount);
+    const structure = this.structure.value;
+    const dataStructure = this.generator.buildStructure(structure);
+    this.results = this.generator.generate(dataStructure, itemCount);
 
-    if (this._root.value.downloadIndicator)
+    if (options.downloadIndicator)
     {
-      of(this.results).subscribe((res) => {
-        this.dynamicDownloadByHtmlTag(res);
+      downloadMockData({
+        data: this.results,
+        structure: structure,
+        fileType: options.fileType,
+        fileName: options.fileName,
       });
     }
   }
@@ -85,51 +73,6 @@ export class MockDataGenerationV1Component implements OnInit
   {
     appLogger().trace('detected load event', event);
     this.structure.setValue(event);
-  }
-
-
-  private dynamicDownloadByHtmlTag(data: object)
-  {
-    // create an element if not already done...
-    if (!this._downloadElement) this._downloadElement = document.createElement('a');
-
-    const value = this._root.value;
-
-    // these are set based on the file-type requested
-    let fileType;
-    let suffix;
-    let text;
-
-    switch (value.fileType)
-    {
-      case 'csv':
-        const csv: string[] = [];
-        csv.push(structureToHeaderRow(this.structure.value));
-        csv.push(this.results.map(structureToRow));
-
-        fileType = 'text/csv';
-        suffix = '.csv';
-        text = csv.join('\n');
-        break;
-
-      case 'json':
-        fileType = 'text/json';
-        suffix = '.json';
-        text = JSON.stringify(value);
-        break;
-
-      default:
-        throw new Error(`unknown fileType: ${value.fileType}`);
-    }
-
-    const fileName = value.fileName + suffix;
-    const element = this._downloadElement;
-    const event = new MouseEvent('click');
-
-    element.setAttribute('href', `data:${fileType};charset=utf-8,${encodeURIComponent(text)}`);
-    element.setAttribute('download', fileName);
-
-    element.dispatchEvent(event);
   }
 
 
