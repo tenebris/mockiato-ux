@@ -17,6 +17,9 @@
         <option *ngFor="let item of _supportedTypes" [value]="item.type">{{item.displayValue}}</option>
       </select>
     </div>
+    <div class="form-group">
+      <button (click)="notifyDeath()" tabindex="-1" mat-button>-</button>
+    </div>
   </div>
 
 </div>

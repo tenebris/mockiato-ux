@@ -38,16 +38,7 @@ export class MockDataStructureComponent implements OnInit
 
     // move both the control and the value in their respective arrays
     moveItemInArray(this.builder.controls, event.previousIndex, event.currentIndex);
-
-    const newStructure = {};
-    for (const control of this.builder.controls)
-    {
-      const item = control.value;
-      newStructure[item.name] = item.type;
-    }
-
-    appLogger().trace('new structure: ' + JSON.stringify(newStructure));
-    this.structure.setValue(newStructure);
+    this.rebuildStructure();
   }
 
 
@@ -68,7 +59,6 @@ export class MockDataStructureComponent implements OnInit
 
     builderArray.valueChanges.subscribe(() => this.doRebuildStructure());
 
-
     this.builder.controls = builderArray.controls;
   }
 
@@ -87,6 +77,29 @@ export class MockDataStructureComponent implements OnInit
     }
 
     appLogger().debug('new structure: ' + JSON.stringify(newStructure));
+    this.structure.setValue(newStructure);
+  }
+
+
+  onElementRemoved(element: object): void
+  {
+    appLogger().debug('detected remove element event', element);
+
+    this.builder.controls = this.builder.controls.filter(x => x.value !== element);
+    this.rebuildStructure();
+  }
+
+
+  private rebuildStructure(): void
+  {
+    const newStructure = {};
+    for (const control of this.builder.controls)
+    {
+      const item = control.value;
+      newStructure[item.name] = item.type;
+    }
+
+    appLogger().trace('new structure: ' + JSON.stringify(newStructure));
     this.structure.setValue(newStructure);
   }
 

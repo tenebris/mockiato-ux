@@ -6,56 +6,60 @@
 
   <div class="debug-info">
     Generated {{results.length}} rows.<br/>
-    <pre>{{results|json}}</pre>
+    <div *ngIf="!_root.value.downloadIndicator">
+      <pre>{{results|json}}</pre>
+    </div>
   </div>
 
 </div>
 
-<div id="mock-data-generator">
+<div id="mock-data-generator" [hidden]="submitted">
 
-  <div [hidden]="submitted">
-    <form (ngSubmit)="onSubmit()" [formGroup]="_root">
-      <div class="container-fluid bg-light border">
-        <div class="form-group">
+  <form (ngSubmit)="onSubmit()" [formGroup]="_root">
+    <div class="container-fluid bg-light border">
+      <div class="form-group">
 
-          <div class="form-row">
-            <div class="form-group">
-              <label for="fileName">File Name</label>
-              <input type="text" id="fileName" name="fileName" required
-                     class="form-control" formControlName="fileName">
-              <div [hidden]="_root.get('fileName').valid || _root.get('fileName').pristine"
-                   class="alert alert-danger">
-                Name is required
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="itemCount">Count</label>
-              <input type="number" id="itemCount" name="itemCount" required
-                     class="form-control" formControlName="itemCount">
-              <div [hidden]="_root.get('itemCount').valid || _root.get('itemCount').pristine"
-                   class="alert alert-danger">
-                Count is required
-              </div>
-            </div>
-            <div class="form-group">
-              <label for="fileType">Type</label>
-              <select type="text" id="fileType" name="fileType" required
-                      class="form-control" formControlName="fileType">
-                <option *ngFor="let item of _supportedFileTypes" [value]="item">{{item}}</option>
-              </select>
+        <div class="form-row">
+          <div class="form-group">
+            <label for="fileName">File Name</label>
+            <input type="text" id="fileName" name="fileName" required
+                   class="form-control" formControlName="fileName">
+            <div [hidden]="_root.get('fileName').valid || _root.get('fileName').pristine"
+                 class="alert alert-danger">
+              Name is required
             </div>
           </div>
-
-          <app-mock-data-load-saved-form (loaded)="processLoadEvent($event)" [structure]="_root.get('structure')" [form]="_root">
-          </app-mock-data-load-saved-form>
-
-          <button type="submit" class="btn btn-success" [disabled]="!_root.valid">Submit</button>
+          <div class="form-group">
+            <label for="itemCount">Count</label>
+            <input type="number" id="itemCount" name="itemCount" required
+                   class="form-control" formControlName="itemCount">
+            <div [hidden]="_root.get('itemCount').valid || _root.get('itemCount').pristine"
+                 class="alert alert-danger">
+              Count is required
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="fileType">Type</label>
+            <select type="text" id="fileType" name="fileType" required
+                    class="form-control" formControlName="fileType">
+              <option *ngFor="let item of _supportedFileTypes" [value]="item">{{item}}</option>
+            </select>
+          </div>
         </div>
+
+        <app-mock-data-load-saved-form (loaded)="processLoadEvent($event)" [structure]="_root.get('structure')" [form]="_root">
+        </app-mock-data-load-saved-form>
+
+        <div class="form-group">
+          <button type="submit" class="btn btn-success" [disabled]="!_root.valid">Submit</button>
+          <mat-slide-toggle color="primary" class="col-auto"
+                            formControlName="downloadIndicator">Download
+          </mat-slide-toggle>
+        </div>
+
       </div>
-    </form>
+    </div>
+  </form>
 
-    <app-mock-data-generator-form [structure]="_root.get('structure')" [form]="_root"></app-mock-data-generator-form>
-
-  </div>
-
+  <app-mock-data-generator-form [structure]="_root.get('structure')" [form]="_root"></app-mock-data-generator-form>
 </div>
