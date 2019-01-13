@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Service, ServiceType} from '../../model/service/service';
+import {Service, ServiceType} from '../../../model/service/service';
 import {ActivatedRoute, Router} from '@angular/router';
-import {appLogger} from '../../app-logger';
+import {appLogger} from '../../../app-logger';
 
 
 @Component({

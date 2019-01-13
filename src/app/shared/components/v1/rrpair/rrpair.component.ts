@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {RRPair} from '../../model/rr-pair';
-import {appLogger} from '../../app-logger';
+import {RRPair} from '../../../model/rr-pair';
+import {appLogger} from '../../../app-logger';
 
 
 @Component({
