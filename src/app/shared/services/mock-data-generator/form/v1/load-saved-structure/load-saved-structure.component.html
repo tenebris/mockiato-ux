@@ -16,25 +16,19 @@
     </div>
   </app-simple-modal>
 
-  <div class="form-group w-25" [formGroup]="myFormGroup">
-    <div class="form-row">
-      <label for="savedStructureName">Saved Structure</label>
-      <select type="text" id="savedStructureName" name="savedStructureName" required
-              class="form-control" formControlName="savedStructureName"
-              (change)="doSoftLoad()">
-        <option *ngFor="let item of namedStructures" [value]="item">{{item}}</option>
-      </select>
-    </div>
-  </div>
-
   <div class="form-row">
-    <button type="button" class="form-inline btn btn-outline-primary btn-sm"
-            (click)="doLoadRequested()">
-      Load
-    </button>
-  </div>
-
-
+      <div class="form-group w-25" [formGroup]="myFormGroup">
+        <label for="savedStructureName">Saved Structure</label>
+        <select type="text" id="savedStructureName" name="savedStructureName" required
+                class="form-control" formControlName="savedStructureName"
+                (change)="doSoftLoad()">
+          <option *ngFor="let item of namedStructures" [value]="item">{{item}}</option>
+        </select>
+      </div>
+    </div>
+    <div class="form-group">
+      <button type="button" (click)="doLoadRequested()">Load</button>
+    </div>
 </div>
 
 <app-debug-block>

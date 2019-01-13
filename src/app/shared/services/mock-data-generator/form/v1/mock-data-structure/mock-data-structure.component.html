@@ -6,7 +6,7 @@
     <!-- TODO: add ability to create a group of fields -- i.e. hierarchical data -->
 
     <div class="data-element-container" *ngFor="let element of builder.controls" cdkDrag>
-      <app-mock-element [element]="element"></app-mock-element>
+      <app-mock-element (elementRemoved)="onElementRemoved($event)" [element]="element"></app-mock-element>
     </div>
 
     <div class="form-row">
