@@ -26,7 +26,7 @@ export class ServiceStore
         'type': ServiceType.REST,
         'basePath': '/MockiatoUx/v1/api',
         'group': {'name': 'Unit'},
-        'owner': { name: 'otter' },
+        'owner': {name: 'otter'},
         'lastModified': {
           'user': 'otter',
           'timestamp': new Date(Date.now()),
@@ -38,7 +38,7 @@ export class ServiceStore
         'type': ServiceType.SOAP,
         'basePath': '/cams/myuhcreceiverservice/v9',
         'group': {'name': 'Regression'},
-        'owner': { name: 'otter' },
+        'owner': {name: 'otter'},
         'lastModified': {
           'user': 'otter',
           'timestamp': new Date(Date.parse('12/01/2017')),
@@ -63,6 +63,10 @@ export class ServiceStore
   }
 
 
+  public getCurrentServiceList(): Service[]
+  { return this._services.getValue(); }
+
+
   public publishDummyData()
   {
     // testing the dynamic update methodology
@@ -74,7 +78,7 @@ export class ServiceStore
         'type': ServiceType.REST,
         'basePath': '/MockiatoUx/v1/api',
         'group': {'name': 'Unit'},
-        'owner': { name: 'otter' },
+        'owner': {name: 'otter'},
         'lastModified': {
           'user': 'otter',
           'timestamp': new Date(Date.now()),
@@ -83,7 +87,7 @@ export class ServiceStore
       {
         '_id': '2',
         'name': 'two',
-        'owner': { name: 'fred' },
+        'owner': {name: 'fred'},
         'type': ServiceType.MQ,
         'basePath': '/',
         'group': {'name': 'Sandbox'},
@@ -98,7 +102,7 @@ export class ServiceStore
         'type': ServiceType.SOAP,
         'basePath': '/cams/myuhcreceiverservice/v9',
         'group': {'name': 'Regression'},
-        'owner': { name: 'otter' },
+        'owner': {name: 'otter'},
         'lastModified': {
           'user': 'fred',
           'timestamp': new Date(Date.parse('08/01/2014')),
@@ -110,7 +114,7 @@ export class ServiceStore
         'basePath': '/',
         'type': ServiceType.SOAP,
         'group': {'name': 'Unit'},
-        'owner': { name: 'george' },
+        'owner': {name: 'george'},
       }
     ]);
   }

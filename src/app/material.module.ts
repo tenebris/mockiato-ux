@@ -1,13 +1,14 @@
 import {NgModule} from '@angular/core';
 import {CdkTableModule} from '@angular/cdk/table';
-import {MatSlideToggleModule, MatTableModule} from '@angular/material';
+import {MatSlideToggleModule, MatSortModule, MatTableModule} from '@angular/material';
 
 
 @NgModule({
   exports: [
     CdkTableModule,
     MatSlideToggleModule,
-    MatTableModule
+    MatTableModule,
+    MatSortModule
   ]
 })
 export class MaterialModule {}

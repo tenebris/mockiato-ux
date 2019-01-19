@@ -1,7 +1,10 @@
-import {Component, OnInit} from '@angular/core';
-import {ServiceStore} from '../../../shared/model/service/service-store';
-import {ServiceType} from '../../../shared/model/service/service';
+import {Component, OnInit, ViewChild} from '@angular/core';
+import {MatSort, MatTableDataSource} from '@angular/material';
 import * as moment from 'moment';
+
+import {ServiceStore} from '../../../shared/model/service/service-store';
+import {Service, ServiceType} from '../../../shared/model/service/service';
+
 
 @Component({
   selector: 'app-browse-system-v2',
@@ -10,12 +13,18 @@ import * as moment from 'moment';
 })
 export class BrowseSystemV2Component implements OnInit
 {
-  displayedColumns: string[] = ['name', 'type', 'group', 'owner', 'when'];
+  readonly displayedColumns: string[] = ['name', 'type', 'group', 'owner', 'when'];
+  readonly dataSource: ServiceDataSource;
+
+  @ViewChild(MatSort) sort: MatSort;
 
 
 // ~~-~~-~~-~~-~~ Constructors ~~-~~-~~-~~-~~
 
-  constructor(public serviceStore: ServiceStore) {}
+  constructor(public serviceStore: ServiceStore)
+  {
+    this.dataSource = new ServiceDataSource(serviceStore);
+  }
 
 
   doRefreshServices() { this.serviceStore.publishDummyData(); }
@@ -30,7 +39,21 @@ export class BrowseSystemV2Component implements OnInit
   }
 
 
-  ngOnInit() {}
-
-
+  ngOnInit()
+  {
+    this.dataSource.sort = this.sort;
+  }
 }
+
+
+export class ServiceDataSource extends MatTableDataSource<Service>
+{
+
+// ~~-~~-~~-~~-~~ Constructors ~~-~~-~~-~~-~~
+
+  constructor(private store: ServiceStore)
+  {
+    super(store.getCurrentServiceList());
+  }
+}
+
