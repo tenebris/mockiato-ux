@@ -1,4 +1,4 @@
-import {LastModifiedDetails} from '../common/last-modified-details';
+import {LastModifiedDetail} from '../common/last-modified-detail';
 import {Group} from '../group/group';
 import {MockiatoUser} from '../mockiato-user';
 import {RRPair} from '../rr-pair';
@@ -14,7 +14,7 @@ export class Service
   rrpairs?: RRPair[];
   group: Group;
   owner?: MockiatoUser;
-  lastModified?: LastModifiedDetails;
+  lastModified?: LastModifiedDetail;
 }
 
 

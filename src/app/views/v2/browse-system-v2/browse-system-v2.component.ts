@@ -1,9 +1,11 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {MatSort, MatTableDataSource} from '@angular/material';
 import * as moment from 'moment';
 
 import {ServiceStore} from '../../../shared/model/service/service-store';
 import {Service, ServiceType} from '../../../shared/model/service/service';
+import {LastModifiedDetail} from '../../../shared/model/common/last-modified-detail';
+import {appLogger} from '../../../shared/app-logger';
 
 
 @Component({
@@ -14,17 +16,15 @@ import {Service, ServiceType} from '../../../shared/model/service/service';
 export class BrowseSystemV2Component implements OnInit
 {
   readonly displayedColumns: string[] = ['name', 'type', 'group', 'owner', 'when'];
-  readonly dataSource: ServiceDataSource;
+  dataSource: MatTableDataSource<Service>;
 
   @ViewChild(MatSort) sort: MatSort;
 
 
 // ~~-~~-~~-~~-~~ Constructors ~~-~~-~~-~~-~~
 
-  constructor(public serviceStore: ServiceStore)
-  {
-    this.dataSource = new ServiceDataSource(serviceStore);
-  }
+  constructor(private serviceStore: ServiceStore, private changeDetectorRef: ChangeDetectorRef)
+  { this.dataSource = new MatTableDataSource(serviceStore.getCurrentServiceList()); }
 
 
   doRefreshServices() { this.serviceStore.publishDummyData(); }
@@ -33,27 +33,23 @@ export class BrowseSystemV2Component implements OnInit
   typeName(type: ServiceType): string { return ServiceType[type]; }
 
 
-  formatDate(timestamp: Date): string
-  {
-    return moment(timestamp).format('lll [GMT]Z');
-  }
+  formatDate(detail: LastModifiedDetail): string
+  { return detail ? moment(detail.timestamp).format('lll [GMT]Z') : ''; }
+
+
+  private _configureDataSource()
+  { this.dataSource.sort = this.sort; }
 
 
   ngOnInit()
   {
-    this.dataSource.sort = this.sort;
+    this._configureDataSource();
+
+    this.serviceStore.services.subscribe((t) => {
+      appLogger().debug('detected service list update', t);
+      this.dataSource = new MatTableDataSource(t);
+      this._configureDataSource();
+      this.changeDetectorRef.detectChanges();
+    });
   }
 }
-
-
-export class ServiceDataSource extends MatTableDataSource<Service>
-{
-
-// ~~-~~-~~-~~-~~ Constructors ~~-~~-~~-~~-~~
-
-  constructor(private store: ServiceStore)
-  {
-    super(store.getCurrentServiceList());
-  }
-}
-
