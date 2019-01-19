@@ -12,9 +12,6 @@ import {appLogger} from '../../../app-logger';
         style="width: 100%; height: 500px;"
         class="ag-theme-balham"
         [suppressMovableColumns]="true"
-        [enableColResize]="true"
-        [enableSorting]="true"
-        [enableFilter]="true"
         [rowData]="services"
         [columnDefs]="columnDefinitions"
         (firstDataRendered)="onFirstDataRendered($event)"
@@ -34,20 +31,20 @@ export class ServiceListComponent
 
   // noinspection JSUnusedGlobalSymbols
   readonly columnDefinitions = [
-    {headerName: 'Name', field: 'name'},
-    {headerName: 'Type', valueGetter: (params) => ServiceType[params.data.type]},
-    {headerName: 'Group', field: 'group.name'},
-    {headerName: 'Owner', field: 'owner.name'},
+    {headerName: 'Name', sortable: true, filter: true, resizable: true, field: 'name'},
+    {headerName: 'Type', sortable: true, filter: true, resizable: true, valueGetter: (params) => ServiceType[params.data.type]},
+    {headerName: 'Group', sortable: true, filter: true, resizable: true, field: 'group.name'},
+    {headerName: 'Owner', sortable: true, filter: true, resizable: true, field: 'owner.name'},
     {
       headerName: 'Last Modified', children: [
         {
-          headerName: 'User', valueGetter: (params) => {
+          headerName: 'User', sortable: true, filter: true, resizable: true, valueGetter: (params) => {
             const lastModified = params.data.lastModified;
             return lastModified ? lastModified.user : 'Unavailable';
           }
         },
         {
-          headerName: 'When', field: 'lastModified.timestamp',
+          headerName: 'When', sortable: true, resizable: true, field: 'lastModified.timestamp',
           filter: 'agDateColumnFilter',
           filterParams: {
             comparator: function (filterLocalDateAtMidnight, cellValue) {
