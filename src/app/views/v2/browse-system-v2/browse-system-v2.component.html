@@ -2,6 +2,12 @@
   <p>Testing of Material Tables for service-list</p>
 </app-debug-block>
 
+<mat-form-field>
+  <input name="filter" matInput placeholder="Filter"
+         (keyup)="applyFilter($event.target.value)"
+         [formControl]="filterControl">
+</mat-form-field>
+
 <div class="mat-elevation-z2">
   <table mat-table [dataSource]="dataSource" matSort>
 
