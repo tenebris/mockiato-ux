@@ -11,6 +11,7 @@
 # IDEs and editors
 /.idea/workspace.xml
 /.idea/httpRequests/
+/.idea/sonarlint/
 .project
 .classpath
 .c9/
