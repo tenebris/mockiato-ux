@@ -1,5 +1,5 @@
 import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
-import {MatSort, MatTableDataSource} from '@angular/material';
+import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import * as moment from 'moment';
 
 import {ServiceStore} from '../../../shared/model/service/service-store';
@@ -21,6 +21,7 @@ export class BrowseSystemV2Component implements OnInit
   dataSource: MatTableDataSource<Service>;
 
   @ViewChild(MatSort) sort: MatSort;
+  @ViewChild(MatPaginator) paginator: MatPaginator;
 
 
 // ~~-~~-~~-~~-~~ Constructors ~~-~~-~~-~~-~~
@@ -40,14 +41,14 @@ export class BrowseSystemV2Component implements OnInit
 
 
   applyFilter(filterValue: string)
-  {
-    this.dataSource.filter = filterValue.trim().toLowerCase();
-  }
+  { this.dataSource.filter = filterValue.trim().toLowerCase(); }
 
 
   private _configureDataSource()
   {
     this.dataSource.sort = this.sort;
+    this.dataSource.paginator = this.paginator;
+
     this.dataSource.filterPredicate = (t: Service, filter: string): boolean => {
       return t && t.name.toLowerCase().indexOf(filter) >= 0
              || t.group.name.toLowerCase().indexOf(filter) >= 0
