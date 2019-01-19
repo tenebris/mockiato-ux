@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {CdkTableModule} from '@angular/cdk/table';
-import {MatInputModule, MatSlideToggleModule, MatSortModule, MatTableModule} from '@angular/material';
+import {MatInputModule, MatPaginatorModule, MatSlideToggleModule, MatSortModule, MatTableModule} from '@angular/material';
 
 
 @NgModule({
@@ -9,6 +9,7 @@ import {MatInputModule, MatSlideToggleModule, MatSortModule, MatTableModule} fro
     MatSlideToggleModule,
     MatTableModule,
     MatSortModule,
+    MatPaginatorModule,
     MatInputModule
   ]
 })
