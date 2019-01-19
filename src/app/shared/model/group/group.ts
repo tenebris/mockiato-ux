@@ -1,9 +1,9 @@
-import {LastModifiedDetails} from '../common/last-modified-details';
+import {LastModifiedDetail} from '../common/last-modified-detail';
 
 export interface Group
 {
   _id?: string;
   name: string;
   owner?: string;
-  lastModified?: LastModifiedDetails;
+  lastModified?: LastModifiedDetail;
 }
