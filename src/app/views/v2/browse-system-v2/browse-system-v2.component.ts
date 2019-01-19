@@ -6,6 +6,7 @@ import {ServiceStore} from '../../../shared/model/service/service-store';
 import {Service, ServiceType} from '../../../shared/model/service/service';
 import {LastModifiedDetail} from '../../../shared/model/common/last-modified-detail';
 import {appLogger} from '../../../shared/app-logger';
+import {FormControl} from '@angular/forms';
 
 
 @Component({
@@ -16,6 +17,7 @@ import {appLogger} from '../../../shared/app-logger';
 export class BrowseSystemV2Component implements OnInit
 {
   readonly displayedColumns: string[] = ['name', 'type', 'group', 'owner', 'when'];
+  readonly filterControl = new FormControl('');
   dataSource: MatTableDataSource<Service>;
 
   @ViewChild(MatSort) sort: MatSort;
@@ -24,7 +26,7 @@ export class BrowseSystemV2Component implements OnInit
 // ~~-~~-~~-~~-~~ Constructors ~~-~~-~~-~~-~~
 
   constructor(private serviceStore: ServiceStore, private changeDetectorRef: ChangeDetectorRef)
-  { this.dataSource = new MatTableDataSource(serviceStore.getCurrentServiceList()); }
+  { this.dataSource = new MatTableDataSource([]); }
 
 
   doRefreshServices() { this.serviceStore.publishDummyData(); }
@@ -37,18 +39,31 @@ export class BrowseSystemV2Component implements OnInit
   { return detail ? moment(detail.timestamp).format('lll [GMT]Z') : ''; }
 
 
+  applyFilter(filterValue: string)
+  {
+    this.dataSource.filter = filterValue.trim().toLowerCase();
+  }
+
+
   private _configureDataSource()
-  { this.dataSource.sort = this.sort; }
+  {
+    this.dataSource.sort = this.sort;
+    this.dataSource.filterPredicate = (t: Service, filter: string): boolean => {
+      return t && t.name.toLowerCase().indexOf(filter) >= 0
+             || t.group.name.toLowerCase().indexOf(filter) >= 0
+             || ServiceType[t.type].toLocaleLowerCase().indexOf(filter) >= 0;
+    };
+  }
 
 
   ngOnInit()
   {
-    this._configureDataSource();
-
     this.serviceStore.services.subscribe((t) => {
       appLogger().debug('detected service list update', t);
       this.dataSource = new MatTableDataSource(t);
       this._configureDataSource();
+
+      this.filterControl.setValue('');
       this.changeDetectorRef.detectChanges();
     });
   }

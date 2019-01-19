@@ -16,6 +16,7 @@ const routes: Routes = [
   {path: 'logout', component: LogoutComponent},
   {path: 'prototype', component: PrototypeUxComponent},
   {path: 'prototype/browse/v1', component: BrowseSystemV1Component},
+  {path: 'prototype/browse/v1/service/:id', component: ServiceDetailV1Component},
   {path: 'prototype/browse', component: BrowseSystemV2Component},
   {path: 'prototype/browse/service/:id', component: ServiceDetailV1Component},
   {path: 'prototype/mock', component: CommingSoonComponent},
