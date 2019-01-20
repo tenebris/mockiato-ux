@@ -8,6 +8,25 @@ import {LastModifiedDetail} from '../../../model/common/last-modified-detail';
 import {appLogger} from '../../../app-logger';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {FormControl} from '@angular/forms';
+import {LogLevel} from '../../../services/logging/logging.service';
+
+
+interface Testable
+{
+  test: (string) => boolean;
+}
+
+
+type ColumnToStringFunction = (Service) => string;
+
+type ColumnPredicate = (string) => boolean;
+
+
+interface ColumnMappingDetail
+{
+  name: string;
+  toString: ColumnToStringFunction;
+}
 
 
 function sortingDataAccessor(item: Service, property: string)
@@ -43,6 +62,118 @@ function formatDate(detail: LastModifiedDetail): string
 { return detail ? moment(detail.timestamp).format('lll [GMT]Z') : ''; }
 
 
+/**
+ * Builds a {@link ColumnMappingDetail} object for the specified column name.
+ * The column name should match that given in the HTML snipped defining it.
+ *
+ * @param column name to process
+ */
+function mapColumnNameToDetails(column: string): ColumnMappingDetail
+{
+  // we need a function to convert a given column to a string value
+  let f: ColumnToStringFunction;
+  switch (column)
+  {
+    case 'group':
+      f = (t) => t.group.name;
+      break;
+
+    case 'owner':
+      f = (t) => t.owner.name;
+      break;
+
+    case 'type':
+      f = (t) => ServiceType[t.type];
+      break;
+
+    case 'modified-by':
+      f = (t) => t.lastModified && t.lastModified.user;
+      break;
+
+    case 'when':
+      f = (t) => formatDate(t.lastModified);
+      break;
+
+    default:
+      f = (t) => t[column];
+      break;
+  }
+
+  // return the details for this column
+  return {
+    name: column,
+    toString: f,
+  };
+}
+
+
+/**
+ * Builds a single predicate that tests whether each column defined matches the filter string
+ * @param mappingDetails for all displayed columns
+ * @return a function that will check each column against a given string
+ */
+function buildFilterPredicate(mappingDetails: ColumnMappingDetail[]): (Service, string) => boolean
+{
+  return (item: Service, filter: string) => {
+    if (!item) return false;  // should never be but wont ever match an empty column
+
+    appLogger().trace('filtering with string: ', filter);
+
+    // determine if we are using a regex and build appropriate function
+    let columnMatches: ColumnPredicate;
+    if (filter.startsWith('/'))
+    {
+      const _regex = filter.match(/\/(.*)\/([a-z]*)?/);
+      appLogger().trace('filtering regex: ', _regex);
+
+      let pattern: Testable;
+      try
+      {
+        pattern = _regex ? new RegExp(_regex[1], _regex[2]) : new RegExp(filter.slice(1));
+        pattern.test(''); // fail-fast if RegEx is invalid so that we can catch it here...
+      }
+      catch (e)
+      {
+        appLogger().trace('invalid regexp -- falling back to matching everything', _regex, e);
+        pattern = {test: () => true};
+      }
+
+      columnMatches = (v) => {
+        appLogger().trace('checking regexp column filter', typeof v, v, pattern);
+        return v && pattern.test(v);
+      };
+    } else
+    {
+      columnMatches = (v: string) => {
+        appLogger().trace('checking simple column filter', typeof v, v);
+        return v && v.toLowerCase().indexOf(filter) >= 0;
+      };
+    }
+
+    // returns true if we find any matching column value
+    let result = false;
+    for (const column of mappingDetails)
+    {
+      try
+      {
+        if (columnMatches(column.toString(item)))
+        {
+          result = true;
+          break;
+        }
+      }
+      catch (e)
+      {
+        appLogger().warn(`blew chunks evaluating column: '${column.name}' in filter: ignoring value
+add or adjust switch case for this column to mapColumnNameToDetails function to resolve.\n`, e);
+      }
+    }
+
+    return result;
+  };
+}
+
+
 @Component({
   selector: 'app-service-list-v2',
   templateUrl: './service-list-v2.component.html',
@@ -59,9 +190,9 @@ export class ServiceListV2Component implements OnInit
   @Input() pageSizes = [5, 10, 50, 100];
 
   readonly filterControl = new FormControl('');
-  readonly filterPredicates: Array<(Service, string) => boolean> = [];
 
   dataSource: MatTableDataSource<Service>;
+  columnMappingDetails: ColumnMappingDetail[] = [];
   filterPredicate: (Service, string) => boolean;
 
   @ViewChild(MatSort) sort: MatSort;
@@ -80,7 +211,11 @@ export class ServiceListV2Component implements OnInit
 
 
   applyFilter(filterValue: string)
-  { this.dataSource.filter = filterValue.trim().toLowerCase(); }
+  {
+    filterValue = filterValue.trim();
+    // only lower-case the filter string if it is not a regex
+    this.dataSource.filter = filterValue.startsWith('/') ? filterValue : filterValue.toLowerCase();
+  }
 
 
   formattedDate(lastModified: LastModifiedDetail) { return formatDate(lastModified); }
@@ -112,57 +247,8 @@ export class ServiceListV2Component implements OnInit
 
     // build a list of predicates for each column displayed
     // avoids filtering on hidden columns which leads to unexpected results
-    for (const column of this.displayedColumns)
-    {
-      switch (column)
-      {
-        case 'name':
-          this.filterPredicates.push((t, filter) => {
-            return t.name.toLowerCase().indexOf(filter) >= 0;
-          });
-          break;
-
-        case 'group':
-          this.filterPredicates.push((t, filter) => {
-            return t.group.name.toLowerCase().indexOf(filter) >= 0;
-          });
-          break;
-
-        case 'type':
-          this.filterPredicates.push((t, filter) => {
-            return ServiceType[t.type].toLocaleLowerCase().indexOf(filter) >= 0;
-          });
-          break;
-
-        case 'owner':
-          this.filterPredicates.push((t, filter) => {
-            return t.owner && t.owner.name.toLowerCase().indexOf(filter) >= 0;
-          });
-          break;
-
-        case 'modified-by':
-          this.filterPredicates.push((t, filter) => {
-            return t.lastModified && t.lastModified.user.toLowerCase().indexOf(filter) >= 0;
-          });
-          break;
-
-        case 'when':
-          this.filterPredicates.push((t, filter) => {
-            return formatDate(t.lastModified).toLowerCase().indexOf(filter) >= 0;
-          });
-          break;
-
-        default:
-          appLogger().warn(`unknown column referenced: ${column}`);
-      }
-    }
-
-    // build a single predicate that tests the predicate for each column defined
-    this.filterPredicate = (item, filter) => {
-      if (!item) return false;
-      for (const _test of this.filterPredicates) if (_test(item, filter)) return true;
-      return false;
-    };
+    this.columnMappingDetails = this.displayedColumns.map(mapColumnNameToDetails);
+    this.filterPredicate = buildFilterPredicate(this.columnMappingDetails);
 
     // initial sort is descending on the 'when' column
     // TODO: move these to input values
