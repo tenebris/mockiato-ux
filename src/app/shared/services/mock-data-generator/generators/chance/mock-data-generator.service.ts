@@ -1,8 +1,8 @@
 import {Injectable} from '@angular/core';
-
-import {MockDataGeneratorService, MockLocationDataService, MockPersonDataService, PersonAge} from '../../mock-data-generator.service';
 import {Chance} from 'chance';
 import * as moment from 'moment';
+
+import {MockDataGeneratorService, MockLocationDataService, MockPersonDataService, PersonAge} from '../../mock-data-generator.service';
 import {MockDataStructure} from '../../mock-data-structure';
 import {appLogger} from '../../../../app-logger';
 import {LogLevel} from '../../../logging/logging.service';
