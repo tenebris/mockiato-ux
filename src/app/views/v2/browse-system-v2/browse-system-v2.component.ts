@@ -1,6 +1,8 @@
 import {ChangeDetectorRef, Component, OnInit, ViewChild} from '@angular/core';
 import {MatPaginator, MatSort, MatTableDataSource} from '@angular/material';
 import {FormControl} from '@angular/forms';
+import {ActivatedRoute, Router} from '@angular/router';
+
 import * as moment from 'moment';
 
 import {ServiceStore} from '../../../shared/model/service/service-store';
@@ -70,8 +72,11 @@ export class BrowseSystemV2Component implements OnInit
 
 // ~~-~~-~~-~~-~~ Constructors ~~-~~-~~-~~-~~
 
-  constructor(private serviceStore: ServiceStore, private changeDetectorRef: ChangeDetectorRef)
-  { this.dataSource = new MatTableDataSource([]); }
+  constructor(private router: Router, private route: ActivatedRoute,
+              private serviceStore: ServiceStore, private changeDetectorRef: ChangeDetectorRef)
+  {
+    this.dataSource = new MatTableDataSource([]);
+  }
 
 
   doRefreshServices() { this.serviceStore.publishLargeDummyDataSet(); }
@@ -87,12 +92,26 @@ export class BrowseSystemV2Component implements OnInit
   formattedDate(lastModified: LastModifiedDetail) { return formatDate(lastModified); }
 
 
+  onClick(target: Service)
+  {
+    appLogger().debug('click event', target);
+    this._navigateToServiceDetail(target);
+  }
+
+
   private _configureDataSource()
   {
     this.dataSource.sortingDataAccessor = sortingDataAccessor;
     this.dataSource.filterPredicate = filterPredicate;
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
+  }
+
+
+  private _navigateToServiceDetail(target: Service): void
+  {
+    appLogger().debug(`selected ${target.name}:_id=${target._id}`);
+    this.router.navigate(['service', target._id], {relativeTo: this.route});
   }
 
 
