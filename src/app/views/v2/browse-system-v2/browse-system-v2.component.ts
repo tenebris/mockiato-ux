@@ -15,6 +15,7 @@ function filterPredicate(t: Service, filter: string): boolean
          || t.group.name.toLowerCase().indexOf(filter) >= 0
          || ServiceType[t.type].toLocaleLowerCase().indexOf(filter) >= 0
          || (t.owner && t.owner.name.toLowerCase().indexOf(filter) >= 0)
+         || (t.lastModified && t.lastModified.user.toLowerCase().indexOf(filter) >= 0)
          || formatDate(t.lastModified).toLowerCase().indexOf(filter) >= 0;
 }
 
@@ -30,6 +31,10 @@ function sortingDataAccessor(item: Service, property: string)
 
     case 'when':
       value = item.lastModified ? item.lastModified.timestamp : undefined;
+      break;
+
+    case 'modified-by':
+      value = item.lastModified ? item.lastModified.user : undefined;
       break;
 
     case 'group':
@@ -55,7 +60,7 @@ function formatDate(detail: LastModifiedDetail): string
 })
 export class BrowseSystemV2Component implements OnInit
 {
-  readonly displayedColumns: string[] = ['name', 'type', 'group', 'owner', 'when'];
+  readonly displayedColumns: string[] = ['name', 'type', 'group', 'owner', 'modified-by', 'when'];
   readonly filterControl = new FormControl('');
   dataSource: MatTableDataSource<Service>;
 
@@ -69,7 +74,7 @@ export class BrowseSystemV2Component implements OnInit
   { this.dataSource = new MatTableDataSource([]); }
 
 
-  doRefreshServices() { this.serviceStore.publishDummyData(); }
+  doRefreshServices() { this.serviceStore.publishLargeDummyDataSet(); }
 
 
   typeName(type: ServiceType): string { return ServiceType[type]; }
@@ -79,7 +84,7 @@ export class BrowseSystemV2Component implements OnInit
   { this.dataSource.filter = filterValue.trim().toLowerCase(); }
 
 
-  formatDate(lastModified: LastModifiedDetail) { return formatDate(lastModified); }
+  formattedDate(lastModified: LastModifiedDetail) { return formatDate(lastModified); }
 
 
   private _configureDataSource()
