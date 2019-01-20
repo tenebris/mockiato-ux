@@ -1,6 +1,7 @@
 import {Injector, NgModule, Optional, SkipSelf} from '@angular/core';
-
 import {CommonModule} from '@angular/common';
+import {ReactiveFormsModule} from '@angular/forms';
+import {MaterialModule} from '../material.module';
 
 import {appInjector} from './app-injector';
 import {appLogger} from './app-logger';
@@ -9,13 +10,14 @@ import {LoggingService} from './services/logging/logging.service';
 
 import {DebugBlockComponent} from './components/debug-block/debug-block.component';
 import {SimpleModalComponent} from './components/simple-modal/simple-modal.component';
+import {ServiceListV2Component} from './components/v2/service-list/service-list-v2.component';
 
 
 // TODO: Placeholder for all of this app's core services.
 @NgModule({
-  imports: [CommonModule],
-  declarations: [DebugBlockComponent, SimpleModalComponent],
-  exports: [DebugBlockComponent, SimpleModalComponent],
+  imports: [CommonModule, ReactiveFormsModule, MaterialModule],
+  declarations: [DebugBlockComponent, SimpleModalComponent, ServiceListV2Component],
+  exports: [DebugBlockComponent, SimpleModalComponent, ServiceListV2Component],
   providers: [],
 })
 export class CoreModule
