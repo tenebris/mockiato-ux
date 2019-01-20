@@ -99,19 +99,19 @@ export class BrowseSystemV2Component implements OnInit
   }
 
 
+  private _navigateToServiceDetail(target: Service): void
+  {
+    appLogger().debug(`selected ${target.name}:_id=${target._id}`);
+    this.router.navigate(['service', target._id], {relativeTo: this.route});
+  }
+
+
   private _configureDataSource()
   {
     this.dataSource.sortingDataAccessor = sortingDataAccessor;
     this.dataSource.filterPredicate = filterPredicate;
     this.dataSource.paginator = this.paginator;
     this.dataSource.sort = this.sort;
-  }
-
-
-  private _navigateToServiceDetail(target: Service): void
-  {
-    appLogger().debug(`selected ${target.name}:_id=${target._id}`);
-    this.router.navigate(['service', target._id], {relativeTo: this.route});
   }
 
 
