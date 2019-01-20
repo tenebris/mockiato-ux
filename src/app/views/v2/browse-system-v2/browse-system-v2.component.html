@@ -2,58 +2,8 @@
   <p>Testing of Material Tables for service-list</p>
 </app-debug-block>
 
-<mat-form-field>
-  <input name="filter" matInput placeholder="Filter"
-         (keyup)="applyFilter($event.target.value)"
-         [formControl]="filterControl">
-</mat-form-field>
-
-<div class="mat-elevation-z2">
-  <table mat-table [dataSource]="dataSource" matSort matSortDisableClear>
-
-    <!-- Name Column -->
-    <ng-container matColumnDef="name">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Name</th>
-      <td mat-cell *matCellDef="let service"> {{service.name}} </td>
-    </ng-container>
-
-    <!-- Type Column -->
-    <ng-container matColumnDef="type">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Type</th>
-      <td mat-cell *matCellDef="let service"> {{typeName(service.type)}} </td>
-    </ng-container>
-
-    <!-- Group Column -->
-    <ng-container matColumnDef="group">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Group</th>
-      <td mat-cell *matCellDef="let service"> {{service.group.name}} </td>
-    </ng-container>
-
-    <!-- Owner Column -->
-    <ng-container matColumnDef="owner">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Owner</th>
-      <td mat-cell *matCellDef="let service"> {{service.owner.name}} </td>
-    </ng-container>
-
-    <!-- When Column -->
-    <ng-container matColumnDef="modified-by">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> Modified By</th>
-      <td mat-cell *matCellDef="let service"> {{service.lastModified && service.lastModified.user}} </td>
-    </ng-container>
-
-    <!-- When Column -->
-    <ng-container matColumnDef="when">
-      <th mat-header-cell *matHeaderCellDef mat-sort-header> When</th>
-      <td mat-cell *matCellDef="let service"> {{formattedDate(service.lastModified)}} </td>
-    </ng-container>
-
-    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns;" (dblclick)="onClick(row)"></tr>
-  </table>
-
-  <mat-paginator [pageSizeOptions]="[5, 10, 50, 100]" showFirstLastButtons></mat-paginator>
-
-</div>
+<app-service-list-v2 [subject]="serviceStore.services" [clickThroughHandler]="clickThroughHandler"
+                     [displayedColumns]="['name', 'type', 'group', 'owner', 'modified-by', 'when']"
+></app-service-list-v2>
 
 <button (click)="doRefreshServices()" mat-stroked-button>Simulate Refresh</button>
-
