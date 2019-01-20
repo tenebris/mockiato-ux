@@ -2,6 +2,8 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
 import {Chance} from 'chance';
 
+import * as moment from 'moment';
+
 import {Service, ServiceType} from './service';
 import {ServiceListService} from '../../services/core/service-list/service-list.service';
 import {appLogger} from '../../app-logger';
@@ -155,7 +157,7 @@ export class ServiceStore
 
       item.lastModified = {
         user: chance.weighted(['john', 'paul', 'george', 'ringo', 'otter'], [1, 1, 1, 1, 5]),
-        timestamp: new Date(),
+        timestamp: moment().add(chance.integer({min: -1 * 356 * 5, max: 0}), 'd').toDate(),
       } as LastModifiedDetail;
 
       data.push(item);
