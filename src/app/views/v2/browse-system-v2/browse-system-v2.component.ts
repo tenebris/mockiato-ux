@@ -62,7 +62,7 @@ function formatDate(detail: LastModifiedDetail): string
 })
 export class BrowseSystemV2Component implements OnInit
 {
-  readonly displayedColumns: string[] = ['name', 'type', 'group', 'owner', 'modified-by', 'when'];
+  readonly displayedColumns: string[] = ['name', 'type', 'group', 'modified-by', 'when'];
   readonly filterControl = new FormControl('');
   dataSource: MatTableDataSource<Service>;
 
