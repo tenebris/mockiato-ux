@@ -1,8 +1,13 @@
 import {Injectable} from '@angular/core';
 import {BehaviorSubject, Observable} from 'rxjs';
+import {Chance} from 'chance';
+
 import {Service, ServiceType} from './service';
 import {ServiceListService} from '../../services/core/service-list/service-list.service';
 import {appLogger} from '../../app-logger';
+import {Group} from '../group/group';
+import {LastModifiedDetail} from '../common/last-modified-detail';
+import {MockiatoUser} from '../mockiato-user';
 
 
 @Injectable({providedIn: 'root'})
@@ -123,119 +128,39 @@ export class ServiceStore
         'type': ServiceType.SOAP,
         'group': {'name': 'Unit'},
         'owner': {name: 'george'},
-      },
-      {
-        '_id': '6',
-        'name': 'six',
-        'basePath': '/',
-        'type': ServiceType.SOAP,
-        'group': {'name': 'Unit'},
-        'owner': {name: 'george'},
-      },
-      {
-        '_id': '7',
-        'name': 'seven',
-        'basePath': '/',
-        'type': ServiceType.SOAP,
-        'group': {'name': 'Unit'},
-        'owner': {name: 'george'},
-      },
-      {
-        '_id': '8',
-        'name': 'eight',
-        'basePath': '/',
-        'type': ServiceType.SOAP,
-        'group': {'name': 'Unit'},
-        'owner': {name: 'george'},
-      },
-      {
-        '_id': '9',
-        'name': 'nine',
-        'basePath': '/',
-        'type': ServiceType.SOAP,
-        'group': {'name': 'Unit'},
-        'owner': {name: 'george'},
-      },
-      {
-        '_id': '10',
-        'name': 'ten',
-        'basePath': '/',
-        'type': ServiceType.SOAP,
-        'group': {'name': 'Unit'},
-        'owner': {name: 'george'},
-      },
-      {
-        '_id': '11',
-        'name': 'eleven',
-        'basePath': '/',
-        'type': ServiceType.SOAP,
-        'group': {'name': 'Unit'},
-        'owner': {name: 'george'},
-      },
-      {
-        '_id': '12',
-        'name': 'twelve',
-        'basePath': '/',
-        'type': ServiceType.SOAP,
-        'group': {'name': 'Unit'},
-        'owner': {name: 'george'},
-      },
-      {
-        '_id': '13',
-        'name': 'thirteen',
-        'basePath': '/',
-        'type': ServiceType.SOAP,
-        'group': {'name': 'Unit'},
-        'owner': {name: 'george'},
-      },
-      {
-        '_id': '14',
-        'name': 'fourteen',
-        'basePath': '/',
-        'type': ServiceType.SOAP,
-        'group': {'name': 'Unit'},
-        'owner': {name: 'george'},
-      },
-      {
-        '_id': '15',
-        'name': 'fifteen',
-        'basePath': '/',
-        'type': ServiceType.SOAP,
-        'group': {'name': 'Unit'},
-        'owner': {name: 'george'},
-      },
-      {
-        '_id': '16',
-        'name': 'sixteen',
-        'basePath': '/',
-        'type': ServiceType.SOAP,
-        'group': {'name': 'Unit'},
-        'owner': {name: 'george'},
-      },
-      {
-        '_id': '17',
-        'name': 'seventeen',
-        'basePath': '/',
-        'type': ServiceType.SOAP,
-        'group': {'name': 'Unit'},
-        'owner': {name: 'george'},
-      },
-      {
-        '_id': '18',
-        'name': 'eighteen',
-        'basePath': '/',
-        'type': ServiceType.SOAP,
-        'group': {'name': 'Unit'},
-        'owner': {name: 'george'},
-      },
-      {
-        '_id': '19',
-        'name': 'nineteen',
-        'basePath': '/',
-        'type': ServiceType.SOAP,
-        'group': {'name': 'Unit'},
-        'owner': {name: 'george'},
       }
     ]);
+  }
+
+
+  publishLargeDummyDataSet(): void
+  {
+    const data = new Array<Service>();
+    const chance = Chance.Chance();
+
+    for (let i = 5000; i > 0; i--)
+    {
+      const item = new Service();
+      item._id = i.toString();
+      item.name = 'resource-' + chance.word();
+      item.type = chance.integer({min: ServiceType.SOAP, max: ServiceType.MQ}) as ServiceType;
+      item.basePath = '/v' + i;
+      item.group = {
+        name: chance.weighted(['VS-Unit', 'VS-Regression', 'VS-Sandbox'], [5, 5, 1])
+      } as Group;
+
+      item.owner = {
+        name: chance.weighted(['john', 'paul', 'george', 'ringo', 'otter'], [1, 1, 1, 1, 5]),
+      } as MockiatoUser;
+
+      item.lastModified = {
+        user: chance.weighted(['john', 'paul', 'george', 'ringo', 'otter'], [1, 1, 1, 1, 5]),
+        timestamp: new Date(),
+      } as LastModifiedDetail;
+
+      data.push(item);
+    }
+
+    this._services.next(data);
   }
 }
