@@ -144,9 +144,12 @@ export class ServiceStore
     {
       const item = new Service();
       item._id = i.toString();
-      item.name = 'resource-' + chance.word();
+      item.name = chance.weighted(['resource', 'dataservice', 'service'], [5, 2, 1])
+                  + '-' + chance.word();
+
       item.type = chance.integer({min: ServiceType.SOAP, max: ServiceType.MQ}) as ServiceType;
       item.basePath = '/v' + i;
+
       item.group = {
         name: chance.weighted(['VS-Unit', 'VS-Regression', 'VS-Sandbox'], [5, 5, 1])
       } as Group;

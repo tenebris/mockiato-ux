@@ -150,7 +150,9 @@ function buildFilterPredicate(mappingDetails: ColumnMappingDetail[]): (Service, 
       };
     }
 
-    // returns true if we find any matching column value
+    // TODO: refactor loop below to only check filter against constructed string instead of each column
+    //  this would allow more complex regular expressions that exclude values -- currently not possible
+
     let result = false;
     for (const column of mappingDetails)
     {
