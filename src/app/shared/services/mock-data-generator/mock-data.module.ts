@@ -11,6 +11,7 @@ import {MockDataStructureComponent} from './form/v1/mock-data-structure/mock-dat
 import {LoadSavedStructureComponent} from './form/v1/load-saved-structure/load-saved-structure.component';
 import {ReactiveFormsModule} from '@angular/forms';
 import {MockDataFormComponent} from './form/mock-data-form.component';
+import {MockGroupV1Component} from './form/v1/mock-group/mock-group-v1.component';
 
 
 @NgModule({
@@ -19,6 +20,7 @@ import {MockDataFormComponent} from './form/mock-data-form.component';
     MockDataStructureComponent,
     LoadSavedStructureComponent,
     MockDataFormComponent,
+    MockGroupV1Component
   ],
   imports: [
     CommonModule,

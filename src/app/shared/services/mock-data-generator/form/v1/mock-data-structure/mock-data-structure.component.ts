@@ -1,7 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormArray, FormControl, FormGroup} from '@angular/forms';
-import {appLogger} from '../../../../../app-logger';
+import {AbstractControl, FormArray, FormControl, FormGroup} from '@angular/forms';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
+import {appLogger} from '../../../../../app-logger';
+import {LogLevel} from '../../../../logging/logging.service';
 
 
 @Component({
@@ -42,24 +43,62 @@ export class MockDataStructureComponent implements OnInit
   }
 
 
-  doRebuildControls()
+  /**
+   * Builds the list of FormControls which represent the mock-data structure.
+   *
+   * @param context of generation.  Only passed when called recursively by itself.
+   */
+  doRebuildControls(context?: { controls: FormArray, structure: object }): void
   {
-    const current = this.structure.value;
-    appLogger().trace('initializing MockDataStructureComponent with value', current);
+    let _structure, _controls;
 
-    const builderArray = new FormArray([]);
-    for (const i of Object.keys(current))
+    // check if we are processing a sub-context of the structure
+    // if we are then take the values from that otherwise from the root
+    if (context)
     {
-      appLogger().trace('adding element', i);
-      builderArray.push(new FormGroup({
-        name: new FormControl(i),
-        type: new FormControl(current[i])
-      }));
+      _controls = context.controls;
+      _structure = context.structure;
+    } else
+    {
+      _controls = new FormArray([]);
+      _structure = this.structure.value;
     }
 
-    builderArray.valueChanges.subscribe(() => this.doRebuildStructure());
+    appLogger().trace('initializing MockDataStructureComponent with value', _structure, _controls);
 
-    this.builder.controls = builderArray.controls;
+    // process each key of the current structure context
+    for (const key of Object.keys(_structure))
+    {
+      appLogger().trace('adding element', key);
+      switch (typeof _structure[key])
+      {
+        case 'string':
+          _controls.push(new FormGroup({
+            name: new FormControl(key),
+            type: new FormControl(_structure[key])
+          }));
+          break;
+
+        case 'object':
+          appLogger().trace('processing children for element: ', key);
+          const children = new FormArray([]);
+          _controls.push(new FormGroup({children: children}));
+          this.doRebuildControls({controls: children, structure: _structure[key]});
+          break;
+
+        default:
+          appLogger().trace('unknown type found for value of key: ', key, typeof _structure[key]);
+      }
+    }
+
+    // check if we are in the root context
+    // if so, wrap up and subscribe to any future changes
+    if (!context)
+    {
+      appLogger().debug('finalizing structure', _structure, _controls);
+      _controls.valueChanges.subscribe(() => this.doRebuildStructure());
+      this.builder.controls = _controls.controls;
+    }
   }
 
 
@@ -90,8 +129,16 @@ export class MockDataStructureComponent implements OnInit
   }
 
 
+  isSimpleElementGroup(element: AbstractControl): boolean
+  { return !(element instanceof FormGroup && element.contains('children')); }
+
+
   private rebuildStructure(): void
   {
+    appLogger().pushLogLevel(LogLevel.TRACE); // TODO (otter): remove force to trace...
+
+    appLogger().trace('starting rebuild of root structure', this.builder.controls);
+
     const newStructure = {};
     for (const control of this.builder.controls)
     {
@@ -101,6 +148,8 @@ export class MockDataStructureComponent implements OnInit
 
     appLogger().trace('new structure: ' + JSON.stringify(newStructure));
     this.structure.setValue(newStructure);
+
+    appLogger().popLogLevel(); // TODO (otter): remove force to trace...
   }
 
 
@@ -118,6 +167,9 @@ export class MockDataStructureComponent implements OnInit
     let i = 0;
     for (const key of Object.keys(current))
     {
+
+      // FIXME (otter): adjust logic to do a deep check... currently only looks at root children
+
       const item = controls[i++].value;
       appLogger().trace('checking sync', item, key, current[key]);
       if (!(item.name === key && item.type === current[key]))
@@ -136,6 +188,7 @@ export class MockDataStructureComponent implements OnInit
   {
     if (this.structure.value)
     { this.doRebuildControls(); }
+
     this.structure.valueChanges.subscribe(() => {
       const syncState = this.doCheckBuilderSync();
       appLogger().debug('synchronized?', syncState);
