@@ -35,8 +35,8 @@ export abstract class Logger
       return;
     }
 
-    this.level = this._logLevelHistory.unshift();
-    this.debug('restored log level: ', this.level, this._logLevelHistory);
+    this.level = this._logLevelHistory.pop();
+    this.info('restored log level: ', this.level, this._logLevelHistory);
   }
 
 
@@ -50,7 +50,7 @@ export abstract class Logger
    */
   public pushLogLevel(newLevel: LogLevel): void
   {
-    this.debug(`changing log level to ${newLevel} and pushing old value: ${this.level}`);
+    this.info(`changing log level to ${newLevel} and pushing old value: ${this.level}`, this._logLevelHistory);
     this._logLevelHistory.push(this.level);
     this.level = newLevel;
   }
