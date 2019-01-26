@@ -2,9 +2,10 @@ import {MockDataFieldDefinition, MockDataFieldType} from './mock-data-field';
 import {appLogger} from '../../app-logger';
 import {PersonAge} from './mock-data-generator.service';
 import {DatePipe} from '@angular/common';
+import {LogLevel} from '../logging/logging.service';
 
 
-export class MockDataStructure implements FlatMockDataStructure, MockDataFieldDefinition
+export class MockDataStructure implements FlatMockDataStructure, MockDataFieldDefinition, MockDataGroup
 {
 
 
@@ -12,7 +13,6 @@ export class MockDataStructure implements FlatMockDataStructure, MockDataFieldDe
   readonly type: MockDataFieldType;
   readonly value: MockDataFieldDefinition[] = [];
 
-  private readonly parent: MockDataStructure;
   private datePipe: DatePipe;
 
 
@@ -24,7 +24,6 @@ export class MockDataStructure implements FlatMockDataStructure, MockDataFieldDe
     if (parent && this.type === MockDataFieldType.root) throw new Error('there can only be one root');
 
     this.name = name;
-    this.parent = parent;
   }
 
 
@@ -33,26 +32,16 @@ export class MockDataStructure implements FlatMockDataStructure, MockDataFieldDe
   { return new MockDataStructure(name ? name : 'root'); }
 
 
-  // TODO: uncomment this when hierarchical structure is supported
-  // public addFieldGroup(name: string): MockDataStructure
-  // {
-  //   const group = new MockDataStructure(name, MockDataFieldType.group, this);
-  //   this.fields.push(group);
-  //   return group;
-  // }
-  //
-
-  public addField(name: string, type: string)
-  { this.value.push({name: name, value: type, type: MockDataFieldType.field}); }
-
-
   generate(impl: any, context?: GenerationContext): object
   {
     if (!context) return this.generate(impl, {key: 'root', definitions: this.value, object: {}});
 
-    appLogger().debug(`processing context: ${context.key}\n
+    if (appLogger().shouldLogMessage(LogLevel.TRACE))
+    {
+      appLogger().trace(`processing context: ${context.key}\n
 definitions:\n${JSON.stringify(context.definitions, undefined, 4)}
 object:\n${JSON.stringify(context.object, undefined, 4)}`);
+    }
 
     // need this outside loop in order to keep a
     // person's age and birthday self-consistent
@@ -61,18 +50,24 @@ object:\n${JSON.stringify(context.object, undefined, 4)}`);
     for (let i = 0; i < context.definitions.length; i++)
     {
       const definition = context.definitions[i];
-      appLogger().debug(`processing definition:\n${JSON.stringify(definition, undefined, 4)}`);
+      appLogger().trace(`processing definition:\n${JSON.stringify(definition, undefined, 4)}`);
 
-      const f = impl[definition.value];
-      if (!f)
+      if (definition.type === MockDataFieldType.field)
       {
-        appLogger().error(`ignoring unsupported generator method: ${definition.value}`);
-        continue;
+        const f = impl[definition.value];
+        if (!f)
+        {
+          appLogger().error(`ignoring unsupported generator method: ${definition.value}`);
+          continue;
+        }
       }
 
+      appLogger().trace('processing', definition);
       switch (definition.type)
       {
         case MockDataFieldType.field:
+          appLogger().trace('processing field', definition.value);
+
           const fieldType = definition.value;
 
           switch (fieldType)
@@ -92,10 +87,21 @@ object:\n${JSON.stringify(context.object, undefined, 4)}`);
           }
           break;
 
+        case MockDataFieldType.group:
+          appLogger().trace('processing group', definition.value);
+          context.object[definition.name] = this.generate(impl, {
+            key: definition.name,
+            definitions: definition.value,
+            object: {}
+          });
+          break;
+
+
         default:
           appLogger().error(`ignoring unsupported type: ${MockDataFieldType[definition.type]}`);
       }
     }
+
 
     // return the object constructed by this iteration...
     return context.object;
@@ -107,6 +113,27 @@ object:\n${JSON.stringify(context.object, undefined, 4)}`);
     if (!this.datePipe) this.datePipe = new DatePipe('en-US');
     return this.datePipe.transform(date, 'yyyy-MM-dd');
   }
+
+
+  public addField(name: string, type: string)
+  { this.value.push({name: name, value: type, type: MockDataFieldType.field}); }
+
+
+  public addGroup(name: string): MockDataGroup
+  {
+    const group = new MockDataStructure(name, MockDataFieldType.group, this);
+    this.value.push(group);
+    return group;
+  }
+}
+
+
+export interface MockDataGroup
+{
+  addField(name: string, type: string): void;
+
+
+  addGroup(name: string): MockDataGroup;
 }
 
 

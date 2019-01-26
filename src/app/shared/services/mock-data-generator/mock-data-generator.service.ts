@@ -1,4 +1,4 @@
-import {MockDataStructure} from './mock-data-structure';
+import {MockDataGroup, MockDataStructure} from './mock-data-structure';
 import {appLogger} from '../../app-logger';
 import {SavedStructure} from './form/v1/load-saved-structure/load-saved-structure.component';
 import {LogLevel} from '../logging/logging.service';
@@ -20,12 +20,16 @@ export interface MockPersonDataService
 
   gender(): string;
 
+
   /** This internal method provides consistency between the age() and birthday() results. */
   _age(): PersonAge;
 
+
   age(): number;
 
+
   birthday(): Date;
+
 
   ssn(): string;
 
@@ -78,24 +82,29 @@ export abstract class MockDataGeneratorService
   /**
    * Generates a number of objects matching the specified structure.
    *
-   * @param options.structure of data to generate
-   * @param options.requested count of items to generate -- default is 10
+   * @param structure of data to generate
+   * @param count of items to generate -- default is 10
    */
-  public abstract generate(structure: MockDataStructure, itemCount?: number): any;
+  public abstract generate(structure: MockDataStructure, count?: number): any;
 
 
   public buildStructure(value: object, options: { name?: string } = {}): MockDataStructure
   {
-    if (appLogger().shouldLogMessage(LogLevel.TRACE))
-    {
-      appLogger().trace(this.logMsgPrefix + '  building mock-data structure\n'
-                        + `name=${options.name}\n${JSON.stringify(value, undefined, 4)}`);
-    }
-
     // Save last built structure for reloading in the future...
     SavedStructure.writeLast(value);
 
     const structure = MockDataStructure.newMockDataStructure(options.name);
+    this._processStructure(structure, value);
+    return structure;
+  }
+
+
+  /** recursively process the given structure */
+  private _processStructure(structure: MockDataGroup, value: object): void
+  {
+    appLogger().pushLogLevel(LogLevel.TRACE); // FIXME (otter): for development only...
+    appLogger().trace('building mock-data structure', structure, value);
+
     for (const item of Object.keys(value))
     {
       const type = value[item];
@@ -105,10 +114,16 @@ export abstract class MockDataGeneratorService
           structure.addField(item, type);
           break;
 
+        case 'object':
+          this._processStructure(structure.addGroup(item), type);
+          break;
+
         default:
           appLogger().warn(this.logMsgPrefix + `ignoring unsupported type: ${item}/${type}`);
       }
     }
-    return structure;
+
+    appLogger().trace('mock-data', structure, value);
+    appLogger().popLogLevel(); // FIXME (otter): for development only...
   }
 }
