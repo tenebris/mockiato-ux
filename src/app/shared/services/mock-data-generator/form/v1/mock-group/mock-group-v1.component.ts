@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {FormArray, FormControl} from '@angular/forms';
+import {FormArray, FormControl, FormGroup} from '@angular/forms';
 import {appLogger} from '../../../../../app-logger';
 
 
@@ -17,6 +17,7 @@ export class MockGroupV1Component implements OnInit
   @Output() elementRemoved = new EventEmitter<object>();
 
   groupName: string;
+  groupNameControl: FormControl;
   myPath: string[];
   controls: FormArray;
 
@@ -26,15 +27,32 @@ export class MockGroupV1Component implements OnInit
   constructor() {}
 
 
+  checkGroupName()
+  {
+    appLogger().trace('checking group name: ', {original: this.groupName, current: this.groupNameControl.value});
+    if (this.groupName !== this.groupNameControl.value)
+    {
+      const group = this.element as FormGroup;
+      const newValue = {};
+      newValue[this.groupNameControl.value.toString().trim()] = this.controls;
+      group.controls = newValue;
+      group.removeControl(); // triggers change event
+    }
+  }
+
+
   ngOnInit()
   {
-    this.groupName = Object.keys(this.element['controls'])[0];
+    const name = Object.keys(this.element['controls'])[0];
+    this.groupName = name;
+    this.groupNameControl = new FormControl(name);
     this.myPath = this.path;
-    this.myPath.push(this.groupName);
-    this.controls = this.element['controls'][this.groupName] as FormArray;
+    this.myPath.push(name);
+    this.controls = this.element['controls'][name] as FormArray;
 
     appLogger().info('initializing MockGroupV1Component', {
-      'groupName': this.groupName, 'myPath': this.myPath, 'controls': this.controls});
+      'groupName': this.groupNameControl, 'myPath': this.myPath, 'controls': this.controls
+    });
 
   }
 

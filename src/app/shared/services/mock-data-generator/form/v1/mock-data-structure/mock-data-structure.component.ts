@@ -36,6 +36,8 @@ function _buildStructure(structure: object, controls: AbstractControl[]): void
       continue;
     }
 
+    appLogger().trace('building structure: found simple control', control);
+
     const item = control.value;
     structure[item.name] = item.type;
   }

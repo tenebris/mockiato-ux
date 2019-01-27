@@ -1,6 +1,6 @@
 <div class="mat-elevation-z2 mock-group-form">
   <mat-form-field>
-    <input matInput placeholder="Group Name" [value]="groupName">
+    <input matInput placeholder="Group Name" [formControl]="groupNameControl" (blur)="checkGroupName()">
   </mat-form-field>
   <div class="structure-container">
     <app-mock-data-structure
