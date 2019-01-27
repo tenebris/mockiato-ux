@@ -1,0 +1,8 @@
+{
+  "name": "fullName",
+  "gender": "gender",
+  "age" : {
+    "years": "age",
+    "birthday": "birthday"
+  }
+}

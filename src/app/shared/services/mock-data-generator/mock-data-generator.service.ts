@@ -102,7 +102,6 @@ export abstract class MockDataGeneratorService
   /** recursively process the given structure */
   private _processStructure(structure: MockDataGroup, value: object): void
   {
-    appLogger().pushLogLevel(LogLevel.TRACE); // FIXME (otter): for development only...
     appLogger().trace('building mock-data structure', structure, value);
 
     for (const item of Object.keys(value))
@@ -124,6 +123,5 @@ export abstract class MockDataGeneratorService
     }
 
     appLogger().trace('mock-data', structure, value);
-    appLogger().popLogLevel(); // FIXME (otter): for development only...
   }
 }

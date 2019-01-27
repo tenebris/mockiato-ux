@@ -1,0 +1,14 @@
+{
+  "name": "fullName",
+  "detail" : {
+    "gender": "gender",
+    "years": "age",
+    "birthday": "birthday",
+    "address": {
+      "street": "address",
+      "city": "city",
+      "state": "state",
+      "zip": "zipCode"
+    }
+  }
+}

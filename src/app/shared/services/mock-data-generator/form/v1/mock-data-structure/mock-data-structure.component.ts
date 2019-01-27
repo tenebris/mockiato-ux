@@ -5,6 +5,43 @@ import {appLogger} from '../../../../../app-logger';
 import {LogLevel} from '../../../../logging/logging.service';
 
 
+function _isNestedGroup(element: AbstractControl): boolean
+{
+  // check if the first element in the group is a FormArray
+  // if it is not then we are a simple element group
+  return element instanceof FormGroup
+         ? element.controls[Object.keys(element.controls)[0]] instanceof FormArray
+         : false;
+}
+
+
+function _buildStructure(structure: object, controls: AbstractControl[]): void
+{
+  appLogger().trace('building structure', structure, controls);
+
+  for (const control of controls)
+  {
+    if (_isNestedGroup(control))
+    {
+      appLogger().trace('building structure: found nested control', control);
+
+      const group = control as FormGroup;
+      const name = Object.keys(group.controls)[0];
+
+      const subStructure = {};
+      structure[name] = subStructure;
+
+      const children = group.controls[name] as FormArray;
+      _buildStructure(subStructure, children.controls);
+      continue;
+    }
+
+    const item = control.value;
+    structure[item.name] = item.type;
+  }
+}
+
+
 @Component({
   selector: 'app-mock-data-structure',
   templateUrl: './mock-data-structure.component.html',
@@ -82,7 +119,12 @@ export class MockDataStructureComponent implements OnInit
         case 'object':
           appLogger().trace('processing children for element: ', key);
           const children = new FormArray([]);
-          _controls.push(new FormGroup({children: children}));
+
+          // need to name the children to match the group
+          const data = {};
+          data[key] = children;
+
+          _controls.push(new FormGroup(data));
           this.doRebuildControls({controls: children, structure: _structure[key]});
           break;
 
@@ -130,26 +172,18 @@ export class MockDataStructureComponent implements OnInit
 
 
   isSimpleElementGroup(element: AbstractControl): boolean
-  { return !(element instanceof FormGroup && element.contains('children')); }
+  { return !_isNestedGroup(element); }
 
 
   private rebuildStructure(): void
   {
-    appLogger().pushLogLevel(LogLevel.TRACE); // TODO (otter): remove force to trace...
-
     appLogger().trace('starting rebuild of root structure', this.builder.controls);
 
     const newStructure = {};
-    for (const control of this.builder.controls)
-    {
-      const item = control.value;
-      newStructure[item.name] = item.type;
-    }
+    _buildStructure(newStructure, this.builder.controls);
 
     appLogger().trace('new structure: ' + JSON.stringify(newStructure));
     this.structure.setValue(newStructure);
-
-    appLogger().popLogLevel(); // TODO (otter): remove force to trace...
   }
 
 
