@@ -2,7 +2,6 @@ import {Component, Input, OnInit} from '@angular/core';
 import {AbstractControl, FormArray, FormControl, FormGroup} from '@angular/forms';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import {appLogger} from '../../../../../app-logger';
-import {LogLevel} from '../../../../logging/logging.service';
 
 
 function _isNestedGroup(element: AbstractControl): boolean
@@ -52,6 +51,7 @@ export class MockDataStructureComponent implements OnInit
 
   @Input() builder: FormArray;
   @Input() structure: FormControl;
+  @Input() path: string[];
 
 
   // ~~-~~-~~-~~-~~ Constructors ~~-~~-~~-~~-~~
@@ -98,7 +98,7 @@ export class MockDataStructureComponent implements OnInit
     } else
     {
       _controls = new FormArray([]);
-      _structure = this.structure.value;
+      _structure = this.structure.value; // FIXME (otter): need to take into account this.path
     }
 
     appLogger().trace('initializing MockDataStructureComponent with value', _structure, _controls);
@@ -158,7 +158,7 @@ export class MockDataStructureComponent implements OnInit
     }
 
     appLogger().debug('new structure: ' + JSON.stringify(newStructure));
-    this.structure.setValue(newStructure);
+    this.structure.setValue(newStructure);  // FIXME (otter): need to take into account this.path
   }
 
 
@@ -220,15 +220,30 @@ export class MockDataStructureComponent implements OnInit
 
   ngOnInit()
   {
-    if (this.structure.value)
-    { this.doRebuildControls(); }
-
-    this.structure.valueChanges.subscribe(() => {
-      const syncState = this.doCheckBuilderSync();
-      appLogger().debug('synchronized?', syncState);
-
-      // nothing to do if we are in sync with the structure
-      if (!syncState) this.doRebuildControls();
+    appLogger().info('initializing MockDataStructureComponent', {
+      path: this.path,
+      structure: this.structure,
+      builder: this.builder
     });
+
+    if (this.path && this.path.length > 0)
+    {
+      appLogger().info(this.structure.value[this.path]);
+    } else
+    {
+      // FIXME (otter): in block for debugging purposes...
+
+      if (!this.path) this.path = [];
+      if (this.structure.value) { this.doRebuildControls(); }
+
+      this.structure.valueChanges.subscribe(() => {
+        const syncState = this.doCheckBuilderSync();
+        appLogger().debug('synchronized?', syncState);
+
+        // nothing to do if we are in sync with the structure
+        if (!syncState) this.doRebuildControls();
+      });
+    }
+
   }
 }

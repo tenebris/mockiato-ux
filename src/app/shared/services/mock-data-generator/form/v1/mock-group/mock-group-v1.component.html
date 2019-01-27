@@ -1,6 +1,9 @@
 <div class="mat-elevation-z2">
-  <!-- TODO: adjust to display form
-  <app-mock-data-structure [structure]="structure" [builder]="form.get('builder')"></app-mock-data-structure>
-  -->
-  <button></button>
+  <em>{{myPath}}</em>
+  <div style="padding-left: 4em; padding-top: 1em; padding-bottom: 1em; border-left: 2px dashed">
+    <app-mock-data-structure
+      [structure]="structure" [path]="myPath"
+      [builder]="controls"
+    ></app-mock-data-structure>
+  </div>
 </div>
