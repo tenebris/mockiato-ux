@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {AbstractControl, FormArray, FormControl, FormGroup} from '@angular/forms';
 import {CdkDragDrop, moveItemInArray} from '@angular/cdk/drag-drop';
 import {appLogger} from '../../../../../app-logger';
+import {LogLevel} from '../../../../logging/logging.service';
 
 
 function _isNestedGroup(element: AbstractControl): boolean
@@ -98,7 +99,7 @@ export class MockDataStructureComponent implements OnInit
     } else
     {
       _controls = new FormArray([]);
-      _structure = this.structure.value; // FIXME (otter): need to take into account this.path
+      _structure = this.structure.value;
     }
 
     appLogger().trace('initializing MockDataStructureComponent with value', _structure, _controls);
@@ -151,14 +152,9 @@ export class MockDataStructureComponent implements OnInit
       , this.builder.controls);
 
     const newStructure = {};
-    for (const control of this.builder.controls)
-    {
-      const item = control.value;
-      newStructure[item.name] = item.type;
-    }
-
-    appLogger().debug('new structure: ' + JSON.stringify(newStructure));
-    this.structure.setValue(newStructure);  // FIXME (otter): need to take into account this.path
+    _buildStructure(newStructure, this.builder.controls);
+    appLogger().debug('new structure', newStructure);
+    this.structure.setValue(newStructure);
   }
 
 
@@ -190,31 +186,39 @@ export class MockDataStructureComponent implements OnInit
   /** determine if the builder is in sync with the current structure */
   private doCheckBuilderSync(): boolean
   {
-    const current = this.structure.value;
-    const controls = this.builder.controls;
-
-    appLogger().trace('checking synchronization of builder', current, controls);
-
-    const numControls = Object.keys(current).length;
-    if (numControls !== controls.length) return false;
-
-    let i = 0;
-    for (const key of Object.keys(current))
+    appLogger().pushLogLevel(LogLevel.TRACE);  // FIXME (otter): while debugging function
+    try
     {
+      const current = this.structure.value;
+      const controls = this.builder.controls;
 
-      // FIXME (otter): adjust logic to do a deep check... currently only looks at root children
+      appLogger().trace('checking synchronization of builder', current, controls);
 
-      const item = controls[i++].value;
-      appLogger().trace('checking sync', item, key, current[key]);
-      if (!(item.name === key && item.type === current[key]))
+      const numControls = Object.keys(current).length;
+      if (numControls !== controls.length) return false;
+
+      let i = 0;
+      for (const key of Object.keys(current))
       {
-        appLogger().debug('found mismatch', key, current[key], item);
-        return false;
-      }
-    }
 
-    // if we made it to here everything matches...
-    return true;
+        // FIXME (otter): adjust logic to do a deep check... currently only looks at root children
+
+        const item = controls[i++].value;
+        appLogger().trace('checking sync', item, key, current[key]);
+        if (!(item.name === key && item.type === current[key]))
+        {
+          appLogger().debug('found mismatch', key, current[key], item);
+          return false;
+        }
+      }
+
+      // if we made it to here everything matches...
+      return true;
+    }
+    finally
+    {
+      appLogger().popLogLevel();  // FIXME (otter): while debugging function
+    }
   }
 
 
@@ -231,10 +235,9 @@ export class MockDataStructureComponent implements OnInit
       appLogger().info(this.structure.value[this.path]);
     } else
     {
-      // FIXME (otter): in block for debugging purposes...
-
       if (!this.path) this.path = [];
-      if (this.structure.value) { this.doRebuildControls(); }
+      if (this.structure.value)
+      { this.doRebuildControls(); }
 
       this.structure.valueChanges.subscribe(() => {
         const syncState = this.doCheckBuilderSync();

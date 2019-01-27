@@ -12,6 +12,7 @@ import {LoadSavedStructureComponent} from './form/v1/load-saved-structure/load-s
 import {ReactiveFormsModule} from '@angular/forms';
 import {MockDataFormComponent} from './form/mock-data-form.component';
 import {MockGroupV1Component} from './form/v1/mock-group/mock-group-v1.component';
+import {MaterialModule} from '../../../material.module';
 
 
 @NgModule({
@@ -27,6 +28,7 @@ import {MockGroupV1Component} from './form/v1/mock-group/mock-group-v1.component
     ReactiveFormsModule,
     CoreModule,
     DragDropModule,
+    MaterialModule
   ],
   exports: [
     LoadSavedStructureComponent,

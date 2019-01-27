@@ -7,6 +7,7 @@ import {MatInputModule, MatPaginatorModule, MatSlideToggleModule, MatSortModule,
   exports: [
     CdkTableModule,
     MatSlideToggleModule,
+    MatInputModule,
     MatTableModule,
     MatSortModule,
     MatPaginatorModule,
