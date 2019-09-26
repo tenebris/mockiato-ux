@@ -409,17 +409,15 @@
   resolved "https://registry.yarnpkg.com/@types/chance/-/chance-1.0.1.tgz#c10703020369602c40dd9428cc6e1437027116df"
   integrity sha512-jtV6Bv/j+xk4gcXeLlESwNc/m/I/dIZA0xrt29g0uKcjyPob8iisj/5z0ARE+Ldfx4MxjNFNECG0z++J7zJgqg==
 
-"@types/jasmine@*", "@types/jasmine@~3.3.7":
+"@types/jasmine@~3.3.7":
   version "3.3.7"
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-3.3.7.tgz#52f2bfe8d2995d4756585d2328c97fbb0fec66e3"
   integrity sha512-TuXyEBYWWrjBZAC4h3YY5NcrgC9HaLO5FogvkY5FOfAyjrk3wWABoH/3p7ooFfA8BHjc2BeQCDvvQBLb+9q1rA==
 
-"@types/jasminewd2@~2.0.3":
-  version "2.0.6"
-  resolved "https://registry.yarnpkg.com/@types/jasminewd2/-/jasminewd2-2.0.6.tgz#2f57a8d9875a6c9ef328a14bd070ba14a055ac39"
-  integrity sha512-2ZOKrxb8bKRmP/po5ObYnRDgFE4i+lQiEB27bAMmtMWLgJSqlIDqlLx6S0IRorpOmOPRQ6O80NujTmQAtBkeNw==
-  dependencies:
-    "@types/jasmine" "*"
+"@types/jasminewd2@~2.0.7":
+  version "2.0.7"
+  resolved "https://registry.yarnpkg.com/@types/jasminewd2/-/jasminewd2-2.0.7.tgz#71756ac7780add2dcd32384919ac903ad550f643"
+  integrity sha512-pKeZFRn4vQyd8Px9FK6ww3frKiAYPgpKzBayWHd9SOzGjty6aXPsuFvxgRr866KLP1h7Cnd1z3XrhGX17WqO2g==
 
 "@types/node@*", "@types/node@~10.12.18":
   version "10.12.18"
