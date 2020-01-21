@@ -399,10 +399,10 @@
     semver "5.5.1"
     semver-intersect "1.4.0"
 
-"@types/auth0-js@^8.11.8":
-  version "8.11.8"
-  resolved "https://registry.yarnpkg.com/@types/auth0-js/-/auth0-js-8.11.8.tgz#7091701d5d3782e66ec5f61cef25af9c6366c56d"
-  integrity sha512-hXC9wtUpD4+K3o4VGjjR6v7slm/nRrFC2Kj4tcXx3Zzzzhuwe/fTsmfqVE+9TGTcafcvhqv/oDAguvjX7sU+6g==
+"@types/auth0-js@^9.12.1":
+  version "9.12.1"
+  resolved "https://registry.yarnpkg.com/@types/auth0-js/-/auth0-js-9.12.1.tgz#940ac7e9547c247b789310fc2f195b9070800446"
+  integrity sha512-Ak76ZtXdyGumQadYVTnFmItVmcHYK09qEU47d7ASLrtbMyxQTnVvm0P255jli2jka/jXVCInTgkHFpzuSiRATw==
 
 "@types/chance@^1.0.1":
   version "1.0.1"
