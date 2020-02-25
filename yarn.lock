@@ -409,10 +409,15 @@
   resolved "https://registry.yarnpkg.com/@types/chance/-/chance-1.0.1.tgz#c10703020369602c40dd9428cc6e1437027116df"
   integrity sha512-jtV6Bv/j+xk4gcXeLlESwNc/m/I/dIZA0xrt29g0uKcjyPob8iisj/5z0ARE+Ldfx4MxjNFNECG0z++J7zJgqg==
 
-"@types/jasmine@*", "@types/jasmine@~3.3.7":
+"@types/jasmine@*":
   version "3.3.7"
   resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-3.3.7.tgz#52f2bfe8d2995d4756585d2328c97fbb0fec66e3"
   integrity sha512-TuXyEBYWWrjBZAC4h3YY5NcrgC9HaLO5FogvkY5FOfAyjrk3wWABoH/3p7ooFfA8BHjc2BeQCDvvQBLb+9q1rA==
+
+"@types/jasmine@~3.5.7":
+  version "3.5.7"
+  resolved "https://registry.yarnpkg.com/@types/jasmine/-/jasmine-3.5.7.tgz#c4237935a4b0db31ada6b0de10e2b0658e7b2643"
+  integrity sha512-HoPp5ZafWFXr36yRUOJNuRbvFNklxvN+I9JXfAaZTHBiEw4ZkN4FBnjbV4YHRNNG433ypHP2K+lOeQyRdyuGxQ==
 
 "@types/jasminewd2@~2.0.3":
   version "2.0.6"
