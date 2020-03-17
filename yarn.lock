@@ -661,10 +661,10 @@ ag-grid-angular@^20.0.0:
   resolved "https://registry.yarnpkg.com/ag-grid-angular/-/ag-grid-angular-20.0.0.tgz#2c60e613fcea074f887ff9f8a769a84714629e27"
   integrity sha512-Wpna9jclSt4HlKCNBLKoGJ63K4bdjeY+DkK0J9o+n7k/gMYuucTaL5c4X3NmkQrrQEhgPAbMQ1QQVzIGxA8c2Q==
 
-ag-grid-community@^20.0.0:
-  version "20.0.0"
-  resolved "https://registry.yarnpkg.com/ag-grid-community/-/ag-grid-community-20.0.0.tgz#0bda7f01e4ed665e3c63f12dc60f5b3e0726245b"
-  integrity sha512-KOvUnZsf1FY/0wt77xNRHJl76nxGwMuVZpEAAQvAsv+TrODXETSP9JcJskVBjr+s5VLvGaxJNfV7JQTc1ZPS5w==
+ag-grid-community@^23.0.1:
+  version "23.0.1"
+  resolved "https://registry.yarnpkg.com/ag-grid-community/-/ag-grid-community-23.0.1.tgz#d3eb49d30970f12575016fe850679205af3063f8"
+  integrity sha512-oD6cTvUNNKfRAGNAb/D1juuwuhFKb17/CB/XY0rGjYJMCe8IXF/u4YrtyeURjU8oLCav1WAmhZGNjBCHDR9rCQ==
 
 agent-base@4, agent-base@^4.1.0, agent-base@~4.2.0:
   version "4.2.1"
