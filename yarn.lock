@@ -656,10 +656,10 @@ after@0.8.2:
   resolved "https://registry.yarnpkg.com/after/-/after-0.8.2.tgz#fedb394f9f0e02aa9768e702bda23b505fae7e1f"
   integrity sha1-/ts5T58OAqqXaOcCvaI7UF+ufh8=
 
-ag-grid-angular@^20.0.0:
-  version "20.0.0"
-  resolved "https://registry.yarnpkg.com/ag-grid-angular/-/ag-grid-angular-20.0.0.tgz#2c60e613fcea074f887ff9f8a769a84714629e27"
-  integrity sha512-Wpna9jclSt4HlKCNBLKoGJ63K4bdjeY+DkK0J9o+n7k/gMYuucTaL5c4X3NmkQrrQEhgPAbMQ1QQVzIGxA8c2Q==
+ag-grid-angular@^23.0.0:
+  version "23.0.0"
+  resolved "https://registry.yarnpkg.com/ag-grid-angular/-/ag-grid-angular-23.0.0.tgz#49011f9caec58926a59433a58ce5d5be3bfccb3c"
+  integrity sha512-hMh5xNEtktyX3KERA3JuuRMT3nJOzAW34T1pKzpjVPTjHHUSiHgvwU59nmPYaMAJ3zk/t1HmyZicVrkl/ILnng==
 
 ag-grid-community@^20.0.0:
   version "20.0.0"
