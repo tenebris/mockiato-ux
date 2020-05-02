@@ -324,13 +324,12 @@
     lodash "^4.17.10"
     to-fast-properties "^2.0.0"
 
-"@datorama/akita@^1.24.2":
-  version "1.24.2"
-  resolved "https://registry.yarnpkg.com/@datorama/akita/-/akita-1.24.2.tgz#4581182d7dc8c374286b1f3a02afdfc57086584d"
-  integrity sha512-Dp+wVMLuUFqVCJzaM674REO/9ZMUB7uD0ETf3TsxbQoGCEQX52MW+RmXQrj5gRAV74pUvcf1WOhHUO1VPx/8AA==
+"@datorama/akita@^4.23.1":
+  version "4.23.1"
+  resolved "https://registry.yarnpkg.com/@datorama/akita/-/akita-4.23.1.tgz#f6f4a425632f97241f4a7c088015e75984482db0"
+  integrity sha512-ehZ9c+kJrnZuja7e5CCCb0D/5B93oYJvPaZ8ZwNZhR5OueE4sSzHFbtZy1ppivbV4Q97PtHo/sv0TD+exbv5lQ==
   dependencies:
     schematics-utilities "^1.1.1"
-    tslib "^1.9.0"
 
 "@fortawesome/angular-fontawesome@^0.3.0":
   version "0.3.0"
